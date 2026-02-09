@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Newsletter - Monika Rajput</title>
+    <meta name="description" content="Subscribe to Monika Rajput's newsletter for updates and insights." />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7f8fb;
+        --card: #ffffff;
+        --text: #050816;
+        --muted: #4b5563;
+        --border: #e5e7eb;
+        --link: #0b57d0;
+        --primary: #0b57d0;
+        --primary-hover: #0842a0;
+        --success: #10b981;
+        --error: #ef4444;
+        --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.10);
+        --shadow-card: 0 10px 24px rgba(15, 23, 42, 0.08);
+        --radius-lg: 28px;
+        --radius-md: 20px;
+        --radius-sm: 12px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding: 56px 18px 72px;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .nav {
+        width: min(1040px, 100%);
+        margin: 0 auto 40px;
+        padding: 0 4px;
+      }
+
+      .nav-link {
+        color: var(--link);
+        text-decoration: none;
+        font-size: 0.95rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: opacity 0.2s;
+      }
+
+      .nav-link:hover {
+        opacity: 0.8;
+      }
+
+      main {
+        width: min(1040px, 100%);
+        margin: 0 auto;
+        padding: 0;
+        flex: 1;
+      }
+
+      .newsletter-hero {
+        text-align: center;
+        padding: 40px 4px 60px;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        line-height: 1.15;
+        margin: 0 0 20px;
+        font-weight: 850;
+        letter-spacing: -0.02em;
+      }
+
+      .subtitle {
+        margin: 0 0 40px;
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 1.15rem;
+      }
+
+      .subscription-form {
+        background: var(--card);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-card);
+        padding: 40px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 24px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: var(--text);
+      }
+
+      input[type="email"] {
+        width: 100%;
+        padding: 14px 18px;
+        font-size: 1rem;
+        border: 2px solid var(--border);
+        border-radius: var(--radius-sm);
+        background: var(--bg);
+        color: var(--text);
+        font-family: inherit;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+
+      input[type="email"]:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(11, 87, 208, 0.1);
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 16px 24px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: white;
+        background: var(--primary);
+        border: none;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        font-family: inherit;
+        transition: background 0.2s, transform 0.1s;
+        box-shadow: 0 4px 12px rgba(11, 87, 208, 0.2);
+      }
+
+      .submit-btn:hover:not(:disabled) {
+        background: var(--primary-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(11, 87, 208, 0.3);
+      }
+
+      .submit-btn:active:not(:disabled) {
+        transform: translateY(0);
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .message {
+        margin-top: 20px;
+        padding: 14px 18px;
+        border-radius: var(--radius-sm);
+        font-size: 0.95rem;
+        text-align: center;
+        display: none;
+      }
+
+      .message.success {
+        background: #d1fae5;
+        color: #065f46;
+        border: 1px solid #10b981;
+        display: block;
+      }
+
+      .message.error {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #ef4444;
+        display: block;
+      }
+
+      .features {
+        margin-top: 60px;
+        padding: 40px 4px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+        padding: 0 4px;
+      }
+
+      @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 560px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        gap: 12px;
+        padding: 18px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        background: var(--card);
+        box-shadow: var(--shadow-card);
+        text-decoration: none;
+        color: inherit;
+        min-height: 150px;
+        transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
+        border-color: rgba(11, 87, 208, 0.22);
+      }
+
+      .card:focus-visible {
+        outline: 3px solid rgba(11, 87, 208, 0.25);
+        outline-offset: 3px;
+      }
+
+      .card-head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+        flex: 0 0 auto;
+      }
+
+      .icon svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .card-title {
+        margin: 0;
+        font-weight: 800;
+        font-size: 1.08rem;
+        letter-spacing: -0.01em;
+      }
+
+      .card-subtitle {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        overflow-wrap: anywhere;
+      }
+
+      .tint-blue {
+        background: #eef6ff;
+      }
+      .tint-gray {
+        background: #f3f4f6;
+      }
+      .tint-cream {
+        background: #fff9e9;
+      }
+      .tint-pink {
+        background: #fff0f6;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+        margin-top: 32px;
+        padding: 0 4px;
+      }
+
+      @media (max-width: 900px) {
+        .features-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 560px) {
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .feature-card {
+        padding: 18px;
+        background: var(--card);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-card);
+        min-height: 150px;
+        transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
+        border-color: rgba(11, 87, 208, 0.22);
+      }
+
+      .feature-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+        margin-bottom: 12px;
+      }
+
+      .feature-icon svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .feature-title {
+        margin: 0 0 6px;
+        font-weight: 800;
+        font-size: 1.08rem;
+        letter-spacing: -0.01em;
+      }
+
+      .feature-desc {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 640px) {
+        .subscription-form {
+          padding: 28px 20px;
+        }
+
+        .newsletter-hero {
+          padding: 20px 4px 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back to Home
+      </a>
+    </nav>
+
+    <main>
+      <section class="newsletter-hero">
+        <h1>Get My Newsletter Straight to Your Inbox</h1>
+        <p class="subtitle">
+          Join others who receive high-signal, curiosity-inducing content every single week. 
+          Get actionable ideas to help you build a high-performing, healthy, wealthy life.
+        </p>
+
+        <div class="subscription-form">
+          <form id="newsletterForm">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="your.email@example.com"
+                required
+                autocomplete="email"
+              />
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">
+              Subscribe
+            </button>
+            <div id="message" class="message"></div>
+          </form>
+        </div>
+      </section>
+
+      <section class="features">
+        <h2 style="text-align: center; margin: 0 0 16px; font-size: 1.8rem; letter-spacing: -0.01em;">
+          What You'll Get
+        </h2>
+        <p style="text-align: center; color: var(--muted); margin: 0 0 32px;">
+          Weekly insights, updates, and exclusive content delivered directly to you.
+        </p>
+        <div class="features-grid">
+          <div class="feature-card tint-blue">
+            <div class="feature-icon" style="background:#dbeafe;">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="#0f172a" opacity="0.9"/>
+                <path d="M22 6l-10 7L2 6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <h3 class="feature-title">Weekly Updates</h3>
+            <p class="feature-desc">Stay in the loop with my latest projects, thoughts, and discoveries.</p>
+          </div>
+
+          <div class="feature-card tint-cream">
+            <div class="feature-icon" style="background:#fde68a;">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#0f172a" opacity="0.9"/>
+                <path d="M2 17l10 5 10-5" fill="#0f172a" opacity="0.9"/>
+                <path d="M2 12l10 5 10-5" fill="#0f172a" opacity="0.9"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Exclusive Content</h3>
+            <p class="feature-desc">Get access to content and insights not shared anywhere else.</p>
+          </div>
+
+          <div class="feature-card tint-pink">
+            <div class="feature-icon" style="background:#ffe4e6;">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" fill="#0f172a" opacity="0.9"/>
+                <path d="M12 6v6l4 2" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">No Spam, Ever</h3>
+            <p class="feature-desc">Respectful of your inbox. Unsubscribe anytime with one click.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const form = document.getElementById('newsletterForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const messageDiv = document.getElementById('message');
+      const emailInput = document.getElementById('email');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const email = emailInput.value.trim();
+        const originalText = submitBtn.textContent;
+
+        // Disable button and show loading state
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Subscribing...';
+        messageDiv.className = 'message';
+        messageDiv.style.display = 'none';
+
+        try {
+          const response = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            messageDiv.className = 'message success';
+            messageDiv.textContent = data.message || 'Thank you for subscribing! Check your email to confirm.';
+            messageDiv.style.display = 'block';
+            form.reset();
+          } else {
+            messageDiv.className = 'message error';
+            messageDiv.textContent = data.error || 'Something went wrong. Please try again.';
+            messageDiv.style.display = 'block';
+          }
+        } catch (error) {
+          messageDiv.className = 'message error';
+          messageDiv.textContent = 'Network error. Please check your connection and try again.';
+          messageDiv.style.display = 'block';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+      });
+    </script>
+  </body>
+</html>

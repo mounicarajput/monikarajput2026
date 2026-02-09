@@ -4,172 +4,478 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Monika Rajput</title>
-    <meta name="description" content="Monika Rajput — website in the making." />
+    <meta name="description" content="Monika Rajput — Build Data and AI Solutions & Host of TMS" />
     <style>
       :root {
         color-scheme: light;
-        --bg: #f7f8fb;
+        --bg: #fafafa;
         --card: #ffffff;
         --text: #050816;
         --muted: #4b5563;
         --border: #e5e7eb;
         --link: #0b57d0;
         --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.10);
-        --shadow-card: 0 10px 24px rgba(15, 23, 42, 0.08);
-        --radius-lg: 28px;
-        --radius-md: 20px;
+        --shadow-card: 0 2px 8px rgba(15, 23, 42, 0.08);
+        --radius-lg: 16px;
+        --radius-md: 12px;
+        --radius-sm: 8px;
       }
 
       * {
         box-sizing: border-box;
       }
 
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         margin: 0;
         min-height: 100vh;
-        display: block;
-        padding: 56px 18px 72px;
+        padding: 0;
         font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
           Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
         background: var(--bg);
         color: var(--text);
       }
 
-      main {
-        width: min(1040px, 100%);
+      .container {
+        max-width: 1200px;
         margin: 0 auto;
-        padding: 0;
-        text-align: center;
+        padding: 40px 20px;
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 40px;
+        align-items: start;
       }
 
-      .hero {
-        padding: 6px 4px 24px;
+      @media (max-width: 968px) {
+        .container {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .sidebar {
+          position: static !important;
+        }
       }
 
-      h1 {
-        font-size: clamp(2.0rem, 3.6vw, 3.0rem);
-        line-height: 1.15;
-        margin: 0 0 12px;
-        font-weight: 850;
+      /* Left Sidebar */
+      .sidebar {
+        position: sticky;
+        top: 40px;
+        height: fit-content;
+      }
+
+      .profile {
+        margin-bottom: 32px;
+      }
+
+      .profile-image-wrapper {
+        position: relative;
+        margin-bottom: 20px;
+      }
+
+      .profile-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--card);
+        box-shadow: var(--shadow-card);
+        display: block;
+      }
+
+      .profile-image-placeholder {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid var(--card);
+        box-shadow: var(--shadow-card);
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--muted);
+      }
+
+      .profile-image-placeholder.hidden {
+        display: none;
+      }
+
+      .profile-name {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin: 0 0 8px;
         letter-spacing: -0.02em;
       }
 
-      .subtitle {
-        margin: 0;
+      .profile-title {
         color: var(--muted);
-        line-height: 1.5;
-        font-size: 1.05rem;
+        font-size: 0.95rem;
+        margin: 0 0 16px;
       }
 
-      h2 {
-        margin: 28px 4px 16px;
-        font-size: 1.4rem;
+      .profile-location {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+      }
+
+      .profile-socials {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+      }
+
+      .profile-socials-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .profile-social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: var(--radius-sm);
+        background: var(--card);
+        border: 1px solid var(--border);
+        color: var(--text);
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+
+      .profile-social-link:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-card);
+        border-color: rgba(11, 87, 208, 0.2);
+      }
+
+      .profile-social-link svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .profile-social-link.linkedin:hover {
+        background: #0077B5;
+        border-color: #0077B5;
+        color: white;
+      }
+
+      .profile-social-link.github:hover {
+        background: #181717;
+        border-color: #181717;
+        color: white;
+      }
+
+      .profile-social-link.twitter:hover {
+        background: #1DA1F2;
+        border-color: #1DA1F2;
+        color: white;
+      }
+
+      .profile-social-link.instagram {
+        background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+        border-color: transparent;
+        color: white;
+      }
+
+      .profile-social-link.instagram:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-card);
+      }
+
+      .profile-social-link.instagram svg path:first-child {
+        fill: currentColor;
+      }
+
+      .profile-social-link.youtube:hover {
+        background: #FF0000;
+        border-color: #FF0000;
+        color: white;
+      }
+
+      .profile-email {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+      }
+
+      .profile-email-text {
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      .profile-email-link {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--text);
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      .profile-email-link:hover {
+        color: var(--link);
+      }
+
+      .nav-section {
+        margin-top: 32px;
+      }
+
+      .nav-section-title {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--muted);
+        margin-bottom: 12px;
+      }
+
+      .nav-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .nav-link {
+        display: block;
+        padding: 10px 12px;
+        color: var(--text);
+        text-decoration: none;
+        border-radius: var(--radius-sm);
+        font-size: 0.95rem;
+        transition: background 0.2s, color 0.2s;
+        margin-bottom: 4px;
+        cursor: pointer;
+      }
+
+      .nav-link:hover {
+        background: rgba(0, 0, 0, 0.04);
+        color: var(--link);
+      }
+
+      .nav-link.active {
+        background: rgba(11, 87, 208, 0.1);
+        color: var(--link);
+        font-weight: 500;
+      }
+
+      /* Right Content */
+      .content {
+        min-width: 0;
+      }
+
+      .section {
+        margin-bottom: 64px;
+        scroll-margin-top: 40px;
+      }
+
+      .section:last-child {
+        margin-bottom: 0;
+      }
+
+      .greeting {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0 0 24px;
+        letter-spacing: -0.01em;
+      }
+
+      .section-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0 0 16px;
         letter-spacing: -0.01em;
       }
 
       .grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 22px;
-        padding: 0 4px;
+        gap: 16px;
+        margin-bottom: 32px;
       }
 
-      @media (max-width: 900px) {
+      @media (max-width: 768px) {
         .grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
 
-      @media (max-width: 560px) {
+      @media (max-width: 480px) {
         .grid {
           grid-template-columns: 1fr;
         }
       }
 
       .card {
-        display: grid;
-        grid-template-rows: auto 1fr;
-        gap: 12px;
-        padding: 18px;
-        border-radius: var(--radius-lg);
-        border: 1px solid var(--border);
         background: var(--card);
-        box-shadow: var(--shadow-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 20px;
         text-decoration: none;
         color: inherit;
-        min-height: 150px;
-        transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+        transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        min-height: 120px;
       }
 
       .card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
-        border-color: rgba(11, 87, 208, 0.22);
+        box-shadow: var(--shadow-soft);
+        border-color: rgba(11, 87, 208, 0.2);
       }
 
-      .card:focus-visible {
-        outline: 3px solid rgba(11, 87, 208, 0.25);
-        outline-offset: 3px;
-      }
-
-      .card-head {
+      .card-header {
         display: flex;
         align-items: center;
-        gap: 14px;
+        gap: 12px;
       }
 
-      .icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 14px;
-        display: grid;
-        place-items: center;
-        border: 1px solid rgba(0, 0, 0, 0.06);
-        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
-        flex: 0 0 auto;
+      .card-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
       }
 
-      .icon svg {
-        width: 24px;
-        height: 24px;
+      .card-icon svg {
+        width: 20px;
+        height: 20px;
       }
 
       .card-title {
+        font-weight: 600;
+        font-size: 0.95rem;
         margin: 0;
-        font-weight: 800;
-        font-size: 1.08rem;
-        letter-spacing: -0.01em;
       }
 
       .card-subtitle {
-        margin: 6px 0 0;
+        font-size: 0.85rem;
         color: var(--muted);
-        font-size: 0.95rem;
-        overflow-wrap: anywhere;
+        margin: 0;
       }
 
-      .hint {
-        margin-top: 10px;
+      .card-description {
+        font-size: 0.85rem;
         color: var(--muted);
-        font-size: 0.9rem;
+        margin-top: auto;
+      }
+
+      .card-action {
+        margin-top: 8px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--link);
+      }
+
+      .about-section {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 32px;
+        margin-bottom: 32px;
+      }
+
+      .about-text {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--text);
+        margin: 0;
+      }
+
+      .about-text p {
+        margin: 0 0 16px;
+      }
+
+      .about-text p:last-child {
+        margin-bottom: 0;
+      }
+
+      .podcast-card-image {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: var(--radius-md);
+        margin-bottom: 12px;
+        border: 1px solid var(--border);
+      }
+
+      .podcast-card {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .podcast-card.has-image {
+        grid-template-rows: auto auto 1fr;
+      }
+
+      .podcast-episode-title {
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-bottom: 8px;
+        line-height: 1.4;
       }
 
       .span-2 {
         grid-column: span 2;
       }
 
-      @media (max-width: 900px) {
+      @media (max-width: 768px) {
         .span-2 {
           grid-column: span 2;
         }
       }
 
-      @media (max-width: 560px) {
+      @media (max-width: 480px) {
         .span-2 {
           grid-column: span 1;
         }
       }
 
+      /* Icon Colors */
+      .icon-twitter {
+        background: #1DA1F2;
+      }
+      .icon-youtube {
+        background: #FF0000;
+      }
+      .icon-linkedin {
+        background: #0077B5;
+      }
+      .icon-github {
+        background: #181717;
+      }
+      .icon-instagram {
+        background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+      }
+      .icon-medium {
+        background: #000000;
+      }
+      .icon-email {
+        background: var(--muted);
+      }
+      .icon-buymeacoffee {
+        background: #FFDD00;
+      }
       .tint-blue {
         background: #eef6ff;
       }
@@ -182,148 +488,514 @@
       .tint-pink {
         background: #fff0f6;
       }
+
+      .icon-twitter svg,
+      .icon-youtube svg,
+      .icon-linkedin svg,
+      .icon-github svg,
+      .icon-instagram svg,
+      .icon-medium svg,
+      .icon-email svg {
+        fill: white;
+      }
+
+      .icon-buymeacoffee svg {
+        fill: #000;
+      }
+
+      /* Newsletter Form */
+      .newsletter-form {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 32px;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid var(--border);
+        border-radius: var(--radius-sm);
+        font-size: 1rem;
+        font-family: inherit;
+        transition: border-color 0.2s;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: var(--link);
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 12px 24px;
+        background: var(--link);
+        color: white;
+        border: none;
+        border-radius: var(--radius-sm);
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .submit-btn:hover {
+        background: #0842a0;
+      }
+
+      .message {
+        margin-top: 16px;
+        padding: 12px;
+        border-radius: var(--radius-sm);
+        font-size: 0.9rem;
+        display: none;
+      }
+
+      .message.success {
+        background: #d1fae5;
+        color: #065f46;
+        display: block;
+      }
+
+      .message.error {
+        background: #fee2e2;
+        color: #991b1b;
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .card {
+        animation: fadeIn 0.4s ease-out backwards;
+      }
+
+      .card:nth-child(1) { animation-delay: 0.05s; }
+      .card:nth-child(2) { animation-delay: 0.1s; }
+      .card:nth-child(3) { animation-delay: 0.15s; }
+      .card:nth-child(4) { animation-delay: 0.2s; }
+      .card:nth-child(5) { animation-delay: 0.25s; }
+      .card:nth-child(6) { animation-delay: 0.3s; }
+      .card:nth-child(7) { animation-delay: 0.35s; }
+      .card:nth-child(8) { animation-delay: 0.4s; }
     </style>
   </head>
   <body>
-    <main>
-      <section class="hero">
-        <h1>Hey i am Monika Rajput</h1>
-        <p class="subtitle">
-          Website under AI construction, till then follow me on socials.
-        </p>
-        <div class="hint">Tip: click any box.</div>
-      </section>
-
-      <h2>Connect on socials</h2>
-
-      <section class="grid" aria-label="Social links">
-        <a class="card tint-blue" href="https://x.com/mounicarajput" target="_blank" rel="noreferrer noopener">
-          <div class="card-head">
-            <div class="icon" aria-hidden="true" style="background:#dbeafe;">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M18.6 3H21l-5.3 6.1L22 21h-5l-3.9-5.7L8 21H5.6l5.8-6.7L2 3h5.1l3.6 5.2L15.2 3h3.4Z"
-                  fill="#0f172a"
-                />
-              </svg>
-            </div>
-            <div>
-              <div class="card-title">Twitter</div>
-              <div class="card-subtitle">@mounicarajput</div>
-            </div>
+    <div class="container">
+      <!-- Left Sidebar -->
+      <aside class="sidebar">
+        <div class="profile">
+          <div class="profile-image-wrapper">
+            <img src="images/pro.JPG" alt="Monika Rajput" class="profile-image" id="profileImg" onerror="this.style.display='none'; document.getElementById('profilePlaceholder').classList.remove('hidden');">
+            <div class="profile-image-placeholder hidden" id="profilePlaceholder">MR</div>
           </div>
-          <div class="card-subtitle">Follow for updates.</div>
-        </a>
-
-        <a class="card tint-gray" href="https://www.youtube.com/@mounicarajput" target="_blank" rel="noreferrer noopener">
-          <div class="card-head">
-            <div class="icon" aria-hidden="true" style="background:#e5e7eb;">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8Z"
-                  fill="#0f172a"
-                  opacity="0.9"
-                />
-                <path d="M10 9.2v5.6l5-2.8-5-2.8Z" fill="#ffffff" />
-              </svg>
-            </div>
-            <div>
-              <div class="card-title">YouTube</div>
-              <div class="card-subtitle">@mounicarajput</div>
-            </div>
+          <h1 class="profile-name">Monika Rajput</h1>
+          <p class="profile-title">Build Data and AI Solutions & Host of TMS</p>
+          <div class="profile-location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>Delhi, India</span>
           </div>
-          <div class="card-subtitle">Videos & builds.</div>
-        </a>
-
-        <a class="card tint-cream" href="https://buymeacoffee.com/mounicarajput" target="_blank" rel="noreferrer noopener">
-          <div class="card-head">
-            <div class="icon" aria-hidden="true" style="background:#fde68a;">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M8 6h10a2 2 0 0 1 2 2v1a4 4 0 0 1-4 4h-1.2L13 20H9l1.2-7H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"
-                  fill="#0f172a"
-                />
-                <path d="M19 9V8a1 1 0 0 0-1-1h-1v4h0a2 2 0 0 0 2-2Z" fill="#0f172a" opacity="0.65" />
-              </svg>
-            </div>
-            <div>
-              <div class="card-title">Support my work</div>
-              <div class="card-subtitle">buymeacoffee.com/mounicarajput</div>
-            </div>
+          <div class="profile-socials">
+            <ul class="profile-socials-list">
+              <li>
+                <a href="https://www.linkedin.com/in/mounicarajput/" target="_blank" rel="noreferrer noopener" class="profile-social-link linkedin" aria-label="LinkedIn">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M6.5 6.8A2.3 2.3 0 1 1 6.5 2.2a2.3 2.3 0 0 1 0 4.6ZM4.5 21V9h4v12h-4Zm6.5-12h3.8v1.6h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4V9Z" fill="currentColor"/>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/mounicarajput" target="_blank" rel="noreferrer noopener" class="profile-social-link github" aria-label="GitHub">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-3 .7-3.6-1.3-3.6-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.5 1.1 3.1.8.1-.6.4-1.1.7-1.4-2.4-.3-5-1.2-5-5.4 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3 .1a10.4 10.4 0 0 1 5.4 0c2.1-.4 3-.1 3-.1.6 1.5.2 2.6.1 2.9.7.8 1.1 1.8 1.1 3 0 4.2-2.6 5.1-5 5.4.4.3.8 1 .8 2v3c0 .3.2.6.7.5A10 10 0 0 0 12 2Z" fill="currentColor"/>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://x.com/mounicarajput" target="_blank" rel="noreferrer noopener" class="profile-social-link twitter" aria-label="Twitter">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M18.6 3H21l-5.3 6.1L22 21h-5l-3.9-5.7L8 21H5.6l5.8-6.7L2 3h5.1l3.6 5.2L15.2 3h3.4Z" fill="currentColor"/>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/mounicarajput" target="_blank" rel="noreferrer noopener" class="profile-social-link instagram" aria-label="Instagram">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z" fill="currentColor"/>
+                    <path d="M12 7.6A4.4 4.4 0 1 0 16.4 12 4.4 4.4 0 0 0 12 7.6Zm0 7.2A2.8 2.8 0 1 1 14.8 12 2.8 2.8 0 0 1 12 14.8Z" fill="#fff" opacity="0.9"/>
+                    <circle cx="17.2" cy="6.8" r="1" fill="#fff" opacity="0.9"/>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/@mounicarajput" target="_blank" rel="noreferrer noopener" class="profile-social-link youtube" aria-label="YouTube">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8Z" fill="currentColor"/>
+                    <path d="M10 9.2v5.6l5-2.8-5-2.8Z" fill="white"/>
+                  </svg>
+                </a>
+              </li>
+            </ul>
           </div>
-          <div class="card-subtitle">If you like what I build.</div>
-        </a>
-
-        <a class="card tint-blue" href="https://www.linkedin.com/in/mounicarajput/" target="_blank" rel="noreferrer noopener">
-          <div class="card-head">
-            <div class="icon" aria-hidden="true" style="background:#dbeafe;">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M6.5 6.8A2.3 2.3 0 1 1 6.5 2.2a2.3 2.3 0 0 1 0 4.6ZM4.5 21V9h4v12h-4Zm6.5-12h3.8v1.6h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4V9Z"
-                  fill="#0f172a"
-                />
-              </svg>
-            </div>
-            <div>
-              <div class="card-title">LinkedIn</div>
-              <div class="card-subtitle">/in/mounicarajput</div>
-            </div>
+          <div class="profile-email">
+            <div class="profile-email-text">For collaboration, email me at</div>
+            <a href="mailto:rajputmonika953@gmail.com" class="profile-email-link">
+              <span>rajputmonika953@gmail.com</span>
+            </a>
           </div>
-          <div class="card-subtitle">Let’s connect.</div>
-        </a>
+        </div>
 
-        <a class="card tint-gray" href="https://github.com/mounicarajput" target="_blank" rel="noreferrer noopener">
-          <div class="card-head">
-            <div class="icon" aria-hidden="true" style="background:#e5e7eb;">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-3 .7-3.6-1.3-3.6-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.5 1.1 3.1.8.1-.6.4-1.1.7-1.4-2.4-.3-5-1.2-5-5.4 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3 .1a10.4 10.4 0 0 1 5.4 0c2.1-.4 3-.1 3-.1.6 1.5.2 2.6.1 2.9.7.8 1.1 1.8 1.1 3 0 4.2-2.6 5.1-5 5.4.4.3.8 1 .8 2v3c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"
-                  fill="#0f172a"
-                />
-              </svg>
-            </div>
-            <div>
-              <div class="card-title">GitHub</div>
-              <div class="card-subtitle">mounicarajput</div>
-            </div>
+        <nav class="nav-section">
+          <div class="nav-section-title">Navigation</div>
+          <ul class="nav-links">
+            <li><a href="#podcasts" class="nav-link">Podcast & Speaking</a></li>
+            <li><a href="#work" class="nav-link">Work</a></li>
+            <li><a href="#speaking" class="nav-link">Speaking</a></li>
+            <li><a href="#articles" class="nav-link">Articles</a></li>
+            <li><a href="#newsletter" class="nav-link">Newsletter</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Right Content -->
+      <main class="content">
+        <!-- About Section -->
+        <section id="about" class="section">
+          <div class="about-section">
+            <div class="about-text">
+              <p>Hey I’m Monika Rajput.</p>
+              <p>A builder, mentor, and advocate for Data and AI. Over the past 6+ years, 
+                I’ve helped startups and mid-sized companies turn ideas into real products, from AI prototypes 
+                that solve business problems to tools that make data clear, actionable, and useful. Along the way, 
+                I realized that technology isn’t just about building, it’s about helping people understand it, use it, and grow with it.</p>
+              <p>My journey hasn’t been straightforward. Coming from a tier-3 college, I explored NLP, computer vision, and consulting, and even 
+                faced career setbacks that pushed me to rethink my path. That became my pivot, I started mentoring, speaking at conferences, 
+                hosting 40+ community events, and running my podcast TMS. Today, I thrive at the intersection of AI, product growth, 
+                and developer advocacy, helping early-stage startups scale, engage developers, and create meaningful impact.</p>
           </div>
-          <div class="card-subtitle">Projects & code.</div>
-        </a>
+        </section>
 
-        <a class="card tint-pink" href="https://www.instagram.com/mounicarajput" target="_blank" rel="noreferrer noopener">
-          <div class="card-head">
-            <div class="icon" aria-hidden="true" style="background:#ffe4e6;">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z"
-                  fill="#0f172a"
-                  opacity="0.9"
-                />
-                <path
-                  d="M12 7.6A4.4 4.4 0 1 0 16.4 12 4.4 4.4 0 0 0 12 7.6Zm0 7.2A2.8 2.8 0 1 1 14.8 12 2.8 2.8 0 0 1 12 14.8Z"
-                  fill="#ffffff"
-                />
-                <path d="M17.2 7.2a1 1 0 1 0 1 1 1 1 0 0 0-1-1Z" fill="#ffffff" />
-              </svg>
-            </div>
-            <div>
-              <div class="card-title">Instagram</div>
-              <div class="card-subtitle">@mounicarajput</div>
-            </div>
+        <!-- Podcast & Speaking Appearances Section -->
+        <section id="podcasts" class="section">
+          <h3 class="section-title">Podcast & Speaking Appearances</h3>
+          <div class="grid">
+            <a class="card podcast-card has-image tint-blue" href="https://youtu.be/5OFlN8CxQ-E?si=sHa1Ka2mNIxE6MM4" target="_blank" rel="noreferrer noopener">
+              <img src="images/champions-cloud-native.jpg" alt="Champions of Cloud Native: Stories and Insights from CNCF Ambassadors - Panel" class="podcast-card-image" onerror="this.style.display='none';">
+              <div class="card-header">
+                <div class="card-icon" style="background: #dbeafe;">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8Z"
+                      fill="#0f172a"
+                      opacity="0.9"
+                    />
+                    <path d="M10 9.2v5.6l5-2.8-5-2.8Z" fill="#ffffff" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="card-title">Champions of Cloud Native</div>
+                  <div class="card-subtitle">CNCF Ambassadors Panel</div>
+                </div>
+              </div>
+              <div class="podcast-episode-title">Keynote: Stories and Insights from CNCF Ambassadors - Panel</div>
+              <div class="card-subtitle">Watch on YouTube</div>
+            </a>
+
+            <a class="card podcast-card tint-cream" href="https://youtu.be/mgJq5XatFeQ?si=Timljk29sxDI58pR&t=1" target="_blank" rel="noreferrer noopener">
+              <div class="card-header">
+                <div class="card-icon" style="background: #fde68a;">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8Z"
+                      fill="#0f172a"
+                      opacity="0.9"
+                    />
+                    <path d="M10 9.2v5.6l5-2.8-5-2.8Z" fill="#ffffff" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="card-title">SheMeansBusiness</div>
+                  <div class="card-subtitle">Podcast Episode</div>
+                </div>
+              </div>
+              <div class="podcast-episode-title">How She Got 4 Remote Jobs from a Tier-3 College in India</div>
+              <div class="card-subtitle">Watch on YouTube</div>
+            </a>
+
+            <a class="card podcast-card tint-pink" href="https://youtu.be/BP0ZnEHUDM8?si=yS4U9AP4zjl-JS2w" target="_blank" rel="noreferrer noopener">
+              <div class="card-header">
+                <div class="card-icon" style="background: #ffe4e6;">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8Z"
+                      fill="#0f172a"
+                      opacity="0.9"
+                    />
+                    <path d="M10 9.2v5.6l5-2.8-5-2.8Z" fill="#ffffff" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="card-title">The Sanskar Show</div>
+                  <div class="card-subtitle">Episode 109</div>
+                </div>
+              </div>
+              <div class="podcast-episode-title">How She Got ₹22 Lakhs Remote Job in College</div>
+              <div class="card-subtitle">Watch on YouTube</div>
+            </a>
+
+            <a class="card podcast-card tint-gray" href="https://open.spotify.com/episode/2JQ4LDpbWYud8XWbdDM9V2?si=Q4_7SO7NRCiSEOSD8gUm_g" target="_blank" rel="noreferrer noopener">
+              <div class="card-header">
+                <div class="card-icon" style="background: #e5e7eb;">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"
+                      fill="#0f172a"
+                      opacity="0.9"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <div class="card-title">Code to Cloud</div>
+                  <div class="card-subtitle">by Kevin Evans</div>
+                </div>
+              </div>
+              <div class="podcast-episode-title">SQL, SASS & Secure AI — Monika Rajput gets real about Data</div>
+              <div class="card-subtitle">Listen on Spotify</div>
+            </a>
           </div>
-          <div class="card-subtitle">Daily moments.</div>
-        </a>
+        </section>
 
-        <a class="card span-2 tint-gray" href="mailto:rajputmonika953@gmail.com">
-          <div class="card-head">
-            <div class="icon" aria-hidden="true" style="background:#e5e7eb;">
+        <!-- Work Section -->
+        <section id="work" class="section">
+          <h3 class="section-title">Work</h3>
+          <div class="grid">
+            <a class="card tint-blue" href="https://github.com/mounicarajput" target="_blank" rel="noreferrer noopener">
+              <div class="card-header">
+                <div class="card-icon icon-github">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-3 .7-3.6-1.3-3.6-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.5 1.1 3.1.8.1-.6.4-1.1.7-1.4-2.4-.3-5-1.2-5-5.4 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3 .1a10.4 10.4 0 0 1 5.4 0c2.1-.4 3-.1 3-.1.6 1.5.2 2.6.1 2.9.7.8 1.1 1.8 1.1 3 0 4.2-2.6 5.1-5 5.4.4.3.8 1 .8 2v3c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="card-title">Open Source</div>
+                  <div class="card-subtitle">GitHub Projects</div>
+                </div>
+              </div>
+              <div class="card-description">Check out my code and contributions.</div>
+            </a>
+
+            <a class="card tint-cream" href="https://www.youtube.com/@mounicarajput" target="_blank" rel="noreferrer noopener">
+              <div class="card-header">
+                <div class="card-icon icon-youtube">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8Z"/>
+                    <path d="M10 9.2v5.6l5-2.8-5-2.8Z" fill="#ffffff"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="card-title">Video Content</div>
+                  <div class="card-subtitle">Builds & Tutorials</div>
+                </div>
+              </div>
+              <div class="card-description">Watch my project walkthroughs.</div>
+            </a>
+
+            <a class="card tint-pink" href="#" onclick="return false;">
+              <div class="card-header">
+                <div class="card-icon" style="background: #eef6ff;">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#0f172a" opacity="0.9"/>
+                    <path d="M2 17l10 5 10-5" fill="#0f172a" opacity="0.9"/>
+                    <path d="M2 12l10 5 10-5" fill="#0f172a" opacity="0.9"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="card-title">Web Apps</div>
+                  <div class="card-subtitle">Coming Soon</div>
+                </div>
+              </div>
+              <div class="card-description">Interactive web applications.</div>
+            </a>
+
+            <a class="card span-2 tint-gray" href="#" onclick="return false;">
+              <div class="card-header">
+                <div class="card-icon" style="background: #e5e7eb;">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" fill="#0f172a" opacity="0.9"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="card-title">Featured Project</div>
+                  <div class="card-subtitle">Portfolio Website</div>
+                </div>
+              </div>
+              <div class="card-description">This website itself is a project! Built with modern web technologies and a clean bento-style design.</div>
+            </a>
+          </div>
+        </section>
+
+        
+
+        <!-- Speaking Section -->
+        <section id="speaking" class="section">
+          <h3 class="section-title">Speaking</h3>
+          <div class="grid">
+            <a class="card tint-blue" href="https://sessionize.com" target="_blank" rel="noreferrer noopener">
+              <div class="card-header">
+                <div class="card-icon" style="background: #dbeafe;">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" fill="#1e40af" opacity="0.9"/>
+                    <path d="M9 12l2 2 4-4" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="card-title">Speaker Profile</div>
+                  <div class="card-subtitle">Sessionize</div>
+                </div>
+              </div>
+              <div class="card-description">Check out my speaking sessions and topics.</div>
+            </a>
+
+            <a class="card tint-cream" href="https://community.cncf.io" target="_blank" rel="noreferrer noopener">
+              <div class="card-header">
+                <div class="card-icon" style="background: #fde68a;">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#0f172a" opacity="0.9"/>
+                    <path d="M2 17l10 5 10-5" fill="#0f172a" opacity="0.9"/>
+                    <path d="M2 12l10 5 10-5" fill="#0f172a" opacity="0.9"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="card-title">CNCF Gurugram</div>
+                  <div class="card-subtitle">Organizer</div>
+                </div>
+              </div>
+              <div class="card-description">Organizing Cloud Native events in Gurugram.</div>
+            </a>
+
+            <a class="card tint-pink" href="https://topmate.io" target="_blank" rel="noreferrer noopener">
+              <div class="card-header">
+                <div class="card-icon" style="background: #ffe4e6;">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" fill="#0f172a" opacity="0.9"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="card-title">Topmate</div>
+                  <div class="card-subtitle">Book a call</div>
+                </div>
+              </div>
+              <div class="card-description">Book a mentoring or consultation call with me.</div>
+            </a>
+          </div>
+        </section>
+
+        <!-- Articles Section -->
+        <section id="articles" class="section">
+          <h3 class="section-title">Articles</h3>
+          <div class="grid">
+            <a class="card tint-blue" href="#" onclick="return false;">
+              <div class="card-header">
+                <div class="card-icon" style="background: #dbeafe;">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" fill="#0f172a" opacity="0.9"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="card-title">Building Modern Portfolios</div>
+                  <div class="card-subtitle">Design & Development</div>
+                </div>
+              </div>
+              <div class="card-description">A guide to creating beautiful portfolio websites.</div>
+            </a>
+
+            <a class="card tint-cream" href="#" onclick="return false;">
+              <div class="card-header">
+                <div class="card-icon" style="background: #fde68a;">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#0f172a" opacity="0.9"/>
+                    <path d="M2 17l10 5 10-5" fill="#0f172a" opacity="0.9"/>
+                    <path d="M2 12l10 5 10-5" fill="#0f172a" opacity="0.9"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="card-title">Web Development Tips</div>
+                  <div class="card-subtitle">Best Practices</div>
+                </div>
+              </div>
+              <div class="card-description">Essential tips and tricks for modern web development.</div>
+            </a>
+
+            <a class="card span-2 tint-gray" href="#" onclick="return false;">
+              <div class="card-header">
+                <div class="card-icon" style="background: #e5e7eb;">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#0f172a" opacity="0.9"/>
+                    <path d="M2 17l10 5 10-5" fill="#0f172a" opacity="0.9"/>
+                    <path d="M2 12l10 5 10-5" fill="#0f172a" opacity="0.9"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="card-title">Featured Article</div>
+                  <div class="card-subtitle">The Bento Grid Design System</div>
+                </div>
+              </div>
+              <div class="card-description">An in-depth look at the bento-style grid layout and how it creates beautiful, organized interfaces.</div>
+            </a>
+          </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section id="newsletter" class="section">
+          <h3 class="section-title">Newsletter</h3>
+          <div class="newsletter-form">
+            <p style="margin: 0 0 24px; color: var(--muted);">Join others who receive high-signal, curiosity-inducing content every single week.</p>
+            <form id="newsletterForm">
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="your.email@example.com" required />
+              </div>
+              <button type="submit" class="submit-btn" id="submitBtn">Subscribe</button>
+              <div id="message" class="message"></div>
+            </form>
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+          <h3 class="section-title">Contact</h3>
+          <div class="grid">
+            <a class="card tint-blue" href="mailto:rajputmonika953@gmail.com">
+              <div class="card-header">
+                <div class="card-icon icon-email">
               <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M4.5 6.5h15A2.5 2.5 0 0 1 22 9v6a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 15V9a2.5 2.5 0 0 1 2.5-2.5Z"
-                  fill="#0f172a"
-                  opacity="0.9"
-                />
-                <path d="M4.5 9 12 13.5 19.5 9" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M4.5 6.5h15A2.5 2.5 0 0 1 22 9v6a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 15V9a2.5 2.5 0 0 1 2.5-2.5Z"/>
+                    <path d="M4.5 9 12 13.5 19.5 9" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
             <div>
@@ -331,10 +1003,130 @@
               <div class="card-subtitle">rajputmonika953@gmail.com</div>
             </div>
           </div>
-          <div class="card-subtitle">Say hi anytime.</div>
-        </a>
+              <div class="card-description">Send me an email anytime.</div>
+            </a>
+
+            <a class="card tint-gray" href="https://www.linkedin.com/in/mounicarajput/" target="_blank" rel="noreferrer noopener">
+              <div class="card-header">
+                <div class="card-icon icon-linkedin">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M6.5 6.8A2.3 2.3 0 1 1 6.5 2.2a2.3 2.3 0 0 1 0 4.6ZM4.5 21V9h4v12h-4Zm6.5-12h3.8v1.6h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4V9Z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="card-title">LinkedIn</div>
+                  <div class="card-subtitle">/in/mounicarajput</div>
+                </div>
+              </div>
+              <div class="card-description">Let's connect professionally.</div>
+            </a>
+
+            <a class="card tint-pink" href="https://x.com/mounicarajput" target="_blank" rel="noreferrer noopener">
+              <div class="card-header">
+                <div class="card-icon icon-twitter">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M18.6 3H21l-5.3 6.1L22 21h-5l-3.9-5.7L8 21H5.6l5.8-6.7L2 3h5.1l3.6 5.2L15.2 3h3.4Z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="card-title">Twitter</div>
+                  <div class="card-subtitle">@mounicarajput</div>
+                </div>
+              </div>
+              <div class="card-description">DM me on Twitter.</div>
+            </a>
+          </div>
       </section>
     </main>
+    </div>
+
+    <script>
+      // Newsletter form handling
+      const form = document.getElementById('newsletterForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const messageDiv = document.getElementById('message');
+      const emailInput = document.getElementById('email');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const email = emailInput.value.trim();
+        const originalText = submitBtn.textContent;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Subscribing...';
+        messageDiv.className = 'message';
+        messageDiv.style.display = 'none';
+
+        try {
+          const response = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            messageDiv.className = 'message success';
+            messageDiv.textContent = data.message || 'Thank you for subscribing!';
+            messageDiv.style.display = 'block';
+            form.reset();
+          } else {
+            messageDiv.className = 'message error';
+            messageDiv.textContent = data.error || 'Something went wrong. Please try again.';
+            messageDiv.style.display = 'block';
+          }
+        } catch (error) {
+          messageDiv.className = 'message error';
+          messageDiv.textContent = 'Network error. Please check your connection and try again.';
+          messageDiv.style.display = 'block';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+      });
+
+      // Active navigation highlighting
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sections = document.querySelectorAll('.section');
+
+      function updateActiveNav() {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (window.pageYOffset >= sectionTop - 100) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveNav);
+      updateActiveNav();
+
+      // Smooth scroll for navigation links
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          if (targetId.startsWith('#')) {
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+              targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      });
+    </script>
   </body>
 </html>
-

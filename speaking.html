@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Podcasts & Interviews - Monika Rajput</title>
+    <meta name="description" content="Monika Rajput's podcasts and interviews." />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7f8fb;
+        --card: #ffffff;
+        --text: #050816;
+        --muted: #4b5563;
+        --border: #e5e7eb;
+        --link: #0b57d0;
+        --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.10);
+        --shadow-card: 0 10px 24px rgba(15, 23, 42, 0.08);
+        --radius-lg: 28px;
+        --radius-md: 20px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: block;
+        padding: 56px 18px 72px;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .nav {
+        width: min(1040px, 100%);
+        margin: 0 auto 40px;
+        padding: 0 4px;
+      }
+
+      .nav-link {
+        color: var(--link);
+        text-decoration: none;
+        font-size: 0.95rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: opacity 0.2s;
+      }
+
+      .nav-link:hover {
+        opacity: 0.8;
+      }
+
+      main {
+        width: min(1040px, 100%);
+        margin: 0 auto;
+        padding: 0;
+        text-align: center;
+      }
+
+      .hero {
+        padding: 6px 4px 40px;
+      }
+
+      h1 {
+        font-size: clamp(2.0rem, 3.6vw, 3.0rem);
+        line-height: 1.15;
+        margin: 0 0 12px;
+        font-weight: 850;
+        letter-spacing: -0.02em;
+      }
+
+      .subtitle {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.5;
+        font-size: 1.05rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      h2 {
+        margin: 48px 4px 24px;
+        font-size: 1.4rem;
+        letter-spacing: -0.01em;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+        padding: 0 4px;
+      }
+
+      @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 560px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        gap: 12px;
+        padding: 18px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        background: var(--card);
+        box-shadow: var(--shadow-card);
+        text-decoration: none;
+        color: inherit;
+        min-height: 150px;
+        transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
+        border-color: rgba(11, 87, 208, 0.22);
+      }
+
+      .card:focus-visible {
+        outline: 3px solid rgba(11, 87, 208, 0.25);
+        outline-offset: 3px;
+      }
+
+      .card-head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+        flex: 0 0 auto;
+      }
+
+      .icon svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .card-title {
+        margin: 0;
+        font-weight: 800;
+        font-size: 1.08rem;
+        letter-spacing: -0.01em;
+      }
+
+      .card-subtitle {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        overflow-wrap: anywhere;
+      }
+
+      .span-2 {
+        grid-column: span 2;
+      }
+
+      @media (max-width: 900px) {
+        .span-2 {
+          grid-column: span 2;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .span-2 {
+          grid-column: span 1;
+        }
+      }
+
+      .tint-blue {
+        background: #eef6ff;
+      }
+      .tint-gray {
+        background: #f3f4f6;
+      }
+      .tint-cream {
+        background: #fff9e9;
+      }
+      .tint-pink {
+        background: #fff0f6;
+      }
+
+      .speaking-item {
+        text-align: left;
+      }
+
+      .speaking-date {
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      .card-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: var(--radius-md);
+        margin-bottom: 12px;
+        border: 1px solid var(--border);
+      }
+
+      .card-with-image {
+        grid-template-rows: auto auto 1fr;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back to Home
+      </a>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <h1>Podcasts & Interviews</h1>
+        <p class="subtitle">
+          Here are some conversations and interviews I've been a part of:
+        </p>
+      </section>
+
+      <section class="grid" aria-label="Podcasts and interviews">
+        <a class="card card-with-image tint-blue speaking-item" href="https://www.youtube.com" target="_blank" rel="noreferrer noopener">
+          <img src="images/champions-cloud-native.jpg" alt="Champions of Cloud Native: Stories and Insights from CNCF Ambassadors - Panel" class="card-image" onerror="this.style.display='none';">
+          <div class="card-head">
+            <div class="icon" aria-hidden="true" style="background:#dbeafe;">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8Z"
+                  fill="#0f172a"
+                  opacity="0.9"
+                />
+                <path d="M10 9.2v5.6l5-2.8-5-2.8Z" fill="#ffffff" />
+              </svg>
+            </div>
+            <div>
+              <div class="card-title">Champions of Cloud Native</div>
+              <div class="card-subtitle">CNCF Ambassadors Panel</div>
+            </div>
+          </div>
+          <div class="speaking-date">Keynote: Stories and Insights from CNCF Ambassadors - Panel</div>
+          <div class="card-subtitle">Watch on YouTube</div>
+        </a>
+
+        <a class="card tint-cream speaking-item" href="https://www.youtube.com" target="_blank" rel="noreferrer noopener">
+          <div class="card-head">
+            <div class="icon" aria-hidden="true" style="background:#fde68a;">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8Z"
+                  fill="#0f172a"
+                  opacity="0.9"
+                />
+                <path d="M10 9.2v5.6l5-2.8-5-2.8Z" fill="#ffffff" />
+              </svg>
+            </div>
+            <div>
+              <div class="card-title">SheMeansBusiness</div>
+              <div class="card-subtitle">Podcast Episode</div>
+            </div>
+          </div>
+          <div class="speaking-date">How She Got 4 Remote Jobs from a Tier-3 College in India</div>
+          <div class="card-subtitle">Watch on YouTube</div>
+        </a>
+
+        <a class="card tint-pink speaking-item" href="https://www.youtube.com" target="_blank" rel="noreferrer noopener">
+          <div class="card-head">
+            <div class="icon" aria-hidden="true" style="background:#ffe4e6;">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8Z"
+                  fill="#0f172a"
+                  opacity="0.9"
+                />
+                <path d="M10 9.2v5.6l5-2.8-5-2.8Z" fill="#ffffff" />
+              </svg>
+            </div>
+            <div>
+              <div class="card-title">The Sanskar Show</div>
+              <div class="card-subtitle">Episode 109</div>
+            </div>
+          </div>
+          <div class="speaking-date">How She Got ₹22 Lakhs Remote Job in College</div>
+          <div class="card-subtitle">Watch on YouTube</div>
+        </a>
+
+        <a class="card tint-gray speaking-item" href="https://open.spotify.com" target="_blank" rel="noreferrer noopener">
+          <div class="card-head">
+            <div class="icon" aria-hidden="true" style="background:#e5e7eb;">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"
+                  fill="#0f172a"
+                  opacity="0.9"
+                />
+              </svg>
+            </div>
+            <div>
+              <div class="card-title">Code to Cloud</div>
+              <div class="card-subtitle">by Kevin Evans</div>
+            </div>
+          </div>
+          <div class="speaking-date">SQL, SASS & Secure AI — Monika Rajput gets real about Data</div>
+          <div class="card-subtitle">Listen on Spotify</div>
+        </a>
+      </section>
+    </main>
+  </body>
+</html>
