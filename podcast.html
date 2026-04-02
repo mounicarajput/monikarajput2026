@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Podcast - Monika Rajput</title>
+    <meta name="description" content="The Monika Rajput Show podcast by Monika Rajput — tech careers, AI & data." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg: #ffffff;
+        --text: #1a1a1a;
+        --muted: #6b7280;
+        --muted-light: #9ca3af;
+        --border: #e5e7eb;
+        --accent: #f0a500;
+        --radius: 6px;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+      }
+
+      /* ─── Top nav bar ─── */
+      .topbar {
+        border-bottom: 1px solid var(--border);
+        padding: 0 24px;
+      }
+
+      .topbar-inner {
+        max-width: 720px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 52px;
+      }
+
+      .topbar-home {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 0.88rem;
+        transition: color 0.15s;
+      }
+
+      .topbar-home:hover { color: var(--text); }
+      .topbar-home svg { width: 15px; height: 15px; }
+
+      .topbar-badge {
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: #fffbeb;
+        border: 1px solid rgba(240, 165, 0, 0.2);
+        padding: 4px 12px;
+        border-radius: 20px;
+      }
+
+      /* ─── Thumbnail gradient overlay (dwarkesh-style) ─── */
+      .thumb-gradient {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to right,
+          rgba(0,0,0,0.88) 0%,
+          rgba(0,0,0,0.65) 35%,
+          rgba(0,0,0,0.18) 62%,
+          transparent 82%
+        );
+        border-radius: inherit;
+      }
+
+      .thumb-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        padding: 22px 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 58%;
+      }
+
+      /* Logo badge — like dwarkesh top-left */
+      .hero-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .hero-logo-img {
+        width: 56px;
+        height: 56px;
+        border-radius: 10px;
+        object-fit: cover;
+        border: 2px solid rgba(255,255,255,0.15);
+      }
+
+      .hero-logo-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.15;
+      }
+
+      .hero-logo-name {
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #ffffff;
+      }
+
+      .hero-logo-sub {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      /* Podcast name + tagline (middle of left column) */
+      .hero-title-area {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px 0 0;
+      }
+
+      .hero-podcast-name {
+        font-family: 'Lora', Georgia, serif;
+        font-size: clamp(1.5rem, 3vw, 2.1rem);
+        font-weight: 700;
+        color: #ffffff;
+        line-height: 1.2;
+        margin-bottom: 6px;
+      }
+
+      .hero-podcast-tagline {
+        font-size: 0.9rem;
+        color: rgba(255,255,255,0.65);
+        line-height: 1.5;
+      }
+
+      /* Latest episode row at bottom */
+      .hero-latest {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        padding-top: 20px;
+      }
+
+      .hero-play {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.15);
+        border: 2px solid rgba(255,255,255,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: background 0.2s;
+        cursor: pointer;
+      }
+
+      .hero-latest:hover .hero-play {
+        background: rgba(255,255,255,0.25);
+      }
+
+      .hero-play svg {
+        width: 18px;
+        height: 18px;
+        fill: #fff;
+        margin-left: 3px;
+      }
+
+      .hero-ep-info { }
+
+      .hero-ep-label {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.55);
+        margin-bottom: 3px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .hero-ep-label svg {
+        width: 12px;
+        height: 12px;
+        fill: rgba(255,255,255,0.55);
+      }
+
+      .hero-ep-title {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.9);
+        line-height: 1.35;
+      }
+
+      /* ─── Section title bar ─── */
+      .section-bar {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 28px 24px 0;
+      }
+
+      .section-bar-inner {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding-bottom: 16px;
+        border-bottom: 2px solid var(--text);
+      }
+
+      .section-tab {
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--text);
+      }
+
+      /* ─── Featured episode ─── */
+      .featured-wrap {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .featured-ep {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        padding: 28px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .featured-ep:hover .featured-title { color: #555; }
+      .featured-ep:hover .featured-thumb img { transform: scale(1.02); }
+
+      .featured-thumb {
+        width: 100%;
+        aspect-ratio: 16/9;
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: #f3f4f6;
+        margin-bottom: 18px;
+        position: relative;
+      }
+
+      .featured-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.35s ease;
+      }
+
+      .featured-thumb iframe {
+        width: 100%;
+        height: 100%;
+        display: block;
+        border: none;
+      }
+
+      .duration-badge {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(0,0,0,0.72);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 4px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .featured-meta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+      }
+
+      .platform-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        padding: 3px 9px;
+        border-radius: 20px;
+      }
+
+      .platform-pill svg { width: 11px; height: 11px; }
+      .platform-pill.yt { background: #fee2e2; color: #b91c1c; }
+      .platform-pill.sp { background: #dcfce7; color: #15803d; }
+
+      .featured-meta {
+        display: flex;
+        gap: 12px;
+        padding: 14px 0 0;
+      }
+
+      .platform-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        flex: 1;
+        padding: 11px 0;
+        background: #f3f4f6;
+        border-radius: 12px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--text);
+        text-decoration: none;
+        transition: background 0.15s, opacity 0.15s;
+      }
+
+      .platform-link:hover { opacity: 0.8; }
+
+      .platform-link.yt-link svg,
+      .platform-link.ig-link svg,
+      .platform-link.tw-link svg,
+      .platform-link.li-link svg { color: inherit; }
+
+      .platform-link.yt-link  svg { color: #ff0000; }
+      .platform-link.ig-link  svg { color: #c13584; }
+      .platform-link.tw-link  svg { color: #000000; }
+      .platform-link.li-link  svg { color: #0077b5; }
+
+      .platform-sep { display: none; }
+
+      .ep-show {
+        font-size: 0.8rem;
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      .ep-date {
+        font-size: 0.78rem;
+        color: var(--muted-light);
+        margin-left: auto;
+      }
+
+      .featured-title {
+        font-family: 'Lora', Georgia, serif;
+        font-size: clamp(1.15rem, 2vw, 1.45rem);
+        font-weight: 600;
+        line-height: 1.3;
+        color: var(--text);
+        margin-bottom: 8px;
+        transition: color 0.15s;
+      }
+
+      .featured-subtitle {
+        font-size: 0.92rem;
+        color: var(--muted);
+        line-height: 1.55;
+        margin-bottom: 14px;
+      }
+
+      .listen-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--text);
+        text-decoration: none;
+        border-bottom: 1px solid var(--text);
+        padding-bottom: 1px;
+        transition: opacity 0.15s;
+      }
+
+      .listen-link:hover { opacity: 0.6; }
+      .listen-link svg { width: 13px; height: 13px; }
+
+      /* ─── Episode rows ─── */
+      .episode-rows {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .ep-row {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 20px;
+        align-items: start;
+        padding: 24px 0;
+        border-bottom: 1px solid var(--border);
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .ep-row:hover .ep-row-title { color: #555; }
+      .ep-row:hover .ep-thumb img { transform: scale(1.03); }
+
+      @media (max-width: 520px) {
+        .ep-row { grid-template-columns: 1fr; }
+        .ep-row-thumb-col { order: -1; }
+      }
+
+      .ep-thumb {
+        width: 100%;
+        aspect-ratio: 16/9;
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: #f3f4f6;
+        position: relative;
+        flex-shrink: 0;
+      }
+
+      .ep-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease;
+      }
+
+      .ep-thumb-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .play-dot {
+        position: absolute;
+        bottom: 6px;
+        right: 6px;
+        width: 26px;
+        height: 26px;
+        background: rgba(0,0,0,0.62);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .play-dot svg { width: 12px; height: 12px; fill: white; margin-left: 1px; }
+
+      .ep-row-meta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 6px;
+        flex-wrap: wrap;
+      }
+
+      .ep-row-show {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .ep-row-date {
+        font-size: 0.75rem;
+        color: var(--muted-light);
+        margin-left: auto;
+      }
+
+      .ep-row-title {
+        font-family: 'Lora', Georgia, serif;
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.35;
+        color: var(--text);
+        margin-bottom: 6px;
+        transition: color 0.15s;
+      }
+
+      .ep-row-desc {
+        font-size: 0.83rem;
+        color: var(--muted);
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      /* ─── Show More button ─── */
+      #show-more-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 11px 28px;
+        background: #f3f4f6;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--text);
+        cursor: pointer;
+        transition: background 0.15s;
+        font-family: inherit;
+      }
+
+      #show-more-btn:hover { background: #e5e7eb; }
+
+      /* ─── Footer CTA ─── */
+      .footer-cta {
+        border-top: 1px solid var(--border);
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 40px 24px 64px;
+        text-align: center;
+      }
+
+      .footer-cta h3 {
+        font-family: 'Lora', Georgia, serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        letter-spacing: -0.01em;
+      }
+
+      .footer-cta p {
+        color: var(--muted);
+        font-size: 0.93rem;
+        max-width: 400px;
+        margin: 0 auto 22px;
+        line-height: 1.6;
+      }
+
+      .footer-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--text);
+        color: #fff;
+        padding: 11px 22px;
+        border-radius: 20px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: opacity 0.15s;
+      }
+
+      .footer-cta-btn:hover { opacity: 0.8; }
+      .footer-cta-btn svg { width: 15px; height: 15px; }
+
+      /* ─── Responsive overlay ─── */
+      @media (max-width: 600px) {
+        .thumb-overlay { padding: 16px 18px; max-width: 100%; }
+        .thumb-gradient {
+          background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.82) 0%,
+            rgba(0,0,0,0.6) 60%,
+            rgba(0,0,0,0.3) 100%
+          );
+        }
+        .hero-podcast-name { font-size: 1.1rem; }
+        .hero-logo-img { width: 40px; height: 40px; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Top nav -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="index.html" class="topbar-home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Monika Rajput
+        </a>
+        <span class="topbar-badge">Podcast</span>
+      </div>
+    </header>
+
+
+<!-- Featured (latest) episode — full width with dwarkesh-style overlay -->
+    <div class="featured-wrap">
+      <div class="featured-ep">
+        <div class="featured-thumb">
+          <iframe
+            src="https://www.youtube.com/embed/oq9oWstBFW4?modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&color=white"
+            title="The Monika Rajput Show"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+
+          <!-- Gradient overlay: dark left → transparent right -->
+          <div class="thumb-gradient"></div>
+
+          <!-- Content overlaid on the dark left portion -->
+          <div class="thumb-overlay">
+            <!-- Podcast name + episode all grouped together -->
+            <div class="hero-title-area">
+              <img src="tms-logo.jpeg" alt="TMS Logo" style="width:100px;height:100px;border-radius:16px;object-fit:cover;margin-bottom:14px;display:block;">
+              <div class="hero-podcast-name">The Monika Rajput Show</div>
+              <div class="hero-podcast-tagline">Interviews with top VCs, Founders, CEOs, and more.</div>
+
+              <!-- Episode label — tucked right below the show title -->
+              <a class="hero-latest"
+                 href="https://youtu.be/oq9oWstBFW4?si=IRw5LznzWX0bbCh7"
+                 target="_blank" rel="noreferrer noopener"
+                 style="margin-top:16px;">
+                <div class="hero-play">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <div class="hero-ep-info">
+                  <div class="hero-ep-label">Latest</div>
+                  <div class="hero-ep-title" id="featured-overlay-title">How to Build a Startup Without Overthinking | Founder Advice | Yurii Tovarnytskyi | EdTech | YC</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="featured-meta">
+          <a class="platform-link yt-link" href="https://www.youtube.com/@mounicarajput" target="_blank" rel="noreferrer noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15">
+              <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8Z"/>
+              <path d="M10 9.2v5.6l5-2.8-5-2.8Z" fill="white"/>
+            </svg>
+            YouTube
+          </a>
+          <span class="platform-sep">·</span>
+          <a class="platform-link ig-link" href="https://www.instagram.com/mounicarajput" target="_blank" rel="noreferrer noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15">
+              <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z"/>
+              <path d="M12 7.6A4.4 4.4 0 1 0 16.4 12 4.4 4.4 0 0 0 12 7.6Zm0 7.2A2.8 2.8 0 1 1 14.8 12 2.8 2.8 0 0 1 12 14.8Z" fill="white"/>
+              <circle cx="17.2" cy="6.8" r="1" fill="white"/>
+            </svg>
+            Instagram
+          </a>
+          <span class="platform-sep">·</span>
+          <a class="platform-link tw-link" href="https://x.com/mounicarajput" target="_blank" rel="noreferrer noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15">
+              <path d="M18.6 3H21l-5.3 6.1L22 21h-5l-3.9-5.7L8 21H5.6l5.8-6.7L2 3h5.1l3.6 5.2L15.2 3h3.4Z"/>
+            </svg>
+            Twitter
+          </a>
+          <span class="platform-sep">·</span>
+          <a class="platform-link li-link" href="https://www.linkedin.com/in/mounicarajput/" target="_blank" rel="noreferrer noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15">
+              <path d="M6.5 6.8A2.3 2.3 0 1 1 6.5 2.2a2.3 2.3 0 0 1 0 4.6ZM4.5 21V9h4v12h-4Zm6.5-12h3.8v1.6h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4V9Z"/>
+            </svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Episode rows — populated from podcasts.json -->
+    <div class="episode-rows" id="episode-rows"></div>
+
+    <!-- Show More -->
+    <div id="show-more-wrap" style="display:none; text-align:center; padding: 8px 24px 32px; max-width:720px; margin:0 auto;">
+      <button id="show-more-btn" onclick="showMore()">
+        Show more
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="footer-cta">
+      <h3>Want me on your podcast?</h3>
+      <p>Open to guest spots and conversations about AI, data engineering, cloud-native, and tech careers.</p>
+      <a href="mailto:rajputmonika953@gmail.com" class="footer-cta-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        Get in touch
+      </a>
+    </div>
+
+  <script>
+    /* ── Featured video title sync ── */
+    const FEATURED_VIDEO_ID = 'oq9oWstBFW4';
+    fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${FEATURED_VIDEO_ID}&format=json`)
+      .then(r => r.json())
+      .then(data => {
+        const el = document.getElementById('featured-overlay-title');
+        if (el) el.textContent = data.title;
+      })
+      .catch(() => {});
+
+    /* ── Episode list from podcasts.json ── */
+    const PAGE_SIZE = 6;
+    let allEpisodes = [];
+    let shown = 0;
+
+    const YT_PILL = `<span class="platform-pill yt">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8Z"/><path d="M10 9.2v5.6l5-2.8-5-2.8Z" fill="white"/></svg>
+      YouTube
+    </span>`;
+
+    const SP_PILL = `<span class="platform-pill sp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      Spotify
+    </span>`;
+
+    function thumb(ep) {
+      if (ep.platform === 'youtube') {
+        return `<img src="https://img.youtube.com/vi/${ep.id}/mqdefault.jpg" alt="${ep.title}" onerror="this.style.display='none'">`;
+      }
+      return `<div class="ep-thumb-placeholder" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);">
+        <svg viewBox="0 0 24 24" fill="#15803d" opacity="0.45" width="36" height="36"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      </div>`;
+    }
+
+    function renderEpisode(ep) {
+      const pill = ep.platform === 'youtube' ? YT_PILL : SP_PILL;
+      const episode = ep.episode ? `<span class="ep-row-date">${ep.episode}</span>` : '';
+      return `
+        <a class="ep-row" href="${ep.url}" target="_blank" rel="noreferrer noopener">
+          <div class="ep-row-thumb-col">
+            <div class="ep-thumb">
+              ${thumb(ep)}
+              <div class="play-dot"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            </div>
+          </div>
+          <div>
+            <div class="ep-row-meta">
+              ${pill}
+              <span class="ep-row-show">${ep.show}</span>
+              ${episode}
+            </div>
+            <div class="ep-row-title">${ep.title}</div>
+            <div class="ep-row-desc">${ep.description}</div>
+          </div>
+        </a>`;
+    }
+
+    function renderBatch() {
+      const container = document.getElementById('episode-rows');
+      const batch = allEpisodes.slice(shown, shown + PAGE_SIZE);
+      batch.forEach(ep => container.insertAdjacentHTML('beforeend', renderEpisode(ep)));
+      shown += batch.length;
+      document.getElementById('show-more-wrap').style.display =
+        shown < allEpisodes.length ? 'block' : 'none';
+    }
+
+    function showMore() { renderBatch(); }
+
+    fetch('podcasts.json')
+      .then(r => r.json())
+      .then(data => { allEpisodes = data; renderBatch(); })
+      .catch(() => {});
+  </script>
+  </body>
+</html>

@@ -153,6 +153,11 @@ app.get('/speaking', (req, res) => {
   res.sendFile(path.join(__dirname, 'speaking.html'));
 });
 
+// Serve podcast.html
+app.get('/podcast', (req, res) => {
+  res.sendFile(path.join(__dirname, 'podcast.html'));
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
