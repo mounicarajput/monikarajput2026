@@ -158,6 +158,103 @@ app.get('/podcast', (req, res) => {
   res.sendFile(path.join(__dirname, 'podcast.html'));
 });
 
+// Waitlist helper functions
+function readWaitlist(projectFile) {
+  try {
+    const filePath = path.join(DATA_DIR, projectFile);
+    if (!fs.existsSync(filePath)) {
+      fs.writeFileSync(filePath, JSON.stringify([], null, 2));
+    }
+    const data = fs.readFileSync(filePath, 'utf8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error(`Error reading waitlist ${projectFile}:`, error);
+    return [];
+  }
+}
+
+function writeWaitlist(projectFile, waitlist) {
+  try {
+    const filePath = path.join(DATA_DIR, projectFile);
+    fs.writeFileSync(filePath, JSON.stringify(waitlist, null, 2));
+    return true;
+  } catch (error) {
+    console.error(`Error writing waitlist ${projectFile}:`, error);
+    return false;
+  }
+}
+
+// Waitlist subscription endpoint
+app.post('/api/waitlist', async (req, res) => {
+  const { email, product } = req.body;
+
+  // Validation
+  if (!email || !product) {
+    return res.status(400).json({ error: 'Email and product are required' });
+  }
+
+  if (!isValidEmail(email)) {
+    return res.status(400).json({ error: 'Please provide a valid email address' });
+  }
+
+  const projectMap = {
+    'track-ai': { file: 'waitlist-track-ai.json', name: 'Track.AI' },
+    'opendocs': { file: 'waitlist-opendocs.json', name: 'OpenDocs MCP Server' },
+    'yc-monitor': { file: 'waitlist-yc-monitor.json', name: 'YC Startup API Monitor' },
+  };
+
+  if (!projectMap[product]) {
+    return res.status(400).json({ error: 'Invalid product' });
+  }
+
+  const projectConfig = projectMap[product];
+  const waitlist = readWaitlist(projectConfig.file);
+  const normalizedEmail = email.toLowerCase().trim();
+
+  // Check for duplicates
+  const existingMember = waitlist.find(
+    (member) => member.email.toLowerCase() === normalizedEmail
+  );
+
+  if (existingMember) {
+    return res.status(409).json({ 
+      error: 'This email is already on the waitlist',
+      message: 'You are already in our waitlist!' 
+    });
+  }
+
+  // Add to waitlist
+  const newMember = {
+    email: normalizedEmail,
+    joinedAt: new Date().toISOString(),
+    status: 'active',
+    product,
+  };
+
+  waitlist.push(newMember);
+
+  if (writeWaitlist(projectConfig.file, waitlist)) {
+    console.log(`New waitlist member added for ${projectConfig.name}: ${normalizedEmail}`);
+
+    // Send confirmation email if email service is configured
+    try {
+      const { getWaitlistTemplate, sendEmail } = require('./email-utils');
+      const template = getWaitlistTemplate(projectConfig.name);
+      await sendEmail(normalizedEmail, template.subject, template.html);
+    } catch (error) {
+      // Email service not configured, but waitlist signup still succeeds
+      console.warn(`Email not sent (service not configured): ${error.message}`);
+    }
+
+    res.status(200).json({ 
+      message: `Thank you for joining the waitlist for ${projectConfig.name}!`,
+      success: true 
+    });
+  } else {
+    res.status(500).json({ error: 'Failed to join waitlist. Please try again later.' });
+  }
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

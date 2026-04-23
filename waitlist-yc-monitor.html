@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YC API Monitor - Curated YC Startup Intelligence</title>
+    <meta name="description" content="Weekly digest of YC developer tools, startup launches, and AI products. Curated intelligence for builders, founders, and investors." />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #fafafa;
+        --card: #ffffff;
+        --text: #050816;
+        --muted: #4b5563;
+        --border: #e5e7eb;
+        --link: #0b57d0;
+        --accent: #ec4899;
+        --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.10);
+        --shadow-card: 0 2px 8px rgba(15, 23, 42, 0.08);
+        --radius-lg: 24px;
+        --radius-md: 16px;
+        --radius-sm: 12px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        padding: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .nav-bar {
+        position: sticky;
+        top: 0;
+        background: rgba(250, 250, 250, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        z-index: 100;
+        padding: 16px 20px;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--text);
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
+
+      .back-link {
+        color: var(--link);
+        text-decoration: none;
+        font-weight: 600;
+        transition: opacity 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .back-link:hover {
+        opacity: 0.7;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .hero-section {
+        text-align: center;
+        padding: 80px 20px;
+        background: linear-gradient(135deg, #fff0f6 0%, #fdf2f8 100%);
+        border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      }
+
+      .hero-icon {
+        width: 100px;
+        height: 100px;
+        border-radius: var(--radius-md);
+        background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 56px;
+        margin: 0 auto 32px;
+        box-shadow: 0 12px 24px rgba(236, 72, 153, 0.3);
+      }
+
+      .hero-badge {
+        display: inline-block;
+        padding: 8px 16px;
+        background: #fbcfe8;
+        color: #831843;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 20px;
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 800;
+        margin: 0 0 20px;
+        color: var(--text);
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+        color: var(--muted);
+        margin: 0 0 40px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+      }
+
+      .content-container {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .waitlist-form {
+        background: var(--card);
+        border: 2px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 48px;
+        margin: -60px 20px 60px;
+        box-shadow: var(--shadow-soft);
+        position: relative;
+        z-index: 10;
+      }
+
+      .form-title {
+        font-size: 1.3rem;
+        font-weight: 800;
+        margin: 0 0 12px;
+        color: var(--text);
+      }
+
+      .form-subtitle {
+        color: var(--muted);
+        margin: 0 0 32px;
+        font-size: 0.95rem;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--text);
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 14px 16px;
+        border: 2px solid var(--border);
+        border-radius: var(--radius-sm);
+        font-size: 1rem;
+        font-family: inherit;
+        transition: all 0.2s;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: var(--accent);
+        background: linear-gradient(135deg, rgba(236, 72, 153, 0.03) 0%, rgba(236, 72, 153, 0.02) 100%);
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 14px 24px;
+        background: linear-gradient(135deg, var(--accent) 0%, #f43f5e 100%);
+        color: white;
+        border: none;
+        border-radius: var(--radius-sm);
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(236, 72, 153, 0.4);
+      }
+
+      .submit-btn:active {
+        transform: translateY(0);
+      }
+
+      .form-small {
+        font-size: 0.85rem;
+        color: var(--muted);
+        text-align: center;
+        margin-top: 16px;
+      }
+
+      .social-proof {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 48px 40px;
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .proof-title {
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        margin-bottom: 32px;
+      }
+
+      .proof-items {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+      }
+
+      .proof-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .proof-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--accent);
+      }
+
+      .proof-label {
+        font-size: 0.9rem;
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      .section {
+        margin-bottom: 60px;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin: 0 0 40px;
+        color: var(--text);
+      }
+
+      .problem-solution {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+        margin-bottom: 60px;
+      }
+
+      .card-box {
+        padding: 40px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+      }
+
+      .card-box.problem {
+        background: linear-gradient(135deg, #fef2f5 0%, #fde7f0 100%);
+        border-color: #fbcfe8;
+      }
+
+      .card-box.solution {
+        background: linear-gradient(135deg, #fff0f6 0%, #fdf2f8 100%);
+        border-color: #fbcfe8;
+      }
+
+      .box-icon {
+        font-size: 40px;
+        margin-bottom: 16px;
+      }
+
+      .box-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 0 0 16px;
+      }
+
+      .card-box.problem .box-title {
+        color: #dc2626;
+      }
+
+      .card-box.solution .box-title {
+        color: var(--accent);
+      }
+
+      .box-content {
+        color: var(--muted);
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-bottom: 40px;
+      }
+
+      .feature-card {
+        padding: 32px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        text-align: center;
+        transition: all 0.3s;
+      }
+
+      .feature-card:hover {
+        border-color: rgba(236, 72, 153, 0.2);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .feature-icon {
+        font-size: 40px;
+        margin-bottom: 16px;
+      }
+
+      .feature-title {
+        font-weight: 700;
+        margin: 0 0 8px;
+        font-size: 1.05rem;
+        color: var(--text);
+      }
+
+      .feature-description {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      .founder-note {
+        background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+        border: 2px solid #fcd34d;
+        border-radius: var(--radius-lg);
+        padding: 40px;
+        margin-bottom: 60px;
+      }
+
+      .founder-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #78350f;
+        margin-bottom: 12px;
+      }
+
+      .founder-message {
+        font-size: 1.1rem;
+        color: #451a03;
+        margin: 0;
+        font-style: italic;
+        line-height: 1.7;
+      }
+
+      .faq-section {
+        margin-bottom: 60px;
+      }
+
+      .faq-item {
+        border-bottom: 1px solid var(--border);
+        padding: 24px 0;
+      }
+
+      .faq-item:last-child {
+        border-bottom: none;
+      }
+
+      .faq-question {
+        font-weight: 700;
+        margin: 0 0 12px;
+        cursor: pointer;
+        color: var(--text);
+        font-size: 1.05rem;
+      }
+
+      .faq-answer {
+        color: var(--muted);
+        margin: 0;
+        line-height: 1.7;
+      }
+
+      .footer-cta {
+        background: linear-gradient(135deg, var(--accent) 0%, #f43f5e 100%);
+        color: white;
+        border-radius: var(--radius-lg);
+        padding: 60px 40px;
+        text-align: center;
+        margin-bottom: 60px;
+        box-shadow: 0 20px 40px rgba(236, 72, 153, 0.3);
+      }
+
+      .footer-cta-title {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin: 0 0 16px;
+      }
+
+      .footer-cta-desc {
+        font-size: 1.1rem;
+        margin: 0 0 32px;
+        opacity: 0.95;
+      }
+
+      .footer-cta-btn {
+        display: inline-block;
+        padding: 14px 32px;
+        background: white;
+        color: var(--accent);
+        border: none;
+        border-radius: var(--radius-sm);
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+      }
+
+      .footer-cta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      }
+
+      .site-footer {
+        padding: 40px 20px;
+        text-align: center;
+        background: var(--card);
+        border-top: 1px solid var(--border);
+      }
+
+      .footer-text {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        .hero-section {
+          padding: 60px 20px;
+        }
+
+        .waitlist-form {
+          margin: -40px 0 40px;
+          padding: 32px;
+        }
+
+        .proof-items {
+          grid-template-columns: 1fr;
+        }
+
+        .problem-solution {
+          grid-template-columns: 1fr;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .section-title {
+          font-size: 1.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav-bar">
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">MR</a>
+        <a href="products.html" class="back-link">← Back to Projects</a>
+      </div>
+    </nav>
+
+    <section class="hero-section">
+      <div class="container">
+        <div class="content-container">
+          <div class="hero-icon">🚀</div>
+          <span class="hero-badge">Private Beta</span>
+          <h1 class="hero-title">YC API Monitor</h1>
+          <p class="hero-subtitle">
+            Your curated weekly digest of YC developer tools, startup launches, and AI products. Stay ahead of what builders are shipping.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="content-container">
+        <div class="waitlist-form">
+          <h3 class="form-title">Join the Private Beta</h3>
+          <p class="form-subtitle">Get the first curated issue. Exclusive for builders, founders, and early adopters.</p>
+          <form onsubmit="handleWaitlistSubmit(event, 'YC API Monitor')">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <button type="submit" class="submit-btn">Get Private Access</button>
+            <p class="form-small">First issue launches next week. Limited to 100 beta members.</p>
+          </form>
+        </div>
+
+        <div class="social-proof">
+          <p class="proof-title">Growing Community</p>
+          <div class="proof-items">
+            <div class="proof-item">
+              <div class="proof-number">100</div>
+              <div class="proof-label">Beta Spots Available</div>
+            </div>
+            <div class="proof-item">
+              <div class="proof-number">50%</div>
+              <div class="proof-label">Already Claimed</div>
+            </div>
+            <div class="proof-item">
+              <div class="proof-number">Weekly</div>
+              <div class="proof-label">Distribution</div>
+            </div>
+          </div>
+        </div>
+
+        <section class="section">
+          <div class="problem-solution">
+            <div class="card-box problem">
+              <div class="box-icon">📚</div>
+              <h3 class="box-title">The Problem</h3>
+              <p class="box-content">
+                YC launches 150+ new startups every year. Tracking what's being built, which APIs matter, and which tools are worth integrating is time-consuming and scattered across launches, blogs, and Twitter.
+              </p>
+            </div>
+            <div class="card-box solution">
+              <div class="box-icon">🎯</div>
+              <h3 class="box-title">The Solution</h3>
+              <p class="box-content">
+                YC API Monitor curates the best YC developer tools, APIs, and AI products every week. One email. Highest signal. Everything builders need to know.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">What's in Each Issue</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">🆕</div>
+              <h3 class="feature-title">New Launches</h3>
+              <p class="feature-description">
+                Best YC startup launches this week. APIs, devtools, and AI products worthy of your attention.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">💡</div>
+              <h3 class="feature-title">Strategic Insights</h3>
+              <p class="feature-description">
+                Why certain YC companies matter. Market trends. Founders to watch. Strategic patterns.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🔌</div>
+              <h3 class="feature-title">Integration Opportunities</h3>
+              <p class="feature-description">
+                Which new APIs could solve your problems. Quick win integrations. Build faster.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">📊</div>
+              <h3 class="feature-title">AI Product Trends</h3>
+              <p class="feature-description">
+                What AI/ML products YC is backing. Emerging categories. Where money is going.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">👥</div>
+              <h3 class="feature-title">Founder Profiles</h3>
+              <p class="feature-description">
+                Meet the founders behind launches. Their story. Why they're building. What's next.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3 class="feature-title">Quick Takes</h3>
+              <p class="feature-description">
+                Hot takes on launches. What might work. What feels risky. Honest opinions.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <div class="founder-note">
+          <p class="founder-label">Personal Note from Founder</p>
+          <p class="founder-message">
+            "I obsessively follow what YC founders are building. Every week I see 10+ products worth knowing about. This digest is my weekly rundown—curated for builders who care about the bleeding edge."
+          </p>
+          <p style="margin: 16px 0 0; color: #78350f; font-weight: 600;">
+            — Monika Rajput, Founder
+          </p>
+        </div>
+
+        <section class="section faq-section">
+          <h2 class="section-title">Questions?</h2>
+          <div class="faq-item">
+            <h3 class="faq-question">Who should subscribe?</h3>
+            <p class="faq-answer">
+              YC API Monitor is perfect for founders building their next product, developers exploring new tools, investors tracking YC trends, and product teams staying on top of industry innovation.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-question">Why YC specifically?</h3>
+            <p class="faq-answer">
+              YC backs the highest quality startups with the most ambitious founders. If you want to know what the future of tech looks like 6-12 months early, watch YC.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-question">How do you curate?</h3>
+            <p class="faq-answer">
+              I manually review YC launches, evaluate strategic importance, and select 7-10 best products per week. Every recommendation represents something I'd actually use or find valuable.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-question">Is it free?</h3>
+            <p class="faq-answer">
+              Private beta is free. At public launch, basic tier will remain free. Premium tier ($25/month) includes deeper analysis, exclusive interviews with founders, and early API access.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-question">How often do you send?</h3>
+            <p class="faq-answer">
+              Every Thursday morning. One issue. 5 minutes to read. Most signal, minimal noise. Unsubscribe anytime (but you won't want to).
+            </p>
+          </div>
+        </section>
+
+        <div class="footer-cta">
+          <h2 class="footer-cta-title">Stay Ahead of the Curve</h2>
+          <p class="footer-cta-desc">Private beta starts next week. First 100 members get founder pricing forever.</p>
+          <a href="#" class="footer-cta-btn" onclick="document.querySelector('.waitlist-form').scrollIntoView({ behavior: 'smooth' }); return false;">
+            Get Private Access
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p class="footer-text">
+        Built by <strong>Monika Rajput</strong> • 
+        <a href="index.html" style="color: var(--link); text-decoration: none;">Back to Portfolio</a>
+      </p>
+    </footer>
+
+    <script>
+      function handleWaitlistSubmit(e, product) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const btn = e.target.querySelector('button');
+        const originalText = btn.textContent;
+
+        btn.disabled = true;
+        btn.textContent = 'Joining...';
+
+        const productKeyMap = {
+          'Track.AI': 'track-ai',
+          'OpenDocs MCP Server': 'opendocs',
+          'YC Startup API Monitor': 'yc-monitor',
+        };
+
+        const productKey = productKeyMap[product];
+
+        fetch('/api/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, product: productKey }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success || !data.error) {
+              btn.textContent = '✓ Added to Waitlist!';
+              btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+              e.target.reset();
+
+              setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+                btn.disabled = false;
+              }, 3000);
+            } else {
+              throw new Error(data.error || 'Unknown error');
+            }
+          })
+          .catch((error) => {
+            btn.textContent = '✗ Try again';
+            btn.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+
+            setTimeout(() => {
+              btn.textContent = originalText;
+              btn.style.background = '';
+              btn.disabled = false;
+            }, 3000);
+
+            console.error(error);
+          });
+      }
+    </script>
+  </body>
+</html>

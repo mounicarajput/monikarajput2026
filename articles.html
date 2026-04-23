@@ -1,333 +1,157 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Articles - Monika Rajput</title>
-    <meta name="description" content="Articles and writings by Monika Rajput." />
-    <style>
-      :root {
-        color-scheme: light;
-        --bg: #f7f8fb;
-        --card: #ffffff;
-        --text: #050816;
-        --muted: #4b5563;
-        --border: #e5e7eb;
-        --link: #0b57d0;
-        --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.10);
-        --shadow-card: 0 10px 24px rgba(15, 23, 42, 0.08);
-        --radius-lg: 28px;
-        --radius-md: 20px;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Articles - Monika Rajput</title>
 
-      * {
-        box-sizing: border-box;
-      }
+  <style>
+    :root {
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #050816;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --link: #2563eb;
+      --radius: 16px;
+    }
 
-      body {
-        margin: 0;
-        min-height: 100vh;
-        display: block;
-        padding: 56px 18px 72px;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
-          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-        background: var(--bg);
-        color: var(--text);
-      }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-      .nav {
-        width: min(1040px, 100%);
-        margin: 0 auto 40px;
-        padding: 0 4px;
-      }
+    body {
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: 0.3s;
+    }
 
-      .nav-link {
-        color: var(--link);
-        text-decoration: none;
-        font-size: 0.95rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        transition: opacity 0.2s;
-      }
+    /* NAVBAR */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+    }
 
-      .nav-link:hover {
-        opacity: 0.8;
-      }
+    .topbar a {
+      text-decoration: none;
+      color: var(--muted);
+    }
 
-      main {
-        width: min(1040px, 100%);
-        margin: 0 auto;
-        padding: 0;
-        text-align: center;
-      }
+    /* SECTION */
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
 
-      .hero {
-        padding: 6px 4px 24px;
-      }
+    h1 {
+      margin-bottom: 30px;
+    }
 
-      h1 {
-        font-size: clamp(2.0rem, 3.6vw, 3.0rem);
-        line-height: 1.15;
-        margin: 0 0 12px;
-        font-weight: 850;
-        letter-spacing: -0.02em;
-      }
+    /* GRID (FIXED YOUR ISSUE) */
+    #articlesContainer {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
 
-      .subtitle {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.5;
-        font-size: 1.05rem;
-      }
+    /* CARD */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: 0.25s ease;
+    }
 
-      h2 {
-        margin: 28px 4px 16px;
-        font-size: 1.4rem;
-        letter-spacing: -0.01em;
-      }
+    .card:hover {
+      transform: translateY(-5px);
+    }
 
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 22px;
-        padding: 0 4px;
-      }
+    .category {
+      font-size: 12px;
+      color: var(--link);
+      font-weight: 600;
+    }
 
-      @media (max-width: 900px) {
-        .grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-      }
+    .title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 10px 0;
+    }
 
-      @media (max-width: 560px) {
-        .grid {
-          grid-template-columns: 1fr;
-        }
-      }
+    .desc {
+      font-size: 14px;
+      color: var(--muted);
+    }
 
-      .card {
-        display: grid;
-        grid-template-rows: auto 1fr;
-        gap: 12px;
-        padding: 18px;
-        border-radius: var(--radius-lg);
-        border: 1px solid var(--border);
-        background: var(--card);
-        box-shadow: var(--shadow-card);
-        text-decoration: none;
-        color: inherit;
-        min-height: 150px;
-        transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
-      }
+    .meta {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--muted);
+    }
 
-      .card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
-        border-color: rgba(11, 87, 208, 0.22);
-      }
+    /* LOADING */
+    .loading {
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
+</head>
 
-      .card:focus-visible {
-        outline: 3px solid rgba(11, 87, 208, 0.25);
-        outline-offset: 3px;
-      }
+<body>
 
-      .card-head {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-      }
+  <!-- NAV -->
+  <div class="topbar">
+    <a href="index.html">← Back</a>
+  </div>
 
-      .icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 14px;
-        display: grid;
-        place-items: center;
-        border: 1px solid rgba(0, 0, 0, 0.06);
-        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
-        flex: 0 0 auto;
-      }
+  <!-- CONTENT -->
+  <div class="container">
+    <h1>All Articles</h1>
 
-      .icon svg {
-        width: 24px;
-        height: 24px;
-      }
+    <div id="articlesContainer">
+      <div class="loading">Loading articles...</div>
+    </div>
+  </div>
 
-      .card-title {
-        margin: 0;
-        font-weight: 800;
-        font-size: 1.08rem;
-        letter-spacing: -0.01em;
-      }
+  <script>
+    // LOAD ARTICLES
+    async function loadArticles() {
+      try {
+        const res = await fetch("articles.json");
+        const data = await res.json();
 
-      .card-subtitle {
-        margin: 6px 0 0;
-        color: var(--muted);
-        font-size: 0.95rem;
-        overflow-wrap: anywhere;
-      }
+        const container = document.getElementById("articlesContainer");
 
-      .span-2 {
-        grid-column: span 2;
-      }
-
-      @media (max-width: 900px) {
-        .span-2 {
-          grid-column: span 2;
-        }
-      }
-
-      @media (max-width: 560px) {
-        .span-2 {
-          grid-column: span 1;
-        }
-      }
-
-      .tint-blue {
-        background: #eef6ff;
-      }
-      .tint-gray {
-        background: #f3f4f6;
-      }
-      .tint-cream {
-        background: #fff9e9;
-      }
-      .tint-pink {
-        background: #fff0f6;
-      }
-
-      .article-meta {
-        font-size: 0.85rem;
-        color: var(--muted);
-        margin-top: 8px;
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="nav">
-      <a href="index.html" class="nav-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M19 12H5M12 19l-7-7 7-7"/>
-        </svg>
-        Back to Home
-      </a>
-    </nav>
-
-    <main>
-      <section class="hero">
-        <h1>Articles</h1>
-        <p class="subtitle">
-          Thoughts, tutorials, and insights on development and design.
-        </p>
-      </section>
-
-      <h2>Latest Articles</h2>
-
-      <section class="grid" aria-label="Articles">
-        <a class="card tint-blue" href="#" onclick="return false;">
-          <div class="card-head">
-            <div class="icon" aria-hidden="true" style="background:#dbeafe;">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"
-                  fill="#0f172a"
-                  opacity="0.9"
-                />
-              </svg>
+        container.innerHTML = data.articles.map(a => `
+          <a class="card" href="${a.link}" target="_blank">
+            <div class="category">${a.category}</div>
+            <div class="title">${a.title}</div>
+            <div class="desc">${a.description}</div>
+            <div class="meta">
+              ${a.readTime || "5 min"} • 
+              ${new Date(a.date).toLocaleDateString()}
             </div>
-            <div>
-              <div class="card-title">Building Modern Portfolios</div>
-              <div class="card-subtitle">Design & Development</div>
-            </div>
-          </div>
-          <div class="card-subtitle">A guide to creating beautiful portfolio websites with modern web technologies.</div>
-          <div class="article-meta">Coming Soon</div>
-        </a>
+          </a>
+        `).join("");
 
-        <a class="card tint-cream" href="#" onclick="return false;">
-          <div class="card-head">
-            <div class="icon" aria-hidden="true" style="background:#fde68a;">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 2L2 7l10 5 10-5-10-5z"
-                  fill="#0f172a"
-                  opacity="0.9"
-                />
-                <path d="M2 17l10 5 10-5" fill="#0f172a" opacity="0.9"/>
-                <path d="M2 12l10 5 10-5" fill="#0f172a" opacity="0.9"/>
-              </svg>
-            </div>
-            <div>
-              <div class="card-title">Web Development Tips</div>
-              <div class="card-subtitle">Best Practices</div>
-            </div>
-          </div>
-          <div class="card-subtitle">Essential tips and tricks for modern web development workflows.</div>
-          <div class="article-meta">Coming Soon</div>
-        </a>
+      } catch (e) {
+        document.getElementById("articlesContainer").innerHTML =
+          "<p style='text-align:center'>Failed to load articles</p>";
+      }
+    }
 
-        <a class="card tint-pink" href="#" onclick="return false;">
-          <div class="card-head">
-            <div class="icon" aria-hidden="true" style="background:#ffe4e6;">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-                  fill="#0f172a"
-                  opacity="0.9"
-                />
-              </svg>
-            </div>
-            <div>
-              <div class="card-title">UI/UX Design Principles</div>
-              <div class="card-subtitle">Design Thinking</div>
-            </div>
-          </div>
-          <div class="card-subtitle">Exploring the fundamentals of user interface and experience design.</div>
-          <div class="article-meta">Coming Soon</div>
-        </a>
+    loadArticles();
+  </script>
 
-        <a class="card tint-gray" href="#" onclick="return false;">
-          <div class="card-head">
-            <div class="icon" aria-hidden="true" style="background:#e5e7eb;">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-3 .7-3.6-1.3-3.6-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.5 1.1 3.1.8.1-.6.4-1.1.7-1.4-2.4-.3-5-1.2-5-5.4 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3 .1a10.4 10.4 0 0 1 5.4 0c2.1-.4 3-.1 3-.1.6 1.5.2 2.6.1 2.9.7.8 1.1 1.8 1.1 3 0 4.2-2.6 5.1-5 5.4.4.3.8 1 .8 2v3c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"
-                  fill="#0f172a"
-                />
-              </svg>
-            </div>
-            <div>
-              <div class="card-title">Open Source Journey</div>
-              <div class="card-subtitle">Community & Code</div>
-            </div>
-          </div>
-          <div class="card-subtitle">My experience contributing to open source projects and building in public.</div>
-          <div class="article-meta">Coming Soon</div>
-        </a>
-
-        <a class="card span-2 tint-blue" href="#" onclick="return false;">
-          <div class="card-head">
-            <div class="icon" aria-hidden="true" style="background:#dbeafe;">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 2L2 7l10 5 10-5-10-5z"
-                  fill="#0f172a"
-                  opacity="0.9"
-                />
-                <path d="M2 17l10 5 10-5" fill="#0f172a" opacity="0.9"/>
-                <path d="M2 12l10 5 10-5" fill="#0f172a" opacity="0.9"/>
-              </svg>
-            </div>
-            <div>
-              <div class="card-title">Featured Article</div>
-              <div class="card-subtitle">The Bento Grid Design System</div>
-            </div>
-          </div>
-          <div class="card-subtitle">An in-depth look at the bento-style grid layout and how it creates beautiful, organized interfaces. Learn the principles behind this modern design trend and how to implement it in your own projects.</div>
-          <div class="article-meta">Coming Soon</div>
-        </a>
-      </section>
-    </main>
-  </body>
+</body>
 </html>

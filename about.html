@@ -222,6 +222,72 @@
         padding: 32px;
         margin-bottom: 24px;
       }
+
+      .section-divider {
+        height: 1px;
+        background: var(--border);
+        margin: 60px 0;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+        margin: 48px 0 32px;
+        font-weight: 850;
+        letter-spacing: -0.01em;
+      }
+
+      .subsection-title {
+        font-size: 1.2rem;
+        margin: 36px 0 16px;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        color: var(--text);
+      }
+
+      .achievement-list {
+        list-style: none;
+        padding: 0;
+        margin: 16px 0 24px;
+      }
+
+      .achievement-list li {
+        margin-bottom: 12px;
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.6;
+      }
+
+      .achievement-list li:before {
+        content: "→ ";
+        color: var(--link);
+        font-weight: 600;
+        margin-right: 8px;
+      }
+
+      .cta-section {
+        background: linear-gradient(135deg, var(--bg) 0%, #ffffff 100%);
+        border-radius: var(--radius-lg);
+        padding: 48px 32px;
+        text-align: center;
+        margin-top: 60px;
+        border: 1px solid var(--border);
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 12px 28px;
+        background: var(--link);
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        margin-top: 20px;
+        transition: opacity 0.2s;
+      }
+
+      .cta-button:hover {
+        opacity: 0.9;
+      }
     </style>
   </head>
   <body>
@@ -236,112 +302,89 @@
 
     <main>
       <section class="hero">
-        <h1>About Me</h1>
+        <h1>Hi, I'm Monika</h1>
         <p class="subtitle">
-          Developer, creator, and builder passionate about crafting beautiful digital experiences.
+          A builder, mentor, and advocate for Data and AI
         </p>
       </section>
 
       <div class="about-content">
         <div class="about-card">
-          <p>
-            Hey! I'm Monika Rajput, a developer who loves building things that matter. 
-            I'm passionate about creating beautiful, functional web experiences and sharing 
-            what I learn along the way.
+          <h3 style="margin-top: 0; font-size: 1.3rem; font-weight: 700;">My Mission</h3>
+          <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text);">
+            Over the past 6+ years, I've built AI products, mentored founders, and helped dozens of companies turn ambitious ideas into reality. But I've learned that technology is only half the equation—the other half is helping people understand it, use it, and grow with it.
           </p>
-          <p>
-            When I'm not coding, you'll find me exploring new technologies, reading books 
-            (like "The Power of Now"), creating content, and connecting with the developer 
-            community. I believe in building in public and learning through doing.
+          <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text);">
+            My journey wasn't linear. Coming from a tier-3 college, I explored NLP, computer vision, and consulting. I faced career setbacks that forced me to reconsider my path. That pivot became my superpower. Today, I thrive at the intersection of AI, product growth, and developer advocacy—helping early-stage startups scale, founders understand AI, and developers build with confidence.
           </p>
-          <p>
-            This website is a reflection of my journey—a space where I share my work, 
-            thoughts, and connect with like-minded people. Feel free to explore, reach out, 
-            or just say hi!
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2 class="section-title">What I Do</h2>
+        
+        <div class="about-card">
+          <h3 class="subsection-title">Product & AI Development</h3>
+          <p>I build AI products that solve real business problems. From NLP pipelines to computer vision systems, I've helped startups transform messy data into actionable insights. I focus on the intersection of product strategy and technical execution.</p>
+          <ul class="achievement-list">
+            <li>Built and shipped 5+ AI/ML products from concept to production</li>
+            <li>Worked with startups to scale from idea to product-market fit</li>
+            <li>Specialized in NLP, computer vision, and data-driven decision making</li>
+          </ul>
+        </div>
+
+        <div class="about-card">
+          <h3 class="subsection-title">Mentoring & Leadership</h3>
+          <p>I believe in lifting as we climb. I've mentored dozens of founders, engineers, and aspiring tech professionals—helping them navigate career transitions, build better products, and think strategically about growth.</p>
+          <ul class="achievement-list">
+            <li>Mentor founders and engineers at early-stage startups</li>
+            <li>Advise teams on AI strategy and implementation</li>
+            <li>Create content and resources to demystify AI for non-technical audiences</li>
+          </ul>
+        </div>
+
+        <div class="about-card">
+          <h3 class="subsection-title">Speaking & Community</h3>
+          <p>I'm passionate about building community and sharing knowledge. I've spoken at 20+ tech conferences, hosted 40+ community events, and run a podcast where I interview builders, makers, and thoughtful people navigating careers in tech.</p>
+          <ul class="achievement-list">
+            <li>Speaker at major tech conferences and community events</li>
+            <li>Host of The Monika Show (TMS) podcast with 20K+ listeners</li>
+            <li>Community organizer and founder of AI/developer focused meetups</li>
+          </ul>
+        </div>
+
+        <div class="about-card">
+          <h3 class="subsection-title">Developer Advocacy</h3>
+          <p>I'm a bridge between complex AI concepts and practical developer implementation. I create tutorials, tools, and frameworks that make it easier for developers to build with AI, without needing to be ML experts.</p>
+          <ul class="achievement-list">
+            <li>Create educational content for developers learning AI</li>
+            <li>Build open-source tools and libraries for AI integration</li>
+            <li>Advocate for developer-first AI tooling and platforms</li>
+          </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2 class="section-title">My Journey</h2>
+        
+        <div class="about-card">
+          <p><strong>Why I Do This:</strong> Growing up and studying at a tier-3 college gave me unique perspective—it taught me to hustle, question assumptions, and find creative solutions. When I encountered setbacks in my early career, instead of giving up, I pivoted. Those difficult moments became the catalyst for embracing mentorship, speaking, and community building.</p>
+          <p>Today, I channel that same scrappy energy into helping others—especially those from non-traditional backgrounds—realize their potential in tech and AI. I want to show that your background doesn't define your future; your effort and mindset do.</p>
+        </div>
+
+        <div class="cta-section">
+          <h3 style="margin: 0 0 12px; font-size: 1.4rem;">Let's Connect</h3>
+          <p style="color: var(--muted); margin: 0 0 24px;">
+            Whether you want to discuss AI, explore a collaboration, or just say hi—I'd love to hear from you.
           </p>
+          <a href="contact.html" class="cta-button">Get in Touch</a>
+          <div style="margin-top: 24px; display: flex; justify-content: center; gap: 20px;">
+            <a href="podcast.html" style="color: var(--link); text-decoration: none; font-weight: 600;">Listen to my podcast</a>
+            <span style="color: var(--border);">•</span>
+            <a href="speaking.html" style="color: var(--link); text-decoration: none; font-weight: 600;">Speaking engagements</a>
+          </div>
         </div>
       </div>
-
-      <h2>What I Do</h2>
-
-      <section class="grid" aria-label="Skills and interests">
-        <div class="card tint-blue">
-          <div class="card-head">
-            <div class="icon" aria-hidden="true" style="background:#dbeafe;">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 2L2 7l10 5 10-5-10-5z"
-                  fill="#0f172a"
-                  opacity="0.9"
-                />
-                <path d="M2 17l10 5 10-5" fill="#0f172a" opacity="0.9"/>
-                <path d="M2 12l10 5 10-5" fill="#0f172a" opacity="0.9"/>
-              </svg>
-            </div>
-            <div>
-              <div class="card-title">Web Development</div>
-              <div class="card-subtitle">Frontend & Backend</div>
-            </div>
-          </div>
-          <div class="card-subtitle">Building modern web applications.</div>
-        </div>
-
-        <div class="card tint-cream">
-          <div class="card-head">
-            <div class="icon" aria-hidden="true" style="background:#fde68a;">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-                  fill="#0f172a"
-                  opacity="0.9"
-                />
-              </svg>
-            </div>
-            <div>
-              <div class="card-title">UI/UX Design</div>
-              <div class="card-subtitle">User Experience</div>
-            </div>
-          </div>
-          <div class="card-subtitle">Creating intuitive interfaces.</div>
-        </div>
-
-        <div class="card tint-pink">
-          <div class="card-head">
-            <div class="icon" aria-hidden="true" style="background:#ffe4e6;">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"
-                  fill="#0f172a"
-                  opacity="0.9"
-                />
-              </svg>
-            </div>
-            <div>
-              <div class="card-title">Content Creation</div>
-              <div class="card-subtitle">Writing & Videos</div>
-            </div>
-          </div>
-          <div class="card-subtitle">Sharing knowledge and experiences.</div>
-        </div>
-
-        <div class="card span-2 tint-gray">
-          <div class="card-head">
-            <div class="icon" aria-hidden="true" style="background:#e5e7eb;">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-3 .7-3.6-1.3-3.6-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.5 1.1 3.1.8.1-.6.4-1.1.7-1.4-2.4-.3-5-1.2-5-5.4 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3 .1a10.4 10.4 0 0 1 5.4 0c2.1-.4 3-.1 3-.1.6 1.5.2 2.6.1 2.9.7.8 1.1 1.8 1.1 3 0 4.2-2.6 5.1-5 5.4.4.3.8 1 .8 2v3c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"
-                  fill="#0f172a"
-                />
-              </svg>
-            </div>
-            <div>
-              <div class="card-title">Open Source</div>
-              <div class="card-subtitle">Contributing & Building</div>
-            </div>
-          </div>
-          <div class="card-subtitle">Contributing to open source projects and building tools for the community.</div>
-        </div>
-      </section>
     </main>
   </body>
 </html>

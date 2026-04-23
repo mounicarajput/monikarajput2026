@@ -152,13 +152,13 @@
         border: 1px solid var(--border);
         color: var(--text);
         text-decoration: none;
-        transition: all 0.2s;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
 
       .profile-social-link:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-card);
-        border-color: rgba(11, 87, 208, 0.2);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.15);
+        border-color: rgba(11, 87, 208, 0.3);
       }
 
       .profile-social-link svg {
@@ -258,20 +258,25 @@
         text-decoration: none;
         border-radius: var(--radius-sm);
         font-size: 0.95rem;
-        transition: background 0.2s, color 0.2s;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         margin-bottom: 4px;
         cursor: pointer;
+        position: relative;
+        border-left: 2px solid transparent;
+        padding-left: 10px;
       }
 
       .nav-link:hover {
-        background: rgba(0, 0, 0, 0.04);
+        background: rgba(11, 87, 208, 0.08);
         color: var(--link);
+        transform: translateX(4px);
       }
 
       .nav-link.active {
-        background: rgba(11, 87, 208, 0.1);
+        background: rgba(11, 87, 208, 0.12);
         color: var(--link);
-        font-weight: 500;
+        font-weight: 600;
+        border-left-color: var(--link);
       }
 
       /* Right Content */
@@ -308,17 +313,105 @@
         gap: 16px;
         margin-bottom: 32px;
       }
+      .articles-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+        margin-bottom: 32px;
+      }
 
-      @media (max-width: 768px) {
+      .article-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 24px 20px;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 120px;
+        text-align: center;
+      }
+
+      .article-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-soft);
+        border-color: rgba(11, 87, 208, 0.2);
+      }
+
+
+      .article-card-title {
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 1.4;
+      }
+
+      @media (max-width: 1200px) {
+        .articles-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
         .grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
 
-      @media (max-width: 480px) {
+      @media (max-width: 768px) {
+        .articles-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
         .grid {
           grid-template-columns: 1fr;
         }
+        .span-2 {
+          grid-column: span 1;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .articles-grid {
+          grid-template-columns: 1fr;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .container {
+          grid-template-columns: 1fr;
+          gap: 32px;
+          padding: 24px 16px;
+        }
+        .section-title {
+          font-size: 0.95rem;
+        }
+        .greeting {
+          font-size: 1.25rem;
+        }
+      }
+
+      .view-more-btn {
+        display: inline-block;
+        margin-top: 24px;
+        padding: 12px 24px;
+        background: linear-gradient(135deg, var(--link) 0%, #0842a0 100%);
+        color: white;
+        border: none;
+        border-radius: var(--radius-md);
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 0 4px 12px rgba(11, 87, 208, 0.3);
+      }
+
+      .view-more-btn:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(11, 87, 208, 0.4);
+      }
+
+      .view-more-btn:active {
+        transform: translateY(-2px);
       }
 
       .card {
@@ -339,6 +432,44 @@
         transform: translateY(-2px);
         box-shadow: var(--shadow-soft);
         border-color: rgba(11, 87, 208, 0.2);
+      }
+
+      .card-minimal {
+        padding: 16px;
+        min-height: auto;
+        gap: 8px;
+      }
+
+      .card-minimal .card-header {
+        gap: 10px;
+      }
+
+      .card-minimal .card-icon {
+        width: 32px;
+        height: 32px;
+      }
+
+      .card-minimal .card-icon svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .card-minimal .card-title {
+        font-size: 0.9rem;
+        margin: 0;
+      }
+
+      .card-status-badge {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 3px 8px;
+        background: rgba(11, 87, 208, 0.1);
+        color: var(--link);
+        border-radius: 4px;
+        margin-top: 2px;
       }
 
       .card-header {
@@ -363,9 +494,10 @@
       }
 
       .card-title {
-        font-weight: 600;
-        font-size: 0.95rem;
+        font-weight: 700;
+        font-size: 1rem;
         margin: 0;
+        line-height: 1.3;
       }
 
       .card-subtitle {
@@ -375,16 +507,20 @@
       }
 
       .card-description {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         color: var(--muted);
         margin-top: auto;
+        line-height: 1.5;
       }
 
       .card-action {
-        margin-top: 8px;
+        margin-top: 12px;
         font-size: 0.85rem;
-        font-weight: 500;
+        font-weight: 600;
         color: var(--link);
+        display: flex;
+        align-items: center;
+        gap: 4px;
       }
 
       .about-section {
@@ -531,12 +667,17 @@
         border-radius: var(--radius-sm);
         font-size: 1rem;
         font-family: inherit;
-        transition: border-color 0.2s;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+
+      .form-group input:hover {
+        border-color: rgba(11, 87, 208, 0.3);
       }
 
       .form-group input:focus {
         outline: none;
         border-color: var(--link);
+        box-shadow: 0 0 0 3px rgba(11, 87, 208, 0.1);
       }
 
       .submit-btn {
@@ -549,11 +690,17 @@
         font-size: 1rem;
         font-weight: 600;
         cursor: pointer;
-        transition: background 0.2s;
+        transition: all 0.2s;
       }
 
       .submit-btn:hover {
         background: #0842a0;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(11, 87, 208, 0.3);
+      }
+
+      .submit-btn:active {
+        transform: translateY(0);
       }
 
       .message {
@@ -612,6 +759,9 @@
           </div>
           <h1 class="profile-name">Monika Rajput</h1>
           <p class="profile-title">Build Data and AI Solutions & Host of TMS</p>
+          <div style="display: inline-block; margin-bottom: 16px; padding: 6px 12px; background: #dbeafe; color: #0c4a6e; border-radius: 12px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">
+            🚀 Currently Building AI Products
+          </div>
           <div class="profile-location">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
@@ -672,9 +822,9 @@
         <nav class="nav-section">
           <div class="nav-section-title">Navigation</div>
           <ul class="nav-links">
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
             <li><a href="podcast.html" class="nav-link">Podcast</a></li>
-            <li><a href="#work" class="nav-link">Work</a></li>
-            <li><a href="#speaking" class="nav-link">Speaking</a></li>
             <li><a href="#articles" class="nav-link">Articles</a></li>
             <li><a href="#newsletter" class="nav-link">Newsletter</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -686,200 +836,112 @@
       <main class="content">
         <!-- About Section -->
         <section id="about" class="section">
-          <div class="about-section">
-            <div class="about-text">
-              <p>Hey I’m Monika Rajput.</p>
-              <p>A builder, mentor, and advocate for Data and AI. Over the past 6+ years, 
-                I’ve helped startups and mid-sized companies turn ideas into real products, from AI prototypes 
-                that solve business problems to tools that make data clear, actionable, and useful. Along the way, 
-                I realized that technology isn’t just about building, it’s about helping people understand it, use it, and grow with it.</p>
-              <p>My journey hasn’t been straightforward. Coming from a tier-3 college, I explored NLP, computer vision, and consulting, and even 
-                faced career setbacks that pushed me to rethink my path. That became my pivot, I started mentoring, speaking at conferences, 
-                hosting 40+ community events, and running my podcast TMS. Today, I thrive at the intersection of AI, product growth, 
-                and developer advocacy, helping early-stage startups scale, engage developers, and create meaningful impact.</p>
-          </div>
+          <h2 class="greeting">Hey, I'm Monika</h2>
+          <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.6; margin-bottom: 24px;">
+            A builder, mentor, and advocate for Data and AI. I help startups turn ideas into real products,
+            share knowledge through speaking and my podcast, and mentor founders on AI strategy.
+          </p>
+          <a href="about.html" class="view-more-btn">Read My Full Story</a>
         </section>
 
         
 
-        <!-- Work Section -->
-        <section id="work" class="section">
-          <h3 class="section-title">Work</h3>
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+          <h3 class="section-title">Projects</h3>
           <div class="grid">
-            <a class="card tint-blue" href="https://github.com/mounicarajput" target="_blank" rel="noreferrer noopener">
+            <!-- Track.AI Card -->
+            <a class="card card-minimal tint-blue" href="waitlist-track-ai.html">
               <div class="card-header">
-                <div class="card-icon icon-github">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-3 .7-3.6-1.3-3.6-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.5 1.1 3.1.8.1-.6.4-1.1.7-1.4-2.4-.3-5-1.2-5-5.4 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3 .1a10.4 10.4 0 0 1 5.4 0c2.1-.4 3-.1 3-.1.6 1.5.2 2.6.1 2.9.7.8 1.1 1.8 1.1 3 0 4.2-2.6 5.1-5 5.4.4.3.8 1 .8 2v3c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/>
+                <div class="card-icon" style="background: #c7d2fe; color: #3730a3;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 21H3V3h18v18zm-9-3v-5m-4 5v-2m8 2v-8"/>
                   </svg>
                 </div>
-                <div>
-                  <div class="card-title">Open Source</div>
-                  <div class="card-subtitle">GitHub Projects</div>
+                <div style="flex: 1;">
+                  <div class="card-title">Track.AI</div>
+                  <div class="card-status-badge">Building</div>
                 </div>
               </div>
-              <div class="card-description">Check out my code and contributions.</div>
+              <div class="card-description" style="font-size: 0.9rem;">
+                Tracks AI community contributions & engagement
+              </div>
+              <div class="card-action">View Project →</div>
             </a>
 
-            <a class="card tint-cream" href="https://www.youtube.com/@mounicarajput" target="_blank" rel="noreferrer noopener">
+            <!-- OpenDocs Card -->
+            <a class="card card-minimal tint-cream" href="waitlist-opendocs.html">
               <div class="card-header">
-                <div class="card-icon icon-youtube">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8Z"/>
-                    <path d="M10 9.2v5.6l5-2.8-5-2.8Z" fill="#ffffff"/>
+                <div class="card-icon" style="background: #ddd6fe; color: #6d28d9;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20m-8-12v12m0-12L7.5 5m12.5 0L16.5 5"/>
                   </svg>
                 </div>
-                <div>
-                  <div class="card-title">Video Content</div>
-                  <div class="card-subtitle">Builds & Tutorials</div>
+                <div style="flex: 1;">
+                  <div class="card-title">OpenDocs MCP</div>
+                  <div class="card-status-badge">Building</div>
                 </div>
               </div>
-              <div class="card-description">Watch my project walkthroughs.</div>
+              <div class="card-description" style="font-size: 0.9rem;">
+                AI agent for open-source documentation
+              </div>
+              <div class="card-action">View Project →</div>
             </a>
 
-            <a class="card tint-pink" href="#" onclick="return false;">
+            <!-- YC Monitor Card -->
+            <a class="card card-minimal tint-pink" href="waitlist-yc-monitor.html">
               <div class="card-header">
-                <div class="card-icon" style="background: #eef6ff;">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#0f172a" opacity="0.9"/>
-                    <path d="M2 17l10 5 10-5" fill="#0f172a" opacity="0.9"/>
-                    <path d="M2 12l10 5 10-5" fill="#0f172a" opacity="0.9"/>
+                <div class="card-icon" style="background: #fbcfe8; color: #9d174d;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 4v4l3 3"/>
                   </svg>
                 </div>
-                <div>
-                  <div class="card-title">Web Apps</div>
-                  <div class="card-subtitle">Coming Soon</div>
+                <div style="flex: 1;">
+                  <div class="card-title">YC API Monitor</div>
+                  <div class="card-status-badge">Beta</div>
                 </div>
               </div>
-              <div class="card-description">Interactive web applications.</div>
-            </a>
-
-            <a class="card span-2 tint-gray" href="#" onclick="return false;">
-              <div class="card-header">
-                <div class="card-icon" style="background: #e5e7eb;">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" fill="#0f172a" opacity="0.9"/>
-                  </svg>
-                </div>
-                <div>
-                  <div class="card-title">Featured Project</div>
-                  <div class="card-subtitle">Portfolio Website</div>
-                </div>
+              <div class="card-description" style="font-size: 0.9rem;">
+                Weekly digest of YC developer tools
               </div>
-              <div class="card-description">This website itself is a project! Built with modern web technologies and a clean bento-style design.</div>
+              <div class="card-action">View Project →</div>
             </a>
           </div>
+          <a href="products.html" class="view-more-btn" style="display: inline-block; margin-top: 8px;">View All Projects</a>
         </section>
 
         
 
-        <!-- Speaking Section -->
-        <section id="speaking" class="section">
-          <h3 class="section-title">Speaking</h3>
-          <div class="grid">
-            <a class="card tint-blue" href="https://sessionize.com" target="_blank" rel="noreferrer noopener">
-              <div class="card-header">
-                <div class="card-icon" style="background: #dbeafe;">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" fill="#1e40af" opacity="0.9"/>
-                    <path d="M9 12l2 2 4-4" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-                <div>
-                  <div class="card-title">Speaker Profile</div>
-                  <div class="card-subtitle">Sessionize</div>
-                </div>
-              </div>
-              <div class="card-description">Check out my speaking sessions and topics.</div>
-            </a>
-
-            <a class="card tint-cream" href="https://community.cncf.io" target="_blank" rel="noreferrer noopener">
-              <div class="card-header">
-                <div class="card-icon" style="background: #fde68a;">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#0f172a" opacity="0.9"/>
-                    <path d="M2 17l10 5 10-5" fill="#0f172a" opacity="0.9"/>
-                    <path d="M2 12l10 5 10-5" fill="#0f172a" opacity="0.9"/>
-                  </svg>
-                </div>
-                <div>
-                  <div class="card-title">CNCF Gurugram</div>
-                  <div class="card-subtitle">Organizer</div>
-                </div>
-              </div>
-              <div class="card-description">Organizing Cloud Native events in Gurugram.</div>
-            </a>
-
-            <a class="card tint-pink" href="https://topmate.io" target="_blank" rel="noreferrer noopener">
-              <div class="card-header">
-                <div class="card-icon" style="background: #ffe4e6;">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" fill="#0f172a" opacity="0.9"/>
-                  </svg>
-                </div>
-                <div>
-                  <div class="card-title">Topmate</div>
-                  <div class="card-subtitle">Book a call</div>
-                </div>
-              </div>
-              <div class="card-description">Book a mentoring or consultation call with me.</div>
-            </a>
+        <!-- Podcast Section -->
+        <section id="podcast" class="section">
+          <h3 class="section-title">Latest Episodes</h3>
+          <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 24px; line-height: 1.6;">
+            Listen to conversations with builders, founders, and innovators
+          </p>
+          <div class="grid" id="podcastGrid" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
+            <!-- Podcast episodes will be loaded here -->
           </div>
+          <a href="podcast.html" class="view-more-btn" style="display: inline-block; margin-top: 8px;">View All Episodes</a>
         </section>
 
         <!-- Articles Section -->
         <section id="articles" class="section">
-          <h3 class="section-title">Articles</h3>
-          <div class="grid">
-            <a class="card tint-blue" href="#" onclick="return false;">
-              <div class="card-header">
-                <div class="card-icon" style="background: #dbeafe;">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" fill="#0f172a" opacity="0.9"/>
-                  </svg>
-                </div>
-                <div>
-                  <div class="card-title">Building Modern Portfolios</div>
-                  <div class="card-subtitle">Design & Development</div>
-                </div>
-              </div>
-              <div class="card-description">A guide to creating beautiful portfolio websites.</div>
+          <h2 class="section-title">Latest Articles</h2>
+          <div class="articles-grid" id="articlesGrid">
+            <a href="#" class="article-card">
+              <span class="article-card-title">How to Build Scalable AI Apps</span>
             </a>
-
-            <a class="card tint-cream" href="#" onclick="return false;">
-              <div class="card-header">
-                <div class="card-icon" style="background: #fde68a;">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#0f172a" opacity="0.9"/>
-                    <path d="M2 17l10 5 10-5" fill="#0f172a" opacity="0.9"/>
-                    <path d="M2 12l10 5 10-5" fill="#0f172a" opacity="0.9"/>
-                  </svg>
-                </div>
-                <div>
-                  <div class="card-title">Web Development Tips</div>
-                  <div class="card-subtitle">Best Practices</div>
-                </div>
-              </div>
-              <div class="card-description">Essential tips and tricks for modern web development.</div>
+            <a href="#" class="article-card">
+              <span class="article-card-title">Data Engineering Best Practices</span>
             </a>
-
-            <a class="card span-2 tint-gray" href="#" onclick="return false;">
-              <div class="card-header">
-                <div class="card-icon" style="background: #e5e7eb;">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#0f172a" opacity="0.9"/>
-                    <path d="M2 17l10 5 10-5" fill="#0f172a" opacity="0.9"/>
-                    <path d="M2 12l10 5 10-5" fill="#0f172a" opacity="0.9"/>
-                  </svg>
-                </div>
-                <div>
-                  <div class="card-title">Featured Article</div>
-                  <div class="card-subtitle">The Bento Grid Design System</div>
-                </div>
-              </div>
-              <div class="card-description">An in-depth look at the bento-style grid layout and how it creates beautiful, organized interfaces.</div>
+            <a href="#" class="article-card">
+              <span class="article-card-title">Top Tools for Cloud Native Projects</span>
+            </a>
+            <a href="#" class="article-card">
+              <span class="article-card-title">Open Source Community Insights</span>
             </a>
           </div>
+          <a href="/articles" class="view-more-btn">View More Articles</a>
         </section>
 
         <!-- Newsletter Section -->
@@ -953,6 +1015,70 @@
     </div>
 
     <script>
+      // ===== LOAD ARTICLES =====
+      async function loadArticles() {
+        try {
+          const response = await fetch('articles.json');
+          const data = await response.json();
+          const articlesGrid = document.getElementById('articlesGrid');
+          
+          // Display only first 4 articles on homepage
+          const limitedArticles = data.articles.slice(0, 4);
+          
+          articlesGrid.innerHTML = limitedArticles.map((article, index) => {
+            const colors = ['tint-blue', 'tint-cream', 'tint-pink', 'tint-gray'];
+            const color = colors[index % colors.length];
+            
+            return `
+              <a class="article-card ${color}" href="${article.link}" target="_blank" rel="noreferrer noopener">
+                <div class="article-card-title">${article.title}</div>
+              </a>
+            `;
+          }).join('');
+        } catch (error) {
+          console.error('Error loading articles:', error);
+        }
+      }
+
+      // ===== LOAD PODCAST EPISODES =====
+      async function loadPodcasts() {
+        try {
+          const response = await fetch('podcasts.json');
+          const podcasts = await response.json();
+          const podcastGrid = document.getElementById('podcastGrid');
+          
+          // Display only first 3 episodes on homepage
+          const limitedPodcasts = podcasts.slice(0, 3);
+          
+          podcastGrid.innerHTML = limitedPodcasts.map((ep, index) => {
+            const colors = ['tint-blue', 'tint-cream', 'tint-pink'];
+            const color = colors[index % colors.length];
+            const platformIcon = ep.platform === 'spotify' ? '🎵' : '▶';
+            
+            return `
+              <a class="card ${color}" href="${ep.url}" target="_blank" rel="noreferrer noopener">
+                <div style="display: flex; align-items: flex-start; gap: 10px;">
+                  <div style="font-size: 1.5rem;">${platformIcon}</div>
+                  <div style="flex: 1;">
+                    <div class="card-title" style="font-size: 0.9rem; margin: 0 0 4px;">${ep.title}</div>
+                    <div style="font-size: 0.75rem; color: var(--muted);">${ep.show}${ep.episode ? ` • ${ep.episode}` : ''}</div>
+                  </div>
+                </div>
+                <div class="card-description" style="margin-top: 8px;">${ep.description.substring(0, 80)}...</div>
+              </a>
+            `;
+          }).join('');
+        } catch (error) {
+          console.error('Error loading podcasts:', error);
+        }
+      }
+
+      // Load content on page load
+      document.addEventListener('DOMContentLoaded', () => {
+        loadArticles();
+        loadPodcasts();
+      });
+
       // Newsletter form handling
       const form = document.getElementById('newsletterForm');
       const submitBtn = document.getElementById('submitBtn');
@@ -1017,7 +1143,8 @@
 
         navLinks.forEach(link => {
           link.classList.remove('active');
-          if (link.getAttribute('href') === `#${current}`) {
+          const href = link.getAttribute('href');
+          if (href === `#${current}` || (href === 'podcast.html' && current === 'podcast')) {
             link.classList.add('active');
           }
         });

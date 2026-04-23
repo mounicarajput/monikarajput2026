@@ -1,0 +1,84 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "title": "Building Scalable Data Pipelines with Python",
+      "category": "Data Engineering",
+      "description": "Learn how to design and implement robust data pipelines that can handle millions of records efficiently.",
+      "link": "https://medium.com/@Monikarajput",
+      "date": "2024-03-15",
+      "readTime": "8 min read",
+      "color": "#dbeafe"
+    },
+    {
+      "id": 2,
+      "title": "Introduction to Machine Learning for Beginners",
+      "category": "AI & ML",
+      "description": "A comprehensive guide to getting started with machine learning concepts and practical implementations.",
+      "link": "https://medium.com/@Monikarajput",
+      "date": "2024-03-10",
+      "readTime": "10 min read",
+      "color": "#fde68a"
+    },
+    {
+      "id": 3,
+      "title": "DevOps Best Practices in 2024",
+      "category": "DevOps",
+      "description": "Master modern DevOps practices including containerization, CI/CD pipelines, and infrastructure as code.",
+      "link": "https://medium.com/@Monikarajput",
+      "date": "2024-03-05",
+      "readTime": "12 min read",
+      "color": "#ffe4e6"
+    },
+    {
+      "id": 4,
+      "title": "Building Data Analytics Dashboards",
+      "category": "Data Science",
+      "description": "Create interactive and insightful dashboards using modern data visualization tools and techniques.",
+      "link": "https://medium.com/@Monikarajput",
+      "date": "2024-02-28",
+      "readTime": "9 min read",
+      "color": "#e5e7eb"
+    },
+    {
+      "id": 5,
+      "title": "Cloud Architecture for Startups",
+      "category": "Cloud",
+      "description": "Design cost-effective and scalable cloud solutions perfect for early-stage startups and growth companies.",
+      "link": "https://medium.com/@Monikarajput",
+      "date": "2024-02-20",
+      "readTime": "11 min read",
+      "color": "#dbeafe"
+    },
+    {
+      "id": 6,
+      "title": "Natural Language Processing Fundamentals",
+      "category": "AI & ML",
+      "description": "Explore the core concepts of NLP and build your own text processing applications from scratch.",
+      "link": "https://medium.com/@Monikarajput",
+      "date": "2024-02-15",
+      "readTime": "13 min read",
+      "color": "#fde68a"
+    },
+    {
+      "id": 7,
+      "title": "Career Growth in Tech: My Journey",
+      "category": "Career",
+      "description": "Share my personal journey and lessons learned while building a career in technology and product startups.",
+      "link": "https://medium.com/@Monikarajput",
+      "date": "2024-02-10",
+      "readTime": "7 min read",
+      "color": "#ffe4e6"
+    },
+    {
+      "id": 8,
+      "title": "Web Performance Optimization Guide",
+      "category": "Web Development",
+      "description": "Techniques and best practices to make your web applications faster, more responsive, and performant.",
+      "link": "https://medium.com/@Monikarajput",
+      "date": "2024-02-05",
+      "readTime": "10 min read",
+      "color": "#e5e7eb"
+    }
+  ]
+}
