@@ -1,19 +1,21 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Articles - Monika Rajput</title>
-
   <style>
     :root {
       --bg: #fafafa;
       --card: #ffffff;
       --text: #050816;
-      --muted: #6b7280;
+      --muted: #4b5563;
       --border: #e5e7eb;
-      --link: #2563eb;
-      --radius: 16px;
+      --link: #0b57d0;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
     }
 
     * {
@@ -23,135 +25,258 @@
     }
 
     body {
-      font-family: system-ui, sans-serif;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      transition: 0.3s;
+      line-height: 1.5;
     }
 
-    /* NAVBAR */
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 24px;
+    .top-nav {
+      padding: 24px 40px;
       border-bottom: 1px solid var(--border);
+      background: var(--card);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
-    .topbar a {
+    .back-link {
       text-decoration: none;
       color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
     }
 
-    /* SECTION */
+    .back-link:hover {
+      color: var(--link);
+    }
+
     .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 80px 20px;
     }
 
-    h1 {
-      margin-bottom: 30px;
+    .header {
+      margin-bottom: 64px;
+      text-align: center;
     }
 
-    /* GRID (FIXED YOUR ISSUE) */
-    #articlesContainer {
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .header p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .articles-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .article-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-
-    /* CARD */
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
+      grid-template-columns: 240px 1fr;
+      gap: 32px;
+      align-items: start;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
       text-decoration: none;
       color: inherit;
-      transition: 0.25s ease;
+      transition: all 0.2s ease;
     }
 
-    .card:hover {
-      transform: translateY(-5px);
+    .article-row:last-child {
+      border-bottom: none;
     }
 
-    .category {
-      font-size: 12px;
+    .article-row:hover .article-row-title {
       color: var(--link);
-      font-weight: 600;
     }
 
-    .title {
-      font-size: 16px;
-      font-weight: 600;
-      margin: 10px 0;
+    .article-row:hover .article-thumb img {
+      transform: scale(1.03);
     }
 
-    .desc {
-      font-size: 14px;
+    .article-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #f3f4f6;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+
+    .article-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .medium-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      background: #000;
+      color: #fff;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .article-date {
+      font-size: 0.8rem;
+      font-weight: 500;
       color: var(--muted);
     }
 
-    .meta {
-      margin-top: 12px;
-      font-size: 12px;
+    .article-row-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .article-row-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .article-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .article-read-more {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--link);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .article-read-time {
+      font-size: 0.85rem;
       color: var(--muted);
     }
 
-    /* LOADING */
+    @media (max-width: 768px) {
+      .article-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 32px 0;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+      }
+    }
+
     .loading {
       text-align: center;
-      margin-top: 50px;
+      padding: 40px;
+      color: var(--muted);
     }
   </style>
 </head>
 
 <body>
 
-  <!-- NAV -->
-  <div class="topbar">
-    <a href="index.html">← Back</a>
-  </div>
+  <nav class="top-nav">
+    <a href="index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back to Home
+    </a>
+  </nav>
 
-  <!-- CONTENT -->
   <div class="container">
-    <h1>All Articles</h1>
+    <header class="header">
+      <h1>Articles</h1>
+      <p>Thoughts on AI, Data, Growth, Startups, and Developer Ecosystems.</p>
+    </header>
 
-    <div id="articlesContainer">
+    <div id="articlesContainer" class="articles-list">
       <div class="loading">Loading articles...</div>
     </div>
   </div>
 
   <script>
-    // LOAD ARTICLES
     async function loadArticles() {
       try {
-        const res = await fetch("articles.json");
-        const data = await res.json();
+        const response = await fetch('articles.json');
+        const data = await response.json();
+        const container = document.getElementById('articlesContainer');
 
-        const container = document.getElementById("articlesContainer");
+        container.innerHTML = data.articles.map(article => {
+          const description = article.description || `Explore ${article.title} and its impact on the modern ecosystem.`;
+          const image = article.image || `https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80`;
+          const date = article.date || '';
+          const readTime = article.readTime || '';
 
-        container.innerHTML = data.articles.map(a => `
-          <a class="card" href="${a.link}" target="_blank">
-            <div class="category">${a.category}</div>
-            <div class="title">${a.title}</div>
-            <div class="desc">${a.description}</div>
-            <div class="meta">
-              ${a.readTime || "5 min"} • 
-              ${new Date(a.date).toLocaleDateString()}
-            </div>
-          </a>
-        `).join("");
-
-      } catch (e) {
-        document.getElementById("articlesContainer").innerHTML =
-          "<p style='text-align:center'>Failed to load articles</p>";
+          return `
+            <a class="article-row" href="${article.link}" target="_blank" rel="noreferrer noopener">
+              <div class="article-thumb">
+                <img src="${image}" alt="${article.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80'" />
+              </div>
+              <div>
+                <div class="article-meta">
+                  <span class="medium-badge">MEDIUM</span>
+                  ${date ? `<span class="article-date">${date}</span>` : ''}
+                </div>
+                <h2 class="article-row-title">${article.title}</h2>
+                <p class="article-row-desc">${description}</p>
+                <div class="article-footer">
+                  <div class="article-read-more">Read Article →</div>
+                  ${readTime ? `<span class="article-read-time">${readTime}</span>` : ''}
+                </div>
+              </div>
+            </a>
+          `;
+        }).join('');
+      } catch (error) {
+        console.error('Error loading articles:', error);
+        document.getElementById('articlesContainer').innerHTML =
+          '<div class="loading">Failed to load articles. Please try again later.</div>';
       }
     }
 
-    loadArticles();
+    document.addEventListener('DOMContentLoaded', loadArticles);
   </script>
-
 </body>
+
 </html>

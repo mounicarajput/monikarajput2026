@@ -1,764 +1,327 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projects - Monika Rajput</title>
-    <meta name="description" content="Premium AI and data projects under development. Join the waitlist for early access." />
-    <style>
-      :root {
-        color-scheme: light;
-        --bg: #fafafa;
-        --card: #ffffff;
-        --text: #050816;
-        --muted: #4b5563;
-        --border: #e5e7eb;
-        --link: #0b57d0;
-        --accent-blue: #6366f1;
-        --accent-purple: #a855f7;
-        --accent-pink: #ec4899;
-        --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.10);
-        --shadow-card: 0 2px 8px rgba(15, 23, 42, 0.08);
-        --radius-lg: 24px;
-        --radius-md: 16px;
-        --radius-sm: 12px;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        min-height: 100vh;
-        padding: 0;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
-          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-        background: var(--bg);
-        color: var(--text);
-      }
-
-      .nav-bar {
-        position: sticky;
-        top: 0;
-        background: rgba(250, 250, 250, 0.95);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--border);
-        z-index: 100;
-        padding: 16px 20px;
-      }
-
-      .nav-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .nav-logo {
-        font-size: 1.25rem;
-        font-weight: 800;
-        color: var(--text);
-        text-decoration: none;
-        letter-spacing: -0.02em;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 32px;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-
-      .nav-link {
-        color: var(--muted);
-        text-decoration: none;
-        font-size: 0.95rem;
-        transition: color 0.2s;
-        cursor: pointer;
-      }
-
-      .nav-link:hover,
-      .nav-link.active {
-        color: var(--link);
-      }
-
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 60px 20px;
-      }
-
-      .section-header {
-        text-align: center;
-        margin-bottom: 60px;
-      }
-
-      .section-label {
-        font-size: 0.85rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--accent-blue);
-        margin-bottom: 12px;
-      }
-
-      .section-title {
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        font-weight: 800;
-        margin: 0 0 16px;
-        letter-spacing: -0.02em;
-        color: var(--text);
-        line-height: 1.1;
-      }
-
-      .section-subtitle {
-        font-size: 1.1rem;
-        color: var(--muted);
-        margin: 0;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.6;
-      }
-
-      .products-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-        margin-bottom: 40px;
-      }
-
-      @media (max-width: 1024px) {
-        .products-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      @media (max-width: 640px) {
-        .products-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .product-card {
-        background: var(--card);
-        border: 1.5px solid var(--border);
-        border-radius: var(--radius-lg);
-        padding: 40px;
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .product-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-      }
-
-      .product-card:hover {
-        transform: translateY(-8px);
-        border-color: rgba(11, 87, 208, 0.2);
-        box-shadow: 0 24px 48px rgba(15, 23, 42, 0.15);
-      }
-
-      .product-card:hover::before {
-        opacity: 1;
-      }
-
-      .product-card.featured {
-        /* Removed span-2 for equal grid layout */
-      }
-
-      .product-header {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-      }
-
-      .product-icon {
-        width: 56px;
-        height: 56px;
-        border-radius: var(--radius-md);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 28px;
-        flex-shrink: 0;
-      }
-
-      .product-icon.track-ai {
-        background: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%);
-        color: white;
-      }
-
-      .product-icon.opendocs {
-        background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
-        color: white;
-      }
-
-      .product-icon.yc-monitor {
-        background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
-        color: white;
-      }
-
-      .badge {
-        display: inline-block;
-        padding: 6px 14px;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-
-      .badge-beta {
-        background: #dbeafe;
-        color: #0c4a6e;
-      }
-
-      .badge-building {
-        background: #fef3c7;
-        color: #78350f;
-      }
-
-      .badge-private {
-        background: #e9d5ff;
-        color: #5b21b6;
-      }
-
-      .product-title {
-        font-size: 1.5rem;
-        font-weight: 800;
-        margin: 0;
-        color: var(--text);
-        letter-spacing: -0.01em;
-      }
-
-      .product-description {
-        font-size: 1rem;
-        color: var(--muted);
-        line-height: 1.6;
-        margin: 0;
-      }
-
-      .product-footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-top: 16px;
-        border-top: 1px solid var(--border);
-      }
-
-      .product-meta {
-        font-size: 0.85rem;
-        color: var(--muted);
-      }
-
-      .product-cta {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 20px;
-        background: var(--link);
-        color: white;
-        border: none;
-        border-radius: var(--radius-sm);
-        font-weight: 600;
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: all 0.2s;
-        text-decoration: none;
-      }
-
-      .product-cta:hover {
-        background: #0842a0;
-        transform: translateX(4px);
-      }
-
-      /* Waitlist pages */
-      .hero-section {
-        text-align: center;
-        padding: 100px 20px;
-        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-      }
-
-      .hero-icon {
-        width: 80px;
-        height: 80px;
-        border-radius: var(--radius-md);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 48px;
-        margin: 0 auto 32px;
-      }
-
-      .hero-title {
-        font-size: clamp(1.8rem, 4vw, 3rem);
-        font-weight: 800;
-        margin: 0 0 16px;
-        color: var(--text);
-        letter-spacing: -0.02em;
-      }
-
-      .hero-subtitle {
-        font-size: 1.2rem;
-        color: var(--muted);
-        margin: 0 0 40px;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.6;
-      }
-
-      .waitlist-form {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-lg);
-        padding: 40px;
-        max-width: 500px;
-        margin: 0 auto 60px;
-        box-shadow: var(--shadow-card);
-      }
 
-      .form-group {
-        margin-bottom: 16px;
-      }
-
-      .form-group label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 600;
-        font-size: 0.9rem;
-        color: var(--text);
-      }
-
-      .form-group input {
-        width: 100%;
-        padding: 14px 16px;
-        border: 2px solid var(--border);
-        border-radius: var(--radius-sm);
-        font-size: 1rem;
-        font-family: inherit;
-        transition: border-color 0.2s;
-      }
-
-      .form-group input:focus {
-        outline: none;
-        border-color: var(--link);
-        box-shadow: 0 0 0 3px rgba(11, 87, 208, 0.1);
-      }
-
-      .submit-btn {
-        width: 100%;
-        padding: 14px 24px;
-        background: var(--link);
-        color: white;
-        border: none;
-        border-radius: var(--radius-sm);
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s;
-      }
-
-      .submit-btn:hover {
-        background: #0842a0;
-        transform: translateY(-2px);
-        box-shadow: 0 12px 24px rgba(11, 87, 208, 0.3);
-      }
-
-      .social-proof {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-lg);
-        padding: 40px;
-        text-align: center;
-        margin-bottom: 60px;
-      }
-
-      .social-proof-title {
-        font-size: 0.9rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--muted);
-        margin-bottom: 24px;
-      }
-
-      .social-proof-content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 40px;
-        flex-wrap: wrap;
-      }
-
-      .proof-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .proof-number {
-        font-size: 2rem;
-        font-weight: 800;
-        color: var(--accent-blue);
-      }
-
-      .proof-label {
-        font-size: 0.85rem;
-        color: var(--muted);
-      }
-
-      .content-section {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-lg);
-        padding: 60px 40px;
-        margin-bottom: 40px;
-      }
-
-      .content-title {
-        font-size: 1.8rem;
-        font-weight: 800;
-        margin: 0 0 32px;
-        color: var(--text);
-      }
-
-      .problem-solution {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 40px;
-        margin-bottom: 60px;
-      }
-
-      .problem-box,
-      .solution-box {
-        padding: 40px;
-        border-radius: var(--radius-lg);
-        border: 1px solid var(--border);
-      }
-
-      .problem-box {
-        background: #fff5f7;
-      }
-
-      .solution-box {
-        background: #f0f9ff;
-      }
-
-      .box-title {
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin: 0 0 16px;
-      }
-
-      .problem-box .box-title {
-        color: #dc2626;
-      }
-
-      .solution-box .box-title {
-        color: #0b57d0;
-      }
-
-      .box-content {
-        color: var(--muted);
-        line-height: 1.6;
-        margin: 0;
-      }
-
-      .features-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 32px;
-        margin-bottom: 40px;
-      }
-
-      .feature-card {
-        padding: 32px;
-        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-lg);
-        text-align: center;
-      }
-
-      .feature-icon {
-        font-size: 32px;
-        margin-bottom: 16px;
-      }
-
-      .feature-title {
-        font-weight: 700;
-        margin: 0 0 8px;
-        font-size: 1rem;
-      }
-
-      .feature-description {
-        color: var(--muted);
-        font-size: 0.9rem;
-        margin: 0;
-        line-height: 1.5;
-      }
-
-      .founder-note {
-        background: linear-gradient(135deg, #fef3c7 0%, #fef08a 100%);
-        border: 1px solid #fcd34d;
-        border-radius: var(--radius-lg);
-        padding: 40px;
-        margin-bottom: 40px;
-      }
-
-      .founder-label {
-        font-size: 0.75rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: #78350f;
-        margin-bottom: 12px;
-      }
-
-      .founder-message {
-        font-size: 1.1rem;
-        color: #451a03;
-        margin: 0;
-        font-style: italic;
-        line-height: 1.6;
-      }
-
-      .faq-section {
-        margin-bottom: 40px;
-      }
-
-      .faq-item {
-        border-bottom: 1px solid var(--border);
-        padding: 24px 0;
-      }
-
-      .faq-item:first-child {
-        padding-top: 0;
-      }
-
-      .faq-question {
-        font-weight: 700;
-        margin: 0 0 12px;
-        cursor: pointer;
-        color: var(--text);
-        font-size: 1.05rem;
-      }
-
-      .faq-answer {
-        color: var(--muted);
-        margin: 0;
-        line-height: 1.6;
-      }
-
-      .footer-cta {
-        background: linear-gradient(135deg, var(--link) 0%, var(--accent-purple) 100%);
-        color: white;
-        border-radius: var(--radius-lg);
-        padding: 60px 40px;
-        text-align: center;
-        margin-bottom: 40px;
-      }
-
-      .footer-cta-title {
-        font-size: 1.8rem;
-        font-weight: 800;
-        margin: 0 0 16px;
-      }
-
-      .footer-cta-desc {
-        font-size: 1.1rem;
-        margin: 0 0 32px;
-        opacity: 0.95;
-      }
-
-      .footer-cta-btn {
-        display: inline-block;
-        padding: 14px 32px;
-        background: white;
-        color: var(--link);
-        border: none;
-        border-radius: var(--radius-sm);
-        font-weight: 700;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: all 0.2s;
-        text-decoration: none;
-      }
-
-      .footer-cta-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-      }
-
-      .back-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        color: var(--link);
-        text-decoration: none;
-        margin-bottom: 40px;
-        font-weight: 600;
-        transition: color 0.2s;
-      }
-
-      .back-link:hover {
-        color: #0842a0;
-      }
-
-      @media (max-width: 768px) {
-        .products-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .product-card.featured {
-          grid-column: span 1;
-        }
-
-        .problem-solution {
-          grid-template-columns: 1fr;
-        }
-
-        .features-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .nav-links {
-          gap: 16px;
-          font-size: 0.85rem;
-        }
-
-        .product-card {
-          padding: 24px;
-        }
-
-        .content-section {
-          padding: 32px 24px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="nav-bar">
-      <div class="nav-container">
-        <a href="index.html" class="nav-logo">MR</a>
-        <ul class="nav-links">
-          <li><a href="index.html" class="nav-link">Home</a></li>
-          <li><a href="about.html" class="nav-link">About</a></li>
-          <li><a href="products.html" class="nav-link active">Projects</a></li>
-          <li><a href="podcast.html" class="nav-link">Podcast</a></li>
-          <li><a href="index.html#articles" class="nav-link">Articles</a></li>
-          <li><a href="index.html#newsletter" class="nav-link">Newsletter</a></li>
-          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="container">
-      <div class="section-header">
-        <div class="section-label">Currently Building</div>
-        <h1 class="section-title">Projects</h1>
-        <p class="section-subtitle">Real products. Real systems. Shipping continuously. Join early for exclusive access.</p>
-      </div>
-
-      <div class="products-grid">
-        <!-- Track.AI - Featured -->
-        <div class="product-card featured">
-          <div class="product-header">
-            <div>
-              <span class="badge badge-beta">Beta Launching</span>
-            </div>
-            <div class="product-icon track-ai">📊</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects - Monika Rajput</title>
+  <meta name="description" content="Premium AI and data projects under development. Join the waitlist for early access." />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #050816;
+      --muted: #4b5563;
+      --border: #e5e7eb;
+      --link: #0b57d0;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      background: rgba(250, 250, 250, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 16px 20px;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--link);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Premium Project Row Styles */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-row {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 32px;
+      align-items: center;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .project-row:last-child {
+      border-bottom: none;
+    }
+
+    .project-row:hover .project-name {
+      color: var(--link);
+    }
+
+    .project-row:hover .project-visual {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    }
+
+    .project-visual {
+      width: 100%;
+      aspect-ratio: 16/10;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .project-visual.track-ai {
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    }
+
+    .project-visual.opendocs {
+      background: linear-gradient(135deg, #181717 0%, #475569 100%);
+    }
+
+    .project-visual.yc-monitor {
+      background: linear-gradient(135deg, #ff6600 0%, #ff9966 100%);
+    }
+
+    .project-content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .project-row-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .project-name {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .project-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .project-badge.building {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .project-badge.beta {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .project-value-prop {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .project-subtext {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .project-row-footer {
+      display: flex;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .project-row-action {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--link);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .project-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 32px 0;
+      }
+      .project-visual {
+        aspect-ratio: 21/9;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">MR</a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="products.html" class="nav-link active">Projects</a></li>
+        <li><a href="podcast.html" class="nav-link">Podcast</a></li>
+        <li><a href="index.html#articles" class="nav-link">Articles</a></li>
+        <li><a href="index.html#newsletter" class="nav-link">Newsletter</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header class="hero">
+      <h1>Projects</h1>
+      <p>Systems at the intersection of AI, data infrastructure, and developer ecosystems.</p>
+    </header>
+
+    <div class="projects-list">
+      <!-- Track.AI -->
+      <a class="project-row" href="waitlist-track-ai.html">
+        <div class="project-visual track-ai">
+          <div style="font-size: 0.9rem; font-weight: 800; color: white; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.1em;">Track</div>
+        </div>
+        <div class="project-content">
+          <div class="project-row-header">
+            <h2 class="project-name">Track.AI</h2>
+            <span class="project-badge building">Building</span>
           </div>
-
-          <div>
-            <h3 class="product-title">Track.AI</h3>
-            <p class="product-description">
-              Automatically track AI community contributions, speaker activity, hackathons, GitHub impact, and ecosystem growth in one dashboard.
-            </p>
-          </div>
-
-          <div class="product-footer">
-            <div class="product-meta">For AI communities & DevRel teams</div>
-            <a href="waitlist-track-ai.html" class="product-cta">
-              Join Waitlist
-              <span>→</span>
-            </a>
+          <p class="project-value-prop">Tracks community growth, engagement, contributions, and ecosystem momentum.</p>
+          <p class="project-subtext">A scalable intelligence platform designed to help modern AI communities measure real-world impact and contributor velocity across various platforms.</p>
+          <div class="project-row-footer">
+            <div class="project-row-action">View Project →</div>
           </div>
         </div>
+      </a>
 
-        <!-- OpenDocs MCP Server -->
-        <div class="product-card">
-          <div class="product-header">
-            <div>
-              <span class="badge badge-building">Building</span>
-            </div>
-            <div class="product-icon opendocs">🔗</div>
+      <!-- OpenDocs MCP -->
+      <a class="project-row" href="waitlist-opendocs.html">
+        <div class="project-visual opendocs">
+          <div style="font-size: 0.9rem; font-weight: 800; color: white; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.1em;">Docs</div>
+        </div>
+        <div class="project-content">
+          <div class="project-row-header">
+            <h2 class="project-name">OpenDocs MCP</h2>
+            <span class="project-badge building">Building</span>
           </div>
-
-          <div>
-            <h3 class="product-title">OpenDocs MCP Server</h3>
-            <p class="product-description">
-              AI-native documentation server. Let agents understand, search, and summarize open-source docs intelligently with MCP.
-            </p>
-          </div>
-
-          <div class="product-footer">
-            <div class="product-meta">For AI agent builders</div>
-            <a href="waitlist-opendocs.html" class="product-cta">
-              Join Waitlist
-              <span>→</span>
-            </a>
+          <p class="project-value-prop">AI-powered documentation assistant for open-source repositories and developer teams.</p>
+          <p class="project-subtext">A GitHub-native documentation engine that enables AI agents to search, understand, and summarize complex codebases intelligently with Model Context Protocol.</p>
+          <div class="project-row-footer">
+            <div class="project-row-action">View Project →</div>
           </div>
         </div>
+      </a>
 
-        <!-- YC Startup API Monitor -->
-        <div class="product-card">
-          <div class="product-header">
-            <div>
-              <span class="badge badge-private">Private Beta</span>
-            </div>
-            <div class="product-icon yc-monitor">🚀</div>
+      <!-- YC API Monitor -->
+      <a class="project-row" href="waitlist-yc-monitor.html">
+        <div class="project-visual yc-monitor">
+          <div style="font-size: 0.9rem; font-weight: 800; color: white; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.1em;">YC</div>
+        </div>
+        <div class="project-content">
+          <div class="project-row-header">
+            <h2 class="project-name">YC API Monitor</h2>
+            <span class="project-badge beta">Beta</span>
           </div>
-
-          <div>
-            <h3 class="product-title">YC API Monitor</h3>
-            <p class="product-description">
-              Curated weekly digest of YC developer tools, new APIs, and AI product launches. Intelligence for builders.
-            </p>
-          </div>
-
-          <div class="product-footer">
-            <div class="product-meta">For founders & developers</div>
-            <a href="waitlist-yc-monitor.html" class="product-cta">
-              Join Waitlist
-              <span>→</span>
-            </a>
+          <p class="project-value-prop">Weekly intelligence feed for YC startups, developer tools, APIs, and new launches.</p>
+          <p class="project-subtext">Sharp, founder-grade monitoring of the YC ecosystem to discover emerging dev tools and product momentum before they go mainstream.</p>
+          <div class="project-row-footer">
+            <div class="project-row-action">View Project →</div>
           </div>
         </div>
+      </a>
+
+      <!-- Future Products Space -->
+      <div style="margin-top: 40px; text-align: center; padding: 48px; border: 1px dashed var(--border); border-radius: var(--radius-md); color: var(--muted);">
+        <p style="font-weight: 600; font-size: 0.95rem;">More systems in development</p>
+        <p style="font-size: 0.85rem;">Focusing on AI agents and automation.</p>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
