@@ -208,6 +208,46 @@
       padding: 40px;
       color: var(--muted);
     }
+
+    /* Filter Bar */
+    .filter-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 40px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;  /* IE and Edge */
+    }
+    .filter-bar::-webkit-scrollbar {
+      display: none;
+    }
+    .filter-tag {
+      padding: 8px 18px;
+      border-radius: 9999px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+    .filter-tag:hover {
+      transform: translateY(-2px);
+      color: var(--text);
+      border-color: var(--border);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    .filter-tag.active {
+      background: var(--text);
+      color: #fff;
+      border-color: var(--text);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
   </style>
 </head>
 
@@ -230,12 +270,37 @@
       <p>Thoughts on AI, Data, Growth, Startups, and Developer Ecosystems.</p>
     </header>
 
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-tag active" data-filter="All">All</button>
+      <button class="filter-tag" data-filter="AI">AI</button>
+      <button class="filter-tag" data-filter="Business">Business</button>
+      <button class="filter-tag" data-filter="Cloud">Cloud</button>
+      <button class="filter-tag" data-filter="Data">Data</button>
+      <button class="filter-tag" data-filter="Travel">Travel</button>
+      <button class="filter-tag" data-filter="Conferences">Conferences</button>
+      <button class="filter-tag" data-filter="Startups">Startups</button>
+    </div>
+
     <div id="articlesContainer" class="articles-list">
       <div class="loading">Loading articles...</div>
     </div>
   </div>
 
   <script>
+    function determineCategory(article) {
+      const text = `${article.title} ${article.description} ${article.category || ''}`.toLowerCase();
+      
+      if (text.includes('ai') || text.includes('artificial intelligence') || text.includes('machine learning')) return 'AI';
+      if (text.includes('cloud') || text.includes('aws') || text.includes('azure')) return 'Cloud';
+      if (text.includes('data') || text.includes('jenkins')) return 'Data';
+      if (text.includes('travel')) return 'Travel';
+      if (text.includes('conference') || text.includes('summit')) return 'Conferences';
+      if (text.includes('startup') || text.includes('founder')) return 'Startups';
+      
+      // Default to Business if no other strong matches, as many current articles are business-focused
+      return 'Business';
+    }
+
     async function loadArticles() {
       try {
         const response = await fetch('articles.json');
@@ -247,15 +312,16 @@
           const image = article.image || `https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80`;
           const date = article.date || '';
           const readTime = article.readTime || '';
+          const category = determineCategory(article);
 
           return `
-            <a class="article-row" href="${article.link}" target="_blank" rel="noreferrer noopener">
+            <a class="article-row" href="${article.link}" target="_blank" rel="noreferrer noopener" data-category="${category}">
               <div class="article-thumb">
                 <img src="${image}" alt="${article.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80'" />
               </div>
               <div>
                 <div class="article-meta">
-                  <span class="medium-badge">MEDIUM</span>
+                  <span class="medium-badge">${category.toUpperCase()}</span>
                   ${date ? `<span class="article-date">${date}</span>` : ''}
                 </div>
                 <h2 class="article-row-title">${article.title}</h2>
@@ -268,11 +334,49 @@
             </a>
           `;
         }).join('');
+
+        setupFilters();
       } catch (error) {
         console.error('Error loading articles:', error);
         document.getElementById('articlesContainer').innerHTML =
           '<div class="loading">Failed to load articles. Please try again later.</div>';
       }
+    }
+
+    function setupFilters() {
+      const tags = document.querySelectorAll('.filter-tag');
+      const articles = document.querySelectorAll('.article-row');
+
+      tags.forEach(tag => {
+        tag.addEventListener('click', () => {
+          // Update active state
+          tags.forEach(t => t.classList.remove('active'));
+          tag.classList.add('active');
+
+          const selectedCategory = tag.getAttribute('data-filter');
+
+          // Smooth transition
+          articles.forEach(article => {
+            article.style.opacity = '0';
+            article.style.transform = 'translateY(10px)';
+          });
+
+          setTimeout(() => {
+            articles.forEach(article => {
+              const articleCategory = article.getAttribute('data-category');
+              if (selectedCategory === 'All' || articleCategory === selectedCategory) {
+                article.style.display = 'grid';
+                // Trigger reflow
+                void article.offsetWidth;
+                article.style.opacity = '1';
+                article.style.transform = 'translateY(0)';
+              } else {
+                article.style.display = 'none';
+              }
+            });
+          }, 300); // Wait for fade out
+        });
+      });
     }
 
     document.addEventListener('DOMContentLoaded', loadArticles);

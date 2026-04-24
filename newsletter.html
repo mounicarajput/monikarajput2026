@@ -479,7 +479,8 @@
             form.reset();
           } else {
             messageDiv.className = 'message error';
-            messageDiv.textContent = data.error || 'Something went wrong. Please try again.';
+            // Use data.message if available (e.g. for duplicates) or data.error
+            messageDiv.textContent = data.message || data.error || 'Something went wrong. Please try again.';
             messageDiv.style.display = 'block';
           }
         } catch (error) {

@@ -295,34 +295,41 @@
       e.preventDefault();
       const btn = document.getElementById('submitBtn');
       const msg = document.getElementById('formMessage');
-      const email = document.getElementById('email').value;
-      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value.trim();
+      const name = document.getElementById('name').value.trim();
 
+      const originalText = btn.textContent;
       btn.disabled = true;
       btn.textContent = 'Joining...';
       msg.style.display = 'none';
 
       try {
-        const response = await fetch('https://formspree.io/f/mbjqxryb', {
+        const response = await fetch('/api/waitlist', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ email, name, product: 'OpenDocs MCP' })
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, name, product: 'opendocs' })
         });
+
+        const data = await response.json();
 
         if (response.ok) {
           btn.textContent = 'Added to Waitlist';
           btn.style.background = '#10b981';
-          msg.textContent = 'Success! You have been added to the beta waitlist.';
+          msg.textContent = data.message || 'Success! You have been added to the beta waitlist.';
           msg.style.color = '#059669';
           msg.style.display = 'block';
           e.target.reset();
         } else {
-          throw new Error('Response not ok');
+          btn.disabled = false;
+          btn.textContent = originalText;
+          msg.textContent = data.message || data.error || 'Something went wrong. Please try again.';
+          msg.style.color = '#dc2626';
+          msg.style.display = 'block';
         }
       } catch (err) {
         btn.disabled = false;
-        btn.textContent = 'Join Waitlist';
-        msg.textContent = 'Something went wrong. Please try again.';
+        btn.textContent = originalText;
+        msg.textContent = 'Network error. Please check your connection and try again.';
         msg.style.color = '#dc2626';
         msg.style.display = 'block';
       }

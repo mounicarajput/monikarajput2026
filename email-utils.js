@@ -1,18 +1,17 @@
+require('dotenv').config();
 const nodemailer = require('nodemailer');
 
 /**
- * Email configuration - set these environment variables
- * SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS
- * OR use Gmail/Resend alternatives
+ * Get email transporter based on environment variables
  */
-
 const getEmailTransporter = () => {
-  // Use environment variables for SMTP config
+  // 1. SMTP Config
   if (process.env.SMTP_HOST) {
+    console.log('Using SMTP configuration for emails');
     return nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: process.env.SMTP_PORT || 587,
-      secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+      secure: process.env.SMTP_SECURE === 'true',
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
@@ -20,8 +19,9 @@ const getEmailTransporter = () => {
     });
   }
 
-  // Fallback: Gmail (requires app-specific password)
+  // 2. Gmail Fallback
   if (process.env.GMAIL_USER && process.env.GMAIL_PASS) {
+    console.log(`Using Gmail configuration for ${process.env.GMAIL_USER}`);
     return nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -31,8 +31,17 @@ const getEmailTransporter = () => {
     });
   }
 
-  throw new Error('Email configuration not found. Set SMTP_* or GMAIL_* env vars.');
+  throw new Error('Email configuration not found. Please set SMTP_* or GMAIL_* environment variables in .env');
 };
+
+// Initialize transporter
+let transporter;
+try {
+  transporter = getEmailTransporter();
+} catch (error) {
+  console.warn('⚠️ Email transporter not initialized:', error.message);
+}
+
 
 /**
  * Validate email format
@@ -71,6 +80,34 @@ const getNewsletterTemplate = (article) => {
         </p>
         
         <p style="color: #4b5563; font-size: 14px; margin: 16px 0 0; font-style: italic;">
+          – Monika Rajput
+        </p>
+      </div>
+    `,
+  };
+};
+
+/**
+ * Welcome email template for new newsletter subscribers
+ */
+const getWelcomeTemplate = () => {
+  return {
+    subject: 'Welcome to the inner circle! 🎉',
+    html: `
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <h2 style="margin: 0 0 16px; color: #050816; font-size: 24px;">Welcome! 🎉</h2>
+        
+        <p style="color: #4b5563; line-height: 1.6; margin: 0 0 24px; font-size: 16px;">
+          Thanks for subscribing. You'll now receive high-signal updates, actionable ideas, and my latest articles directly in your inbox.
+        </p>
+        
+        <p style="color: #4b5563; line-height: 1.6; margin: 0 0 32px; font-size: 16px;">
+          I respect your inbox. You'll only get the good stuff, and you can unsubscribe at any time.
+        </p>
+        
+        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 40px 0;" />
+        
+        <p style="color: #4b5563; font-size: 14px; line-height: 1.5; margin: 0;">
           – Monika Rajput
         </p>
       </div>
@@ -150,7 +187,9 @@ const getProjectUpdateTemplate = (projectName, update) => {
  */
 const sendEmail = async (to, subject, html) => {
   try {
-    const transporter = getEmailTransporter();
+    if (!transporter) {
+      transporter = getEmailTransporter();
+    }
 
     const mailOptions = {
       from: process.env.EMAIL_FROM || process.env.SMTP_USER || process.env.GMAIL_USER,
@@ -160,7 +199,7 @@ const sendEmail = async (to, subject, html) => {
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log(`✓ Email sent to ${to}`);
+    console.log(`✓ Email sent to ${to}: ${info.messageId}`);
     return { success: true, id: info.messageId };
   } catch (error) {
     console.error(`✗ Failed to send email to ${to}:`, error.message);
@@ -192,17 +231,54 @@ const sendBulkEmails = async (recipients, subject, html) => {
       results.failed++;
       results.errors.push({ email, error: result.error });
     }
+    
+    // Simple rate limiting: wait 500ms between emails to avoid hitting limits
+    await new Promise(resolve => setTimeout(resolve, 500));
   }
 
   return results;
+};
+
+/**
+ * Send a custom newsletter to all subscribers
+ */
+const sendNewsletterToAllSubscribers = async (subscribers, subject, content) => {
+  console.log(`Starting newsletter broadcast to ${subscribers.length} subscribers...`);
+  
+  const html = `
+    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+      <h2 style="margin: 0 0 16px; color: #050816; font-size: 24px;">${subject}</h2>
+      
+      <div style="color: #4b5563; line-height: 1.6; margin: 0 0 24px; font-size: 16px; white-space: pre-wrap;">
+        ${content}
+      </div>
+      
+      <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 40px 0;" />
+      
+      <p style="color: #4b5563; font-size: 14px; line-height: 1.5; margin: 0;">
+        You received this because you're subscribed to updates from <a href="https://monikarajput.com" style="color: #0b57d0; text-decoration: none;">Monika Rajput</a><br />
+        <a href="https://monikarajput.com/unsubscribe" style="color: #0b57d0; text-decoration: none;">Unsubscribe</a>
+      </p>
+      
+      <p style="color: #4b5563; font-size: 14px; margin: 16px 0 0; font-style: italic;">
+        – Monika Rajput
+      </p>
+    </div>
+  `;
+
+  // Filter only active subscribers
+  const emails = subscribers.filter(s => s.status === 'active').map(s => s.email);
+  return await sendBulkEmails(emails, subject, html);
 };
 
 module.exports = {
   getEmailTransporter,
   isValidEmail,
   getNewsletterTemplate,
+  getWelcomeTemplate,
   getWaitlistTemplate,
   getProjectUpdateTemplate,
   sendEmail,
   sendBulkEmails,
+  sendNewsletterToAllSubscribers,
 };
