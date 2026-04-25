@@ -1,6 +1,8 @@
 require('dotenv').config();
 const { createClient } = require('@supabase/supabase-js');
-const { getWelcomeTemplate, sendEmail } = require('../email-utils');
+const { Resend } = require('resend');
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Initialize Supabase Client
 const supabaseUrl = process.env.SUPABASE_URL;
@@ -71,13 +73,36 @@ module.exports = async function handler(req, res) {
 
     console.log(`[API] New subscriber added: ${normalizedEmail}`);
 
-    // Send welcome email if email service is configured
+    // Send welcome email asynchronously without blocking the API response
     try {
-      const template = getWelcomeTemplate();
-      await sendEmail(normalizedEmail, template.subject, template.html);
+      await resend.emails.send({
+        from: 'Monika Rajput <hello@monicarajput.com>', // Ensure this domain is verified in Resend
+        to: normalizedEmail,
+        subject: 'Welcome to the inner circle! 🎉',
+        html: `
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <h2 style="margin: 0 0 16px; color: #050816; font-size: 24px;">Welcome! 🎉</h2>
+            <p style="color: #4b5563; line-height: 1.6; margin: 0 0 24px; font-size: 16px;">
+              Thanks for subscribing. You'll now receive high-signal updates, actionable ideas, and my latest articles directly in your inbox.
+            </p>
+            <p style="color: #4b5563; line-height: 1.6; margin: 0 0 32px; font-size: 16px;">
+              I respect your inbox. You'll only get the good stuff, and you can unsubscribe at any time.
+            </p>
+            <div style="margin: 32px 0;">
+              <a href="https://www.monicarajput.com" style="display: inline-block; padding: 12px 28px; background: linear-gradient(135deg, #0b57d0 0%, #0842a0 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
+                Visit the site
+              </a>
+            </div>
+            <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 40px 0;" />
+            <p style="color: #4b5563; font-size: 14px; line-height: 1.5; margin: 0;">
+              – Monika Rajput
+            </p>
+          </div>
+        `
+      });
       console.log(`[API] Welcome email sent to ${normalizedEmail}`);
     } catch (error) {
-      console.warn(`[API] Welcome email not sent (service not configured or error): ${error.message}`);
+      console.warn(`[API] Welcome email failed (non-blocking): ${error.message}`);
     }
 
     return res.status(200).json({
