@@ -10,7 +10,7 @@ if (!supabaseUrl || !supabaseKey) {
   console.warn("⚠️ Supabase URL or Anon Key is missing. Database operations will fail. Please set them in .env");
 }
 
-const supabase = createClient(supabaseUrl || 'https://placeholder.supabase.co', supabaseKey || 'placeholder');
+const supabase = createClient(supabaseUrl || 'https://xhjostwhhuvhxzfcoygk.supabase.co', supabaseKey || 'sb_publishable_Z_UTZB7rHruwBp515SYFHg_J-xphXlD');
 
 // Email validation helper
 function isValidEmail(email) {
@@ -34,7 +34,8 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const { email } = req.body;
+  const body = req.body || {};
+  const email = body.email;
 
   console.log(`[API] Subscribe request received for email: ${email}`);
 
@@ -50,33 +51,20 @@ module.exports = async function handler(req, res) {
   const normalizedEmail = email.toLowerCase().trim();
 
   try {
-    // Check if email already exists in Supabase
-    const { data: existingSubscriber, error: fetchError } = await supabase
-      .from('subscribers')
-      .select('*')
-      .eq('email', normalizedEmail)
-      .single();
-
-    if (existingSubscriber) {
-      console.log(`[API] Duplicate detected for ${normalizedEmail}`);
-      return res.status(409).json({
-        success: false,
-        message: 'You are already subscribed to the newsletter.'
-      });
-    }
-
-    if (fetchError && fetchError.code !== 'PGRST116') {
-      // PGRST116 means no rows found, which is expected here. Any other error is an issue.
-      console.error('[API] Supabase Fetch Error:', fetchError);
-      throw fetchError;
-    }
-
-    // Insert new subscriber into Supabase
+    // Attempt to insert directly (relies on UNIQUE constraint for duplicates)
     const { error: insertError } = await supabase
       .from('subscribers')
       .insert([{ email: normalizedEmail, status: 'active' }]);
 
     if (insertError) {
+      // 23505 is the PostgreSQL error code for unique_violation
+      if (insertError.code === '23505') {
+        console.log(`[API] Duplicate detected for ${normalizedEmail}`);
+        return res.status(409).json({
+          success: false,
+          message: 'You are already subscribed to the newsletter.'
+        });
+      }
       console.error('[API] Supabase Insert Error:', insertError);
       throw insertError;
     }

@@ -34,8 +34,9 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const { email, name, product } = req.body;
-  
+  const body = req.body || {};
+  const { email, name, product } = body;
+
   console.log(`[API] Waitlist request received for email: ${email}, product: ${product}`);
 
   // Validation
@@ -61,38 +62,24 @@ module.exports = async function handler(req, res) {
   const normalizedEmail = email.toLowerCase().trim();
 
   try {
-    // Check for duplicates in Supabase
-    const { data: existingMember, error: fetchError } = await supabase
-      .from('waitlist')
-      .select('*')
-      .eq('email', normalizedEmail)
-      .eq('product', product)
-      .single();
-
-    if (existingMember) {
-      console.log(`[API] Duplicate waitlist detected for ${normalizedEmail} on ${product}`);
-      return res.status(409).json({
-        success: false,
-        message: 'You are already on the waitlist.'
-      });
-    }
-
-    if (fetchError && fetchError.code !== 'PGRST116') {
-      console.error('[API] Supabase Fetch Error:', fetchError);
-      throw fetchError;
-    }
-
-    // Insert into Supabase waitlist table
+    // Insert into Supabase waitlist table directly (relies on UNIQUE constraint)
     const { error: insertError } = await supabase
       .from('waitlist')
-      .insert([{ 
-        name: name ? name.trim() : 'Unknown', 
-        email: normalizedEmail, 
+      .insert([{
+        name: name ? name.trim() : 'Unknown',
+        email: normalizedEmail,
         product: product,
-        status: 'active' 
+        status: 'active'
       }]);
 
     if (insertError) {
+      if (insertError.code === '23505') { // Unique violation
+        console.log(`[API] Duplicate waitlist detected for ${normalizedEmail} on ${product}`);
+        return res.status(409).json({
+          success: false,
+          message: 'You are already on the waitlist.'
+        });
+      }
       console.error('[API] Supabase Insert Error:', insertError);
       throw insertError;
     }
