@@ -1515,38 +1515,43 @@
 
       submitBtn.disabled = true;
       submitBtn.textContent = 'Subscribing...';
+
       messageDiv.className = 'message';
       messageDiv.style.display = 'none';
 
       try {
-        // Try local API first (if Express backend is deployed)
-        const response = await Promise.race([
-          fetch('/api/subscribe', {
+        // 1. Try your Vercel API first
+        let response = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+
+        // 2. If API fails → fallback to Formspree
+        if (!response.ok) {
+          response = await fetch('https://formspree.io/f/mbjqvawl', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
             body: JSON.stringify({ email }),
-          }),
-          // Fallback to free serverless form (Formspree)
-          fetch('https://formspree.io/f/mbjqvawl', {
-            method: 'POST',
-            headers: { 'Accept': 'application/json' },
-            body: JSON.stringify({ email }),
-          })
-        ]);
+          });
+        }
 
         if (response.ok) {
           messageDiv.className = 'message success';
-          messageDiv.textContent = 'Thank you for subscribing! Check your email for confirmation.';
+          messageDiv.textContent = 'Thank you for subscribing!';
           messageDiv.style.display = 'block';
           form.reset();
         } else {
-          messageDiv.className = 'message error';
-          messageDiv.textContent = 'Something went wrong. Please try again.';
-          messageDiv.style.display = 'block';
+          const err = await response.json().catch(() => ({}));
+          throw new Error(err.message || 'Subscription failed');
         }
+
       } catch (error) {
         messageDiv.className = 'message error';
-        messageDiv.textContent = 'Network error. Please check your connection and try again.';
+        messageDiv.textContent = 'Something went wrong. Please try again.';
         messageDiv.style.display = 'block';
       } finally {
         submitBtn.disabled = false;
