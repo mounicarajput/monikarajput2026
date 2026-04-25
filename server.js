@@ -18,7 +18,7 @@ if (!supabaseUrl || !supabaseKey) {
   console.warn("⚠️ Supabase URL or Anon Key is missing. Database operations will fail. Please set them in .env");
 }
 
-const supabase = createClient(supabaseUrl || 'https://placeholder.supabase.co', supabaseKey || 'placeholder');
+const supabase = createClient(supabaseUrl || 'https://xhjostwhhuvhxzfcoygk.supabase.co', supabaseKey || 'sb_publishable_Z_UTZB7rHruwBp515SYFHg_J-xphXlD');
 
 // Rate Limiting
 const apiLimiter = rateLimit({
@@ -158,11 +158,11 @@ app.post('/api/waitlist', subscribeLimiter, async (req, res) => {
     // Insert into Supabase waitlist table
     const { error: insertError } = await supabase
       .from('waitlist')
-      .insert([{ 
-        name: name ? name.trim() : 'Unknown', 
-        email: normalizedEmail, 
+      .insert([{
+        name: name ? name.trim() : 'Unknown',
+        email: normalizedEmail,
         product: product,
-        status: 'active' 
+        status: 'active'
       }]);
 
     if (insertError) throw insertError;
@@ -210,7 +210,7 @@ app.get('/api/subscribers', apiLimiter, async (req, res) => {
 // Broadcast endpoint to send newsletter to all active subscribers
 app.post('/api/admin/broadcast', apiLimiter, async (req, res) => {
   const { subject, content, secret } = req.body;
-  
+
   // Basic security to prevent unauthorized broadcasts
   if (secret !== process.env.ADMIN_SECRET && secret !== 'wgjx srhz dsmz fsjg') {
     return res.status(403).json({ error: 'Unauthorized' });

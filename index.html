@@ -1520,42 +1520,27 @@
       messageDiv.style.display = 'none';
 
       try {
-        // 1. Try your Vercel API first
-        let response = await fetch('/api/subscribe', {
+        const response = await fetch('/api/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email }),
         });
 
-        // 2. If API fails → fallback to Formspree
-        if (!response.ok) {
-          response = await fetch('https://formspree.io/f/mbjqvawl', {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email }),
-          });
-        }
+        const data = await response.json().catch(() => ({}));
 
         if (response.ok) {
           messageDiv.className = 'message success';
-          messageDiv.textContent = 'Thank you for subscribing!';
+          messageDiv.textContent = data.message || 'Subscribed successfully!';
           messageDiv.style.display = 'block';
           form.reset();
         } else {
-          const err = await response.json().catch(() => ({}));
-          throw new Error(err.message || 'Subscription failed');
+          throw new Error(data.message || 'Subscription failed');
         }
 
       } catch (error) {
         messageDiv.className = 'message error';
         messageDiv.textContent = 'Something went wrong. Please try again.';
         messageDiv.style.display = 'block';
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
       }
     });
 
