@@ -76,7 +76,7 @@ module.exports = async function handler(req, res) {
     // Send welcome email asynchronously without blocking the API response
     try {
       await resend.emails.send({
-        from: 'Monika Rajput <hello@monicarajput.com>', // Ensure this domain is verified in Resend
+        from: 'Monika Rajput <hello@monikarajput.com>', // Ensure this domain is verified in Resend
         to: normalizedEmail,
         subject: 'Welcome to the inner circle! 🎉',
         html: `
@@ -89,7 +89,7 @@ module.exports = async function handler(req, res) {
               I respect your inbox. You'll only get the good stuff, and you can unsubscribe at any time.
             </p>
             <div style="margin: 32px 0;">
-              <a href="https://www.monicarajput.com" style="display: inline-block; padding: 12px 28px; background: linear-gradient(135deg, #0b57d0 0%, #0842a0 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
+              <a href="https://monikarajput.com" style="display: inline-block; padding: 12px 28px; background: linear-gradient(135deg, #0b57d0 0%, #0842a0 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
                 Visit the site
               </a>
             </div>

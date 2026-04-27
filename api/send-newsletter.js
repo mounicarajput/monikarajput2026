@@ -78,7 +78,7 @@ module.exports = async function handler(req, res) {
         <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 40px 0;" />
         
         <p style="color: #4b5563; font-size: 14px; line-height: 1.5; margin: 0;">
-          You received this because you're subscribed to updates from <a href="https://www.monicarajput.com" style="color: #0b57d0; text-decoration: none;">Monika Rajput</a>
+          You received this because you're subscribed to updates from <a href="https://monikarajput.com" style="color: #0b57d0; text-decoration: none;">Monika Rajput</a>
         </p>
         <p style="color: #4b5563; font-size: 14px; margin: 16px 0 0; font-style: italic;">
           – Monika Rajput
@@ -95,7 +95,7 @@ module.exports = async function handler(req, res) {
       const batchEmails = emails.slice(i, i + BATCH_SIZE);
       
       const payload = batchEmails.map(email => ({
-        from: 'Monika Rajput <hello@monicarajput.com>', // Update this to your verified Resend domain
+        from: 'Monika Rajput <hello@monikarajput.com>', // Update this to your verified Resend domain
         to: email,
         subject: `📚 New Article: ${title}`,
         html: htmlTemplate
