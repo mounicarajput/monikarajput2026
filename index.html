@@ -9,14 +9,19 @@
   <style>
     :root {
       color-scheme: light;
-      --bg: #fafafa;
+      --bg: #ffffff;
       --card: #ffffff;
-      --text: #050816;
-      --muted: #4b5563;
-      --border: #e5e7eb;
-      --link: #0b57d0;
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.10);
-      --shadow-card: 0 2px 8px rgba(15, 23, 42, 0.08);
+      --text: #111111;
+      --muted: #64748B;
+      --border: #E5E7EB;
+      --link: #F97316;
+      --accent: #F97316;
+      --orange: #F97316;
+      --orange-light: #FFF7ED;
+      --black: #111111;
+      --white: #ffffff;
+      --shadow-soft: 0 18px 45px rgba(17, 17, 17, 0.10);
+      --shadow-card: 0 2px 8px rgba(17, 17, 17, 0.08);
       --radius-lg: 16px;
       --radius-md: 12px;
       --radius-sm: 8px;
@@ -35,7 +40,7 @@
       min-height: 100vh;
       padding: 0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg);
+      background: #ffffff;
       color: var(--text);
     }
 
@@ -160,8 +165,9 @@
 
     .profile-social-link:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.15);
-      border-color: rgba(11, 87, 208, 0.3);
+      box-shadow: 0 12px 24px rgba(249, 115, 22, 0.15);
+      border-color: rgba(249, 115, 22, 0.3);
+      color: var(--orange);
     }
 
     .profile-social-link svg {
@@ -232,7 +238,7 @@
     }
 
     .profile-email-link:hover {
-      color: var(--link);
+      color: var(--orange);
     }
 
     .nav-section {
@@ -270,16 +276,16 @@
     }
 
     .nav-link:hover {
-      background: rgba(11, 87, 208, 0.08);
-      color: var(--link);
+      background: rgba(249, 115, 22, 0.08);
+      color: var(--orange);
       transform: translateX(4px);
     }
 
     .nav-link.active {
-      background: rgba(11, 87, 208, 0.12);
-      color: var(--link);
+      background: rgba(249, 115, 22, 0.12);
+      color: var(--orange);
       font-weight: 600;
-      border-left-color: var(--link);
+      border-left-color: var(--orange);
     }
 
     /* Right Content */
@@ -552,8 +558,8 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       padding: 3px 8px;
-      background: rgba(11, 87, 208, 0.1);
-      color: var(--link);
+      background: rgba(249, 115, 22, 0.1);
+      color: var(--orange);
       border-radius: 4px;
       margin-top: 2px;
     }
@@ -603,7 +609,7 @@
       margin-top: 12px;
       font-size: 0.85rem;
       font-weight: 600;
-      color: var(--link);
+      color: var(--orange);
       display: flex;
       align-items: center;
       gap: 4px;
@@ -682,7 +688,7 @@
     }
 
     .project-row:hover .project-name {
-      color: var(--link);
+      color: var(--orange);
     }
 
     .project-row:hover .project-visual {
@@ -771,7 +777,7 @@
       margin-top: 8px;
       font-size: 0.9rem;
       font-weight: 700;
-      color: var(--link);
+      color: var(--orange);
       display: flex;
       align-items: center;
       gap: 4px;
@@ -823,7 +829,7 @@
     }
 
     .tint-blue {
-      background: #eef6ff;
+      background: #FFF7ED;
     }
 
     .tint-gray {
@@ -896,7 +902,7 @@
     .submit-btn {
       width: 100%;
       padding: 12px 24px;
-      background: var(--link);
+      background: var(--orange);
       color: white;
       border: none;
       border-radius: var(--radius-sm);
@@ -907,9 +913,9 @@
     }
 
     .submit-btn:hover {
-      background: #0842a0;
+      background: #ea6b18;
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(11, 87, 208, 0.3);
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
     }
 
     .submit-btn:active {
@@ -1107,6 +1113,162 @@
 
       .ep-row-thumb-col {
         order: -1;
+      }
+    }
+
+    /* Newsletter CTA */
+    .newsletter-cta {
+      background: #f7f7f9;
+      border-radius: 1.5rem;
+      padding: 2.5rem 2rem;
+      max-width: 900px;
+      margin: 3rem auto;
+      font-family: inherit;
+      box-shadow: 0 2px 16px 0 rgba(0,0,0,0.04);
+    }
+
+    .newsletter-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #222;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .newsletter-stats small {
+      display: block;
+      font-size: .8em;
+      font-weight: 400;
+      color: #555;
+    }
+
+    .newsletter-content {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .newsletter-left {
+      flex: 1 1 260px;
+      min-width: 220px;
+    }
+
+    .newsletter-left h2 {
+      font-size: 2.1rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin: 0 0 1rem 0;
+      color: #111;
+    }
+
+    .highlight {
+      background: #ffa84b;
+      padding: 0 .4em;
+      border-radius: .4em;
+      display: inline-block;
+    }
+
+    .newsletter-desc {
+      font-size: 1.05rem;
+      color: #333;
+      margin-bottom: 1.2rem;
+    }
+
+    .newsletter-trust {
+      font-size: 1rem;
+      color: #111;
+      display: flex;
+      align-items: center;
+      gap: .5em;
+      font-weight: 500;
+    }
+
+    .stars {
+      color: #ffd700;
+      letter-spacing: .1em;
+      font-size: 1.1em;
+    }
+
+    .newsletter-form {
+      flex: 1 1 320px;
+      min-width: 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .newsletter-form p {
+      margin: 0 0 .5rem 0;
+      color: #222;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    .newsletter-input {
+      padding: .85em 1em;
+      border: 2px solid #222;
+      border-radius: .5em;
+      font-size: 1rem;
+      background: #fff;
+      margin-bottom: .5em;
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .newsletter-input:focus {
+      border-color: #888;
+    }
+
+    .newsletter-btn {
+      padding: .85em 1.5em;
+      border: 2px solid #ffa84b;
+      border-radius: .5em;
+      background: #ffa84b;
+      color: #111;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .18s, border-color .18s;
+      margin-top: .2em;
+      box-shadow: 0 1px 4px 0 rgba(221, 120, 31, 0.03);
+    }
+
+    .newsletter-btn:hover,
+    .newsletter-btn:focus {
+      background: #ffa84b;
+      border-color: #111;
+    }
+
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px; width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 700px) {
+      .newsletter-content {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .newsletter-cta {
+        padding: 1.5rem .7rem;
+      }
+
+      .newsletter-stats {
+        gap: 1.2rem .7rem;
+        font-size: .97rem;
+      }
+
+      .newsletter-left h2 {
+        font-size: 1.4rem;
       }
     }
   </style>
@@ -1344,18 +1506,44 @@
       </section>
 
       <!-- Newsletter Section -->
-      <section id="newsletter" class="section">
-        <h3 class="section-title">Newsletter</h3>
-        <div class="newsletter-form">
-          <p style="margin: 0 0 24px; color: var(--muted);">Join others who receive high-signal, curiosity-inducing
-            content every single week.</p>
-          <form id="newsletterForm">
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="your.email@example.com" required />
+      <section id="newsletter" class="newsletter-cta">
+        <div class="newsletter-stats">
+          <span>20k <small>Total Followers</small></span>
+          <span>10K <small>LinkedIn</small></span>
+          <span>1K <small>Instagram</small></span>
+          <span>180 <small>YouTube</small></span>
+          <span>2K <small>Newsletter</small></span>
+          <span>3k <small>Twitter</small></span>
+        </div>
+        <div class="newsletter-content">
+          <div class="newsletter-left">
+            <h2>
+              SUBSCRIBE TO<br>
+              <span class="highlight">NEWSLETTER</span>
+            </h2>
+            <p class="newsletter-desc">
+              Join a community of thousands of ambitious readers getting insights on AI, startups, tech, growth, and building in public.
+            </p>
+            <div class="newsletter-trust">
+              <span class="stars" aria-label="5 stars">★★★★★</span>
+              <span>500+ Reviews</span>
             </div>
-            <button type="submit" class="submit-btn" id="submitBtn">Subscribe</button>
-            <div id="message" class="message"></div>
+          </div>
+          <form class="newsletter-form" autocomplete="off" onsubmit="return subscribeNewsletter(event)">
+            <p>
+              Each week, I share actionable ideas on AI, startups, personal growth, creator economy, and lessons from building in public — directly to your inbox.
+            </p>
+            <label for="newsletter-email" class="visually-hidden">Email address</label>
+            <input
+              id="newsletter-email"
+              name="email"
+              type="email"
+              placeholder="Personal Email Address"
+              class="newsletter-input"
+              autocomplete="email"
+              aria-label="Personal Email Address"
+            />
+            <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
           </form>
         </div>
       </section>
@@ -1501,48 +1689,17 @@
       loadPodcasts();
     });
 
-    // Newsletter form handling
-    const form = document.getElementById('newsletterForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const messageDiv = document.getElementById('message');
-    const emailInput = document.getElementById('email');
-
-    form.addEventListener('submit', async (e) => {
+    // Newsletter Subscribe Handler
+    function subscribeNewsletter(e) {
       e.preventDefault();
-
-      const email = emailInput.value.trim();
-      const originalText = submitBtn.textContent;
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Subscribing...';
-
-      messageDiv.className = 'message';
-      messageDiv.style.display = 'none';
-
-      try {
-        const response = await fetch('/api/subscribe', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
-        });
-
-        const data = await response.json().catch(() => ({}));
-
-        if (response.ok) {
-          messageDiv.className = 'message success';
-          messageDiv.textContent = data.message || 'Subscribed successfully!';
-          messageDiv.style.display = 'block';
-          form.reset();
-        } else {
-          throw new Error(data.message || 'Subscription failed');
-        }
-
-      } catch (error) {
-        messageDiv.className = 'message error';
-        messageDiv.textContent = 'Something went wrong. Please try again.';
-        messageDiv.style.display = 'block';
+      const email = e.target.email.value.trim();
+      let url = 'https://monikarajput.substack.com/subscribe';
+      if (email) {
+        url += '?email=' + encodeURIComponent(email);
       }
-    });
+      window.open(url, '_blank', 'noopener');
+      return false;
+    }
 
     // Active navigation highlighting
     const navLinks = document.querySelectorAll('.nav-link');
