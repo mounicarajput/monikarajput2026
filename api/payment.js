@@ -39,6 +39,11 @@ router.post('/create-order', async (req, res) => {
     // Create order for ₹10 (amount = 1000 paise)
     const amount = 1000;
     
+    // Validate minimum amount
+    if (amount < 100) {
+      return res.status(400).json({ error: 'Minimum amount is 100 paise' });
+    }
+    
     const options = {
       amount: amount,
       currency: "INR",
@@ -64,7 +69,11 @@ router.post('/create-order', async (req, res) => {
     res.json({ success: true, order_id: order.id, amount: order.amount, key_id: process.env.RAZORPAY_KEY_ID });
   } catch (err) {
     console.error('CREATE ORDER ERROR:', err);
-    res.status(500).json({ error: err.message });
+    // Handle auth failures (return 401)
+    if (err.statusCode === 401 || (err.error && err.error.code === 'BAD_REQUEST_ERROR' && err.error.description.includes('authentication'))) {
+      return res.status(401).json({ error: 'Razorpay authentication failed' });
+    }
+    res.status(500).json({ error: err.message || 'Internal Server Error' });
   }
 });
 
