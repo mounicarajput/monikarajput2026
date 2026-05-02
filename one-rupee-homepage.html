@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The One Rupee Homepage - Monika Rajput</title>
+  <meta name="description" content="Pay ₹10 and replace the homepage image with yours." />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --link: #f97316;
+      --orange: #f97316;
+      --radius-lg: 20px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+      --success: #10b981;
+      --error: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 16px 20px;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--link);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+      line-height: 1.1;
+      background: linear-gradient(to right, #111827, #374151);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+      max-width: 600px;
+      margin-inline: auto;
+    }
+
+    .project-image {
+      width: 100%;
+      max-width: 700px;
+      height: auto;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      margin: 0 auto 40px auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--link);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    .action-button {
+      background: var(--link);
+      color: white;
+      border: none;
+      padding: 16px 36px;
+      border-radius: 999px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 14px 0 rgba(249, 115, 22, 0.39);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .action-button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+    }
+
+    .action-button:disabled {
+      background: #d1d5db;
+      box-shadow: none;
+      cursor: not-allowed;
+      transform: none;
+      color: #9ca3af;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(17, 24, 39, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      max-width: 500px;
+      width: 90%;
+      padding: 40px;
+      position: relative;
+      animation: slideUp 0.3s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover {
+      background: var(--border);
+      color: var(--text);
+    }
+
+    .modal-step {
+      display: none;
+    }
+
+    .modal-step.active {
+      display: block;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .step-indicator {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 32px;
+      gap: 12px;
+    }
+
+    .step-pill {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      background: #f3f4f6;
+      padding: 6px 16px;
+      border-radius: 999px;
+      transition: all 0.3s;
+    }
+
+    .step-pill.active {
+      color: white;
+      background: var(--link);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.2s;
+      background: #f9fafb;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--link);
+      background: white;
+      box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
+    }
+
+    .file-upload {
+      border: 2px dashed var(--border);
+      border-radius: var(--radius-md);
+      padding: 32px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #f9fafb;
+    }
+
+    .file-upload:hover {
+      border-color: var(--link);
+      background: rgba(249, 115, 22, 0.02);
+    }
+
+    .file-upload input {
+      display: none;
+    }
+
+    .preview-image {
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: var(--radius-sm);
+      margin-top: 16px;
+      object-fit: cover;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 0.8s linear infinite;
+    }
+
+    .spinner-dark {
+      border-color: rgba(0, 0, 0, 0.1);
+      border-top-color: var(--link);
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .success-icon {
+      font-size: 4rem;
+      color: var(--success);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <a class="nav-logo" href="/">MR</a>
+      <ul class="nav-links">
+        <li><a class="nav-link" href="/">Home</a></li>
+        <li><a class="nav-link" href="/products.html">Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero">
+      <h1>Upload Image for ₹10</h1>
+      <p>A fun, community-driven internet experiment. Pay ₹10 to securely replace the homepage image below with your own.</p>
+    </div>
+
+    <div class="project-image" id="imageDisplay">
+      <div class="loading-spinner spinner-dark"></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-value" id="viewsCount">0</div>
+        <div class="stat-label">Views</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="replacementsCount">0</div>
+        <div class="stat-label">Replacements</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="ownerName">—</div>
+        <div class="stat-label">Current Owner</div>
+      </div>
+    </div>
+
+    <center>
+      <button class="action-button" onclick="openModal()">Replace Image for ₹10</button>
+    </center>
+  </div>
+
+  <div class="modal-overlay" id="paymentModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">×</button>
+
+      <div class="step-indicator">
+        <div class="step-pill active" data-step="1">1. Pay ₹10</div>
+        <div class="step-pill" data-step="2">2. Upload</div>
+        <div class="step-pill" data-step="3">3. Done</div>
+      </div>
+
+      <!-- Step 1: Pay -->
+      <div class="modal-step active" data-step="1">
+        <h2 class="modal-title">Secure Payment</h2>
+        <p style="text-align: center; color: var(--muted); margin-bottom: 32px;">To prevent spam, there is a small fee of ₹10 to upload an image. Once paid, the upload will be unlocked instantly.</p>
+        
+        <center>
+          <button class="action-button" id="payBtn" style="width: 100%;" onclick="startPayment()">
+            Pay ₹10
+          </button>
+        </center>
+      </div>
+
+      <!-- Step 2: Upload Image -->
+      <div class="modal-step" data-step="2">
+        <h2 class="modal-title">Upload Your Photo</h2>
+        <form id="uploadForm" onsubmit="handleUploadSubmit(event)">
+          <div class="form-group">
+            <div class="file-upload" onclick="document.getElementById('imageInput').click()" id="fileUploadArea">
+              <div style="font-size: 2rem; margin-bottom: 8px;">📸</div>
+              <div style="color: var(--muted); font-size: 0.95rem;">Click or drag an image here</div>
+              <input type="file" id="imageInput" accept="image/*" onchange="handleFileSelect" required>
+            </div>
+            <div id="previewContainer" style="text-align: center;"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Your Name (optional)</label>
+            <input type="text" class="form-input" id="ownerInput" placeholder="How should we credit you?" maxlength="50">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Caption (optional)</label>
+            <textarea class="form-textarea" id="captionInput" placeholder="Write a short message..." rows="2" maxlength="200"></textarea>
+          </div>
+
+          <button type="submit" class="action-button" id="uploadBtn" style="width: 100%;">
+            Upload Image
+          </button>
+        </form>
+      </div>
+
+      <!-- Step 3: Success -->
+      <div class="modal-step" data-step="3">
+        <div class="success-icon">✓</div>
+        <h2 class="modal-title">Payment & Upload Successful!</h2>
+        <p style="text-align: center; color: var(--muted); margin-bottom: 32px;">Your image is now live on the homepage for everyone to see.</p>
+        
+        <center>
+          <button type="button" class="action-button" onclick="completeFlow()" style="width: 100%;">
+            View Homepage
+          </button>
+        </center>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    // ========== STATE MANAGEMENT ==========
+    const state = {
+      currentStep: 1,
+      selectedFile: null,
+      paymentData: null,
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeApp();
+      loadHomepageData();
+    });
+
+    function initializeApp() {
+      const fileUploadArea = document.getElementById('fileUploadArea');
+      const imageInput = document.getElementById('imageInput');
+
+      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        fileUploadArea.addEventListener(eventName, preventDefaults, false);
+      });
+
+      function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      ['dragenter', 'dragover'].forEach(eventName => {
+        fileUploadArea.addEventListener(eventName, () => {
+          fileUploadArea.style.borderColor = 'var(--link)';
+          fileUploadArea.style.background = 'rgba(249, 115, 22, 0.02)';
+        });
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        fileUploadArea.addEventListener(eventName, () => {
+          fileUploadArea.style.borderColor = 'var(--border)';
+          fileUploadArea.style.background = '#f9fafb';
+        });
+      });
+
+      fileUploadArea.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        imageInput.files = dt.files;
+        handleFileSelect();
+      });
+
+      imageInput.addEventListener('change', handleFileSelect);
+    }
+
+    // ========== MODAL NAVIGATION ==========
+    function openModal() {
+      document.getElementById('paymentModal').classList.add('active');
+      goToStep(1);
+    }
+
+    function closeModal() {
+      if (state.currentStep === 2 && state.paymentData) {
+        // Warning: Paid but not uploaded
+        if(!confirm("You have paid but not uploaded your image yet. Are you sure you want to close?")) return;
+      }
+      document.getElementById('paymentModal').classList.remove('active');
+      
+      // Reset form
+      state.selectedFile = null;
+      state.paymentData = null;
+      document.getElementById('uploadForm').reset();
+      document.getElementById('previewContainer').innerHTML = '';
+      document.getElementById('payBtn').innerHTML = 'Pay ₹10';
+      document.getElementById('payBtn').disabled = false;
+    }
+
+    function goToStep(stepNum) {
+      document.querySelectorAll('.modal-step').forEach(step => step.classList.remove('active'));
+      document.querySelectorAll('.step-pill').forEach(pill => pill.classList.remove('active'));
+
+      document.querySelector(`.modal-step[data-step="${stepNum}"]`).classList.add('active');
+      document.querySelector(`.step-pill[data-step="${stepNum}"]`).classList.add('active');
+
+      state.currentStep = stepNum;
+    }
+
+    // ========== PAYMENT FLOW ==========
+    async function startPayment() {
+      const payBtn = document.getElementById('payBtn');
+      payBtn.disabled = true;
+      payBtn.innerHTML = '<div class="loading-spinner"></div> Processing...';
+
+      try {
+        const response = await fetch('/api/payment/create-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ user_id: 'anonymous' })
+        });
+
+        if (!response.ok) throw new Error('Failed to create payment order');
+
+        const data = await response.json();
+        
+        const options = {
+            "key": data.key_id, 
+            "amount": data.amount,
+            "currency": "INR",
+            "name": "One Rupee Homepage",
+            "description": "Unlock Image Upload",
+            "order_id": data.order_id, 
+            "handler": async function (response){
+                await verifyPayment(response);
+            },
+            "theme": { "color": "#F97316" },
+            "modal": {
+                "ondismiss": function() {
+                    payBtn.disabled = false;
+                    payBtn.innerHTML = 'Pay ₹10';
+                }
+            }
+        };
+        
+        const rzp1 = new Razorpay(options);
+        rzp1.on('payment.failed', function (response){
+            alert('Payment failed: ' + response.error.description);
+            payBtn.disabled = false;
+            payBtn.innerHTML = 'Pay ₹10';
+        });
+        rzp1.open();
+        
+      } catch (error) {
+        alert('Payment initialization failed. Please try again.');
+        payBtn.disabled = false;
+        payBtn.innerHTML = 'Pay ₹10';
+      }
+    }
+
+    async function verifyPayment(paymentResponse) {
+      const payBtn = document.getElementById('payBtn');
+      payBtn.innerHTML = '<div class="loading-spinner"></div> Verifying...';
+
+      try {
+        const verifyRes = await fetch('/api/payment/verify-payment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                razorpay_order_id: paymentResponse.razorpay_order_id,
+                razorpay_payment_id: paymentResponse.razorpay_payment_id,
+                razorpay_signature: paymentResponse.razorpay_signature
+            })
+        });
+
+        if (!verifyRes.ok) throw new Error('Verification failed');
+        
+        // Success -> unlock upload
+        state.paymentData = paymentResponse;
+        goToStep(2);
+      } catch (error) {
+        alert('Payment verification failed.');
+        payBtn.disabled = false;
+        payBtn.innerHTML = 'Pay ₹10';
+      }
+    }
+
+    // ========== UPLOAD FLOW ==========
+    function handleFileSelect(event) {
+      if (event && event.preventDefault) event.preventDefault();
+      const file = document.getElementById('imageInput').files[0];
+      if (!file) return;
+
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File must be less than 5MB');
+        return;
+      }
+
+      state.selectedFile = file;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        document.getElementById('previewContainer').innerHTML = `
+          <img src="${e.target.result}" class="preview-image" alt="Preview">
+        `;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    async function handleUploadSubmit(event) {
+      event.preventDefault();
+
+      if (!state.selectedFile) {
+        alert('Please select an image first.');
+        return;
+      }
+      
+      if (!state.paymentData || !state.paymentData.razorpay_order_id) {
+        alert('Payment verification missing. Please pay first.');
+        goToStep(1);
+        return;
+      }
+
+      const uploadBtn = document.getElementById('uploadBtn');
+      uploadBtn.disabled = true;
+      uploadBtn.innerHTML = '<div class="loading-spinner"></div> Uploading...';
+
+      try {
+        const formData = new FormData();
+        formData.append('image', state.selectedFile);
+        formData.append('razorpay_order_id', state.paymentData.razorpay_order_id);
+        formData.append('owner_name', document.getElementById('ownerInput').value.trim());
+        formData.append('caption', document.getElementById('captionInput').value.trim());
+
+        const response = await fetch('/api/payment/submit-image', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          const errData = await response.json();
+          throw new Error(errData.error || 'Upload failed');
+        }
+
+        goToStep(3);
+      } catch (error) {
+        alert('Failed to upload image: ' + error.message);
+        uploadBtn.disabled = false;
+        uploadBtn.innerHTML = 'Upload Image';
+      }
+    }
+
+    function completeFlow() {
+      closeModal();
+      loadHomepageData();
+    }
+
+    // ========== DATA LOADING ==========
+    async function loadHomepageData() {
+      try {
+        const response = await fetch('/api/payment/current', { cache: 'no-store' });
+        const data = await response.json();
+
+        if (data.success && data.image_url) {
+          document.getElementById('imageDisplay').innerHTML = `
+            <img src="${data.image_url}?t=${Date.now()}" alt="Current homepage image">
+          `;
+          document.getElementById('viewsCount').textContent = data.views || 0;
+          document.getElementById('ownerName').textContent = data.owner_name || 'Anonymous';
+        } else {
+          document.getElementById('imageDisplay').innerHTML = '<div style="font-size: 4rem; color: var(--muted);">📸</div>';
+        }
+      } catch (error) {
+        console.error('Load error:', error);
+      }
+    }
+  </script>
+</body>
+</html>

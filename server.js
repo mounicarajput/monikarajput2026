@@ -7,6 +7,10 @@ const path = require('path');
 const rateLimit = require('express-rate-limit');
 const { createClient } = require('@supabase/supabase-js');
 
+// Import YC Explain routes
+const ycExplainRoutes = require('./api/yc-explain');
+const paymentRoutes = require('./api/payment');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -35,7 +39,8 @@ const subscribeLimiter = rateLimit({
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.static(__dirname));
 
 // Email validation helper
@@ -250,6 +255,12 @@ app.get('/api/health', apiLimiter, (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// YC Explain routes
+app.use('/api', ycExplainRoutes);
+
+// Payment routes
+app.use('/api/payment', paymentRoutes);
+
 // Serve HTML pages
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 app.get('/newsletter', (req, res) => res.sendFile(path.join(__dirname, 'newsletter.html')));
@@ -259,6 +270,8 @@ app.get('/articles', (req, res) => res.sendFile(path.join(__dirname, 'articles.h
 app.get('/about', (req, res) => res.sendFile(path.join(__dirname, 'about.html')));
 app.get('/speaking', (req, res) => res.sendFile(path.join(__dirname, 'speaking.html')));
 app.get('/podcast', (req, res) => res.sendFile(path.join(__dirname, 'podcast.html')));
+app.get('/yc', (req, res) => res.sendFile(path.join(__dirname, 'yc-in-10-seconds.html')));
+app.get('/one-rupee-homepage.html', (req, res) => res.sendFile(path.join(__dirname, 'one-rupee-homepage.html')));
 
 // Start server
 app.listen(PORT, () => {
@@ -271,5 +284,6 @@ app.listen(PORT, () => {
   console.log(`  - Articles: http://localhost:${PORT}/articles`);
   console.log(`  - Contact: http://localhost:${PORT}/contact`);
   console.log(`  - Newsletter: http://localhost:${PORT}/newsletter`);
+  console.log(`  - YC in 10 Seconds: http://localhost:${PORT}/yc`);
   console.log("EMAIL USER:", process.env.GMAIL_USER);
 });
