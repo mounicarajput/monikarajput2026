@@ -216,8 +216,13 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     .modal-content {
@@ -232,8 +237,15 @@
     }
 
     @keyframes slideUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .modal-close {
@@ -372,7 +384,9 @@
     }
 
     @keyframes spin {
-      to { transform: rotate(360deg); }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     .success-icon {
@@ -398,7 +412,8 @@
   <div class="container">
     <div class="hero">
       <h1>Upload Image for ₹10</h1>
-      <p>A fun, community-driven internet experiment. Pay ₹10 to securely replace the homepage image below with your own.</p>
+      <p>A fun, community-driven internet experiment. Pay ₹10 to securely replace the homepage image below with your
+        own.</p>
     </div>
 
     <div class="project-image" id="imageDisplay">
@@ -438,8 +453,9 @@
       <!-- Step 1: Pay -->
       <div class="modal-step active" data-step="1">
         <h2 class="modal-title">Secure Payment</h2>
-        <p style="text-align: center; color: var(--muted); margin-bottom: 32px;">To prevent spam, there is a small fee of ₹10 to upload an image. Once paid, the upload will be unlocked instantly.</p>
-        
+        <p style="text-align: center; color: var(--muted); margin-bottom: 32px;">To prevent spam, there is a small fee
+          of ₹10 to upload an image. Once paid, the upload will be unlocked instantly.</p>
+
         <center>
           <button class="action-button" id="payBtn" style="width: 100%;" onclick="startPayment()">
             Pay ₹10
@@ -455,19 +471,21 @@
             <div class="file-upload" onclick="document.getElementById('imageInput').click()" id="fileUploadArea">
               <div style="font-size: 2rem; margin-bottom: 8px;">📸</div>
               <div style="color: var(--muted); font-size: 0.95rem;">Click or drag an image here</div>
-              <input type="file" id="imageInput" accept="image/*" onchange="handleFileSelect" required>
+              <input type="file" id="imageInput" accept="image/*" onchange="handleFileSelect(event)" required>
             </div>
             <div id="previewContainer" style="text-align: center;"></div>
           </div>
 
           <div class="form-group">
             <label class="form-label">Your Name (optional)</label>
-            <input type="text" class="form-input" id="ownerInput" placeholder="How should we credit you?" maxlength="50">
+            <input type="text" class="form-input" id="ownerInput" placeholder="How should we credit you?"
+              maxlength="50">
           </div>
 
           <div class="form-group">
             <label class="form-label">Caption (optional)</label>
-            <textarea class="form-textarea" id="captionInput" placeholder="Write a short message..." rows="2" maxlength="200"></textarea>
+            <textarea class="form-textarea" id="captionInput" placeholder="Write a short message..." rows="2"
+              maxlength="200"></textarea>
           </div>
 
           <button type="submit" class="action-button" id="uploadBtn" style="width: 100%;">
@@ -480,8 +498,9 @@
       <div class="modal-step" data-step="3">
         <div class="success-icon">✓</div>
         <h2 class="modal-title">Payment & Upload Successful!</h2>
-        <p style="text-align: center; color: var(--muted); margin-bottom: 32px;">Your image is now live on the homepage for everyone to see.</p>
-        
+        <p style="text-align: center; color: var(--muted); margin-bottom: 32px;">Your image is now live on the homepage
+          for everyone to see.</p>
+
         <center>
           <button type="button" class="action-button" onclick="completeFlow()" style="width: 100%;">
             View Homepage
@@ -492,226 +511,236 @@
   </div>
 
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
   <script>
-    // ========== STATE MANAGEMENT ==========
+    // ================= CONFIG =================
+    const SUPABASE_URL = "https://xhjostwhhuvhxzfcoygk.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhoam9zdHdoaHV2aHh6ZmNveWdrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwMjY4MDIsImV4cCI6MjA5MjYwMjgwMn0.WFHzKuqsoGc30SetvjlPl17ZOjRrWO5CZHZ4_HgEiWE"; // 🔴 ADD YOUR KEY
+
+    // ================= STATE =================
     const state = {
       currentStep: 1,
       selectedFile: null,
       paymentData: null,
     };
 
+    // ================= SAFE INIT (FIXED CRASH) =================
     document.addEventListener('DOMContentLoaded', () => {
-      initializeApp();
-      loadHomepageData();
+      try {
+        initializeApp();
+        loadHomepageData();
+      } catch (err) {
+        console.error("Init error:", err);
+      }
     });
 
+    // ================= APP INIT (FIXED) =================
     function initializeApp() {
+      console.log("🔥 FUNCTION CALLED");
+      console.log("App initialized");
+
       const fileUploadArea = document.getElementById('fileUploadArea');
       const imageInput = document.getElementById('imageInput');
 
-      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-        fileUploadArea.addEventListener(eventName, preventDefaults, false);
-      });
-
-      function preventDefaults(e) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-
-      ['dragenter', 'dragover'].forEach(eventName => {
-        fileUploadArea.addEventListener(eventName, () => {
-          fileUploadArea.style.borderColor = 'var(--link)';
-          fileUploadArea.style.background = 'rgba(249, 115, 22, 0.02)';
-        });
-      });
-
-      ['dragleave', 'drop'].forEach(eventName => {
-        fileUploadArea.addEventListener(eventName, () => {
-          fileUploadArea.style.borderColor = 'var(--border)';
-          fileUploadArea.style.background = '#f9fafb';
-        });
-      });
-
-      fileUploadArea.addEventListener('drop', (e) => {
-        const dt = e.dataTransfer;
-        imageInput.files = dt.files;
-        handleFileSelect();
-      });
+      if (!fileUploadArea || !imageInput) return;
 
       imageInput.addEventListener('change', handleFileSelect);
+
+      // Drag & drop safety
+      fileUploadArea.addEventListener('click', () => {
+        imageInput.click();
+      });
     }
 
-    // ========== MODAL NAVIGATION ==========
+    // ================= MODAL =================
     function openModal() {
       document.getElementById('paymentModal').classList.add('active');
       goToStep(1);
     }
 
     function closeModal() {
-      if (state.currentStep === 2 && state.paymentData) {
-        // Warning: Paid but not uploaded
-        if(!confirm("You have paid but not uploaded your image yet. Are you sure you want to close?")) return;
-      }
       document.getElementById('paymentModal').classList.remove('active');
-      
-      // Reset form
+
       state.selectedFile = null;
       state.paymentData = null;
+
       document.getElementById('uploadForm').reset();
       document.getElementById('previewContainer').innerHTML = '';
-      document.getElementById('payBtn').innerHTML = 'Pay ₹10';
-      document.getElementById('payBtn').disabled = false;
     }
 
-    function goToStep(stepNum) {
-      document.querySelectorAll('.modal-step').forEach(step => step.classList.remove('active'));
-      document.querySelectorAll('.step-pill').forEach(pill => pill.classList.remove('active'));
+    function goToStep(step) {
+      document.querySelectorAll('.modal-step').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.step-pill').forEach(p => p.classList.remove('active'));
 
-      document.querySelector(`.modal-step[data-step="${stepNum}"]`).classList.add('active');
-      document.querySelector(`.step-pill[data-step="${stepNum}"]`).classList.add('active');
+      document.querySelector(`.modal-step[data-step="${step}"]`).classList.add('active');
+      document.querySelector(`.step-pill[data-step="${step}"]`).classList.add('active');
 
-      state.currentStep = stepNum;
+      state.currentStep = step;
     }
 
-    // ========== PAYMENT FLOW ==========
+    // ================= PAYMENT =================
     async function startPayment() {
       const payBtn = document.getElementById('payBtn');
+
       payBtn.disabled = true;
-      payBtn.innerHTML = '<div class="loading-spinner"></div> Processing...';
+      payBtn.innerHTML = "Processing...";
 
       try {
-        const response = await fetch('/api/payment/create-order', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ user_id: 'anonymous' })
-        });
+        const res = await fetch(
+          `${SUPABASE_URL}/functions/v1/razorpay-create-order`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
 
-        if (!response.ok) throw new Error('Failed to create payment order');
-
-        const data = await response.json();
-        
-        const options = {
-            "key": data.key_id, 
-            "amount": data.amount,
-            "currency": "INR",
-            "name": "One Rupee Homepage",
-            "description": "Unlock Image Upload",
-            "order_id": data.order_id, 
-            "handler": async function (response){
-                await verifyPayment(response);
+              // IMPORTANT FIX FOR 401
+              "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
+              "apikey": SUPABASE_ANON_KEY
             },
-            "theme": { "color": "#F97316" },
-            "modal": {
-                "ondismiss": function() {
-                    payBtn.disabled = false;
-                    payBtn.innerHTML = 'Pay ₹10';
-                }
+            body: JSON.stringify({ user_id: "anonymous" })
+          }
+        );
+
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data?.message || "Order failed");
+
+        const options = {
+          key: data.key_id || "rzp_test_SkwJ0heKpUxTdX",
+          amount: data.amount,
+          currency: "INR",
+          name: "One Rupee Homepage",
+          description: "Image Upload",
+          order_id: data.order_id,
+
+          handler: async function (response) {
+            await verifyPayment(response);
+          },
+
+          theme: { color: "#F97316" },
+
+          modal: {
+            ondismiss: function () {
+              payBtn.disabled = false;
+              payBtn.innerHTML = "Pay ₹10";
             }
+          }
         };
-        
-        const rzp1 = new Razorpay(options);
-        rzp1.on('payment.failed', function (response){
-            alert('Payment failed: ' + response.error.description);
-            payBtn.disabled = false;
-            payBtn.innerHTML = 'Pay ₹10';
-        });
-        rzp1.open();
-        
-      } catch (error) {
-        alert('Payment initialization failed. Please try again.');
+
+        const rzp = new Razorpay(options);
+        rzp.open();
+
+      } catch (err) {
+        console.error(err);
+        console.log("RAZORPAY RESPONSE FULL:", response);
+        alert("Payment failed");
         payBtn.disabled = false;
-        payBtn.innerHTML = 'Pay ₹10';
+        payBtn.innerHTML = "Pay ₹10";
       }
     }
 
+    // ================= VERIFY PAYMENT =================
     async function verifyPayment(paymentResponse) {
       const payBtn = document.getElementById('payBtn');
-      payBtn.innerHTML = '<div class="loading-spinner"></div> Verifying...';
+      payBtn.innerHTML = "Verifying...";
 
       try {
-        const verifyRes = await fetch('/api/payment/verify-payment', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                razorpay_order_id: paymentResponse.razorpay_order_id,
-                razorpay_payment_id: paymentResponse.razorpay_payment_id,
-                razorpay_signature: paymentResponse.razorpay_signature
-            })
-        });
+        const res = await fetch(
+          `${SUPABASE_URL}/functions/v1/razorpay-verify-payment`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
+              "apikey": SUPABASE_ANON_KEY
+            },
+            body: JSON.stringify(paymentResponse)
+          }
+        );
 
-        if (!verifyRes.ok) throw new Error('Verification failed');
-        
-        // Success -> unlock upload
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data?.error || "Verification failed");
+
         state.paymentData = paymentResponse;
+
+        console.log("PAYMENT SUCCESS:", paymentResponse);
         goToStep(2);
-      } catch (error) {
-        alert('Payment verification failed.');
+        console.log("VERIFY RESPONSE:", paymentResponse);
+
+      } catch (err) {
+        console.error(err);
+        alert("Verification failed");
         payBtn.disabled = false;
-        payBtn.innerHTML = 'Pay ₹10';
+        payBtn.innerHTML = "Pay ₹10";
       }
     }
 
-    // ========== UPLOAD FLOW ==========
-    function handleFileSelect(event) {
-      if (event && event.preventDefault) event.preventDefault();
+    // ================= FILE HANDLING =================
+    function handleFileSelect() {
       const file = document.getElementById('imageInput').files[0];
       if (!file) return;
 
-      if (file.size > 5 * 1024 * 1024) {
-        alert('File must be less than 5MB');
-        return;
-      }
-
       state.selectedFile = file;
+
       const reader = new FileReader();
       reader.onload = (e) => {
         document.getElementById('previewContainer').innerHTML = `
-          <img src="${e.target.result}" class="preview-image" alt="Preview">
-        `;
+        <img src="${e.target.result}" class="preview-image"/>
+      `;
       };
       reader.readAsDataURL(file);
     }
 
+    // ================= UPLOAD =================
     async function handleUploadSubmit(event) {
       event.preventDefault();
 
-      if (!state.selectedFile) {
-        alert('Please select an image first.');
-        return;
-      }
-      
-      if (!state.paymentData || !state.paymentData.razorpay_order_id) {
-        alert('Payment verification missing. Please pay first.');
-        goToStep(1);
+      if (!state.selectedFile || !state.paymentData) {
+        alert("Missing file or payment");
         return;
       }
 
-      const uploadBtn = document.getElementById('uploadBtn');
-      uploadBtn.disabled = true;
-      uploadBtn.innerHTML = '<div class="loading-spinner"></div> Uploading...';
+      const btn = document.getElementById('uploadBtn');
+      btn.disabled = true;
+      btn.innerHTML = "Uploading...";
 
       try {
         const formData = new FormData();
-        formData.append('image', state.selectedFile);
-        formData.append('razorpay_order_id', state.paymentData.razorpay_order_id);
-        formData.append('owner_name', document.getElementById('ownerInput').value.trim());
-        formData.append('caption', document.getElementById('captionInput').value.trim());
 
-        const response = await fetch('/api/payment/submit-image', {
-          method: 'POST',
-          body: formData
-        });
+        formData.append("image", state.selectedFile);
 
-        if (!response.ok) {
-          const errData = await response.json();
-          throw new Error(errData.error || 'Upload failed');
+        // Razorpay handler returns razorpay_order_id (not order_id)
+        formData.append("razorpay_order_id", state.paymentData.razorpay_order_id);
+
+        formData.append("owner_name", document.getElementById('ownerInput').value || "");
+        formData.append("caption", document.getElementById('captionInput').value || "");
+
+        const res = await fetch(
+          `${SUPABASE_URL}/functions/v1/submit-image`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            },
+            body: formData
+          }
+        );
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          console.error(data);
+          throw new Error(data.error || "Upload failed");
         }
 
         goToStep(3);
-      } catch (error) {
-        alert('Failed to upload image: ' + error.message);
-        uploadBtn.disabled = false;
-        uploadBtn.innerHTML = 'Upload Image';
+
+      } catch (err) {
+        console.error(err);
+        alert(err.message);
+        btn.disabled = false;
+        btn.innerHTML = "Upload Image";
       }
     }
 
@@ -720,25 +749,45 @@
       loadHomepageData();
     }
 
-    // ========== DATA LOADING ==========
+    // ================= LOAD HOMEPAGE =================
     async function loadHomepageData() {
       try {
-        const response = await fetch('/api/payment/current', { cache: 'no-store' });
-        const data = await response.json();
+        const res = await fetch("/api/payment/current");
 
-        if (data.success && data.image_url) {
-          document.getElementById('imageDisplay').innerHTML = `
-            <img src="${data.image_url}?t=${Date.now()}" alt="Current homepage image">
-          `;
-          document.getElementById('viewsCount').textContent = data.views || 0;
-          document.getElementById('ownerName').textContent = data.owner_name || 'Anonymous';
-        } else {
-          document.getElementById('imageDisplay').innerHTML = '<div style="font-size: 4rem; color: var(--muted);">📸</div>';
+        if (!res.ok) return;
+
+        const data = await res.json();
+
+        const imageDisplay = document.getElementById('imageDisplay');
+        const viewsCount = document.getElementById('viewsCount');
+        const ownerName = document.getElementById('ownerName');
+        const replacementsCount = document.getElementById('replacementsCount');
+
+        // SAFE GUARDS (IMPORTANT)
+        if (imageDisplay) {
+          imageDisplay.innerHTML = data.image_url
+            ? `<img src="${data.image_url}" />`
+            : `<div style="font-size:3rem;">📸</div>`;
         }
-      } catch (error) {
-        console.error('Load error:', error);
+
+        if (viewsCount) {
+          viewsCount.textContent = data.views || 0;
+        }
+
+        if (ownerName) {
+          ownerName.textContent = data.owner_name || "—";
+        }
+
+        if (replacementsCount) {
+          replacementsCount.textContent = data.total_replacements || 0;
+        }
+
+      } catch (err) {
+        console.error("Load error:", err);
       }
     }
+
   </script>
 </body>
+
 </html>
