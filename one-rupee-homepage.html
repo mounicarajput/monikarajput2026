@@ -752,11 +752,18 @@
     // ================= LOAD HOMEPAGE =================
     async function loadHomepageData() {
       try {
-        const res = await fetch("/api/payment/current");
+        // Fetch directly from Supabase to avoid production 404s on the Vercel Node API
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/one_rupee_submissions?select=*&order=created_at.desc&limit=1`, {
+          headers: {
+            "apikey": SUPABASE_ANON_KEY,
+            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
+          }
+        });
 
         if (!res.ok) return;
 
-        const data = await res.json();
+        const results = await res.json();
+        const data = results.length > 0 ? results[0] : {};
 
         const imageDisplay = document.getElementById('imageDisplay');
         const viewsCount = document.getElementById('viewsCount');
