@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The One Rupee Homepage - Monika Rajput</title>
+  <title>The Ten Rupee Homepage</title>
   <meta name="description" content="Pay ₹10 and replace the homepage image with yours." />
   <style>
     :root {
@@ -485,7 +485,7 @@
       <div class="modal-step" data-step="2">
         <h2 class="modal-title">Secure Payment</h2>
         <p style="text-align: center; color: var(--muted); margin-bottom: 32px;">
-          To prevent spam, there is a small fee of ₹10 to upload an image. 
+          To prevent spam, there is a small fee of ₹10 to upload an image.
           Once paid, your photo will be live instantly!
         </p>
 
@@ -669,7 +669,7 @@
 
         state.paymentData = paymentResponse;
         console.log("PAYMENT SUCCESS:", paymentResponse);
-        
+
         // Auto-start upload after payment is verified
         await performFinalUpload();
 
@@ -807,7 +807,7 @@
         // 3. Handle Views (Increment and Update UI)
         const currentViews = data.views || 0;
         const newViews = currentViews + 1;
-        
+
         if (viewsCount) {
           viewsCount.textContent = newViews;
         }
