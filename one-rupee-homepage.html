@@ -752,42 +752,69 @@
     // ================= LOAD HOMEPAGE =================
     async function loadHomepageData() {
       try {
-        // Fetch directly from Supabase to avoid production 404s on the Vercel Node API
+        // Fetch latest submission AND total count using Prefer: count=exact
         const res = await fetch(`${SUPABASE_URL}/rest/v1/one_rupee_submissions?select=*&order=created_at.desc&limit=1`, {
           headers: {
             "apikey": SUPABASE_ANON_KEY,
-            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
+            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
+            "Prefer": "count=exact"
           }
         });
 
         if (!res.ok) return;
 
+        // Get total count from Content-Range header (format: 0-0/total)
+        const contentRange = res.headers.get('content-range');
+        const totalCount = contentRange ? contentRange.split('/')[1] : 0;
+
         const results = await res.json();
-        const data = results.length > 0 ? results[0] : {};
+        const data = results.length > 0 ? results[0] : null;
 
         const imageDisplay = document.getElementById('imageDisplay');
         const viewsCount = document.getElementById('viewsCount');
         const ownerName = document.getElementById('ownerName');
         const replacementsCount = document.getElementById('replacementsCount');
 
-        // SAFE GUARDS (IMPORTANT)
-        if (imageDisplay) {
-          imageDisplay.innerHTML = data.image_url
-            ? `<img src="${data.image_url}" />`
-            : `<div style="font-size:3rem;">📸</div>`;
+        // 1. Update Total Replacements (Count of all submissions)
+        if (replacementsCount) {
+          replacementsCount.textContent = totalCount || 0;
         }
 
-        if (viewsCount) {
-          viewsCount.textContent = data.views || 0;
+        if (!data) {
+          if (imageDisplay) {
+            imageDisplay.innerHTML = `<div style="font-size:3rem;">📸</div>`;
+          }
+          return;
+        }
+
+        // 2. Update Image and Owner
+        if (imageDisplay) {
+          imageDisplay.innerHTML = `<img src="${data.image_url}" />`;
         }
 
         if (ownerName) {
           ownerName.textContent = data.owner_name || "—";
         }
 
-        if (replacementsCount) {
-          replacementsCount.textContent = data.total_replacements || 0;
+        // 3. Handle Views (Increment and Update UI)
+        const currentViews = data.views || 0;
+        const newViews = currentViews + 1;
+        
+        if (viewsCount) {
+          viewsCount.textContent = newViews;
         }
+
+        // Update views in Database
+        fetch(`${SUPABASE_URL}/rest/v1/one_rupee_submissions?id=eq.${data.id}`, {
+          method: 'PATCH',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ views: newViews })
+        }).catch(err => console.error("Error updating views:", err));
 
       } catch (err) {
         console.error("Load error:", err);
