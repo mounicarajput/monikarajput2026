@@ -468,10 +468,10 @@
         <h2 class="modal-title">Upload Your Photo</h2>
         <form id="uploadForm" onsubmit="handleUploadSubmit(event)">
           <div class="form-group">
-            <div class="file-upload" onclick="document.getElementById('imageInput').click()" id="fileUploadArea">
+            <div class="file-upload" id="fileUploadArea">
               <div style="font-size: 2rem; margin-bottom: 8px;">📸</div>
               <div style="color: var(--muted); font-size: 0.95rem;">Click or drag an image here</div>
-              <input type="file" id="imageInput" accept="image/*" onchange="handleFileSelect(event)">
+              <input type="file" id="imageInput" accept="image/*">
             </div>
             <div id="previewContainer" style="text-align: center;"></div>
           </div>
