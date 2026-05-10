@@ -270,8 +270,9 @@ app.get('/articles', (req, res) => res.sendFile(path.join(__dirname, 'articles.h
 app.get('/about', (req, res) => res.sendFile(path.join(__dirname, 'about.html')));
 app.get('/speaking', (req, res) => res.sendFile(path.join(__dirname, 'speaking.html')));
 app.get('/podcast', (req, res) => res.sendFile(path.join(__dirname, 'podcast.html')));
+app.get('/products', (req, res) => res.sendFile(path.join(__dirname, 'products.html')));
 app.get('/yc', (req, res) => res.sendFile(path.join(__dirname, 'yc-in-10-seconds.html')));
-app.get('/one-rupee-homepage.html', (req, res) => res.sendFile(path.join(__dirname, 'one-rupee-homepage.html')));
+app.get('/one-rupee-homepage', (req, res) => res.sendFile(path.join(__dirname, 'one-rupee-homepage.html')));
 
 // Start server
 app.listen(PORT, () => {
