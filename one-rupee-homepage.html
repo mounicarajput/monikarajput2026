@@ -445,27 +445,14 @@
       <button class="modal-close" onclick="closeModal()">×</button>
 
       <div class="step-indicator">
-        <div class="step-pill active" data-step="1">1. Pay ₹10</div>
-        <div class="step-pill" data-step="2">2. Upload</div>
+        <div class="step-pill active" data-step="1">1. Photo</div>
+        <div class="step-pill" data-step="2">2. Pay ₹10</div>
         <div class="step-pill" data-step="3">3. Done</div>
       </div>
 
-      <!-- Step 1: Pay -->
+      <!-- Step 1: Upload Image -->
       <div class="modal-step active" data-step="1">
-        <h2 class="modal-title">Secure Payment</h2>
-        <p style="text-align: center; color: var(--muted); margin-bottom: 32px;">To prevent spam, there is a small fee
-          of ₹10 to upload an image. Once paid, the upload will be unlocked instantly.</p>
-
-        <center>
-          <button class="action-button" id="payBtn" style="width: 100%;" onclick="startPayment()">
-            Pay ₹10
-          </button>
-        </center>
-      </div>
-
-      <!-- Step 2: Upload Image -->
-      <div class="modal-step" data-step="2">
-        <h2 class="modal-title">Upload Your Photo</h2>
+        <h2 class="modal-title">Choose Your Photo</h2>
         <form id="uploadForm" onsubmit="handleUploadSubmit(event)">
           <div class="form-group">
             <div class="file-upload" id="fileUploadArea">
@@ -489,15 +476,33 @@
           </div>
 
           <button type="submit" class="action-button" id="uploadBtn" style="width: 100%;">
-            Upload Image
+            Continue to Payment
           </button>
         </form>
+      </div>
+
+      <!-- Step 2: Pay -->
+      <div class="modal-step" data-step="2">
+        <h2 class="modal-title">Secure Payment</h2>
+        <p style="text-align: center; color: var(--muted); margin-bottom: 32px;">
+          To prevent spam, there is a small fee of ₹10 to upload an image. 
+          Once paid, your photo will be live instantly!
+        </p>
+
+        <center>
+          <button class="action-button" id="payBtn" style="width: 100%;" onclick="startPayment()">
+            Pay ₹10 & Upload
+          </button>
+          <p style="margin-top: 16px; font-size: 0.9rem; color: var(--muted); cursor: pointer;" onclick="goToStep(1)">
+            ← Back to edit photo
+          </p>
+        </center>
       </div>
 
       <!-- Step 3: Success -->
       <div class="modal-step" data-step="3">
         <div class="success-icon">✓</div>
-        <h2 class="modal-title">Payment & Upload Successful!</h2>
+        <h2 class="modal-title">Success!</h2>
         <p style="text-align: center; color: var(--muted); margin-bottom: 32px;">Your image is now live on the homepage
           for everyone to see.</p>
 
@@ -663,16 +668,16 @@
         if (!res.ok) throw new Error(data?.error || "Verification failed");
 
         state.paymentData = paymentResponse;
-
         console.log("PAYMENT SUCCESS:", paymentResponse);
-        goToStep(2);
-        console.log("VERIFY RESPONSE:", paymentResponse);
+        
+        // Auto-start upload after payment is verified
+        await performFinalUpload();
 
       } catch (err) {
         console.error(err);
-        alert("Verification failed");
+        alert("Verification failed: " + err.message);
         payBtn.disabled = false;
-        payBtn.innerHTML = "Pay ₹10";
+        payBtn.innerHTML = "Pay ₹10 & Upload";
       }
     }
 
@@ -696,25 +701,29 @@
     async function handleUploadSubmit(event) {
       event.preventDefault();
 
-      if (!state.selectedFile || !state.paymentData) {
-        alert("Missing file or payment");
+      if (!state.selectedFile) {
+        alert("Please select a photo first!");
         return;
       }
 
-      const btn = document.getElementById('uploadBtn');
-      btn.disabled = true;
-      btn.innerHTML = "Uploading...";
+      // Save metadata to state for later upload
+      state.ownerName = document.getElementById('ownerInput').value || "";
+      state.caption = document.getElementById('captionInput').value || "";
+
+      goToStep(2);
+    }
+
+    async function performFinalUpload() {
+      const payBtn = document.getElementById('payBtn');
+      payBtn.disabled = true;
+      payBtn.innerHTML = "Uploading image...";
 
       try {
         const formData = new FormData();
-
         formData.append("image", state.selectedFile);
-
-        // Razorpay handler returns razorpay_order_id (not order_id)
         formData.append("razorpay_order_id", state.paymentData.razorpay_order_id);
-
-        formData.append("owner_name", document.getElementById('ownerInput').value || "");
-        formData.append("caption", document.getElementById('captionInput').value || "");
+        formData.append("owner_name", state.ownerName || "Anonymous");
+        formData.append("caption", state.caption || "");
 
         const res = await fetch(
           `${SUPABASE_URL}/functions/v1/submit-image`,
@@ -730,7 +739,6 @@
         const data = await res.json();
 
         if (!res.ok) {
-          console.error(data);
           throw new Error(data.error || "Upload failed");
         }
 
@@ -738,9 +746,9 @@
 
       } catch (err) {
         console.error(err);
-        alert(err.message);
-        btn.disabled = false;
-        btn.innerHTML = "Upload Image";
+        alert("Upload error: " + err.message);
+        payBtn.disabled = false;
+        payBtn.innerHTML = "Retry Upload";
       }
     }
 
