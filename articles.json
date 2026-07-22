@@ -1,6 +1,17 @@
 {
   "articles": [
     {
+      "id": 5,
+      "title": "How to build your first MCP Server using open-source Model",
+      "category": "AI",
+      "description": "I built an AI that remembers whether I actually meditated today, using nothing but free tools and my own laptop. No subscription, no data leaving my machine.",
+      "link": "https://monikarajput.substack.com/p/how-to-build-your-first-mcp-server",
+      "date": "July 18, 2026",
+      "readTime": "10 min read",
+      "image": "images/mcp-server-article.png",
+      "color": "#fce7f3"
+    },
+    {
       "id": 1,
       "title": "Strategic Analysis: Behind Business Success",
       "category": "Business",
