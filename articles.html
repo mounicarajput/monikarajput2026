@@ -289,7 +289,8 @@
 
   <script>
     function determineCategory(article) {
-      const text = `${article.title} ${article.description} ${article.category || ''}`.toLowerCase();
+      if (article.category) return article.category;
+      const text = `${article.title} ${article.description}`.toLowerCase();
       
       if (text.includes('ai') || text.includes('artificial intelligence') || text.includes('machine learning')) return 'AI';
       if (text.includes('cloud') || text.includes('aws') || text.includes('azure')) return 'Cloud';
