@@ -1,6 +1,28 @@
 {
   "articles": [
     {
+      "id": 7,
+      "title": "AI Agents: The Beginner's Guide to Building Thinking Machines",
+      "category": "AI",
+      "description": "What AI agents actually are, when to build one, and what you need to get started.",
+      "link": "https://monikarajput.substack.com/p/ai-agents-the-beginners-guide-to",
+      "date": "July 23, 2026",
+      "readTime": "6 min read",
+      "image": "images/ai-agents-beginners-guide-article.png",
+      "color": "#e0f2fe"
+    },
+    {
+      "id": 8,
+      "title": "The AI Agent Engineering Playbook",
+      "category": "AI",
+      "description": "Everyone is building AI agents. This series explains what actually happens under the hood and how to build one from scratch.",
+      "link": "https://monikarajput.substack.com/p/the-ai-agent-engineering-playbook",
+      "date": "July 22, 2026",
+      "readTime": "8 min read",
+      "image": "images/ai-agent-playbook-article.png",
+      "color": "#fae8ff"
+    },
+    {
       "id": 5,
       "title": "How to build your first MCP Server using open-source Model",
       "category": "AI",

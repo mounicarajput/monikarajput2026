@@ -1625,6 +1625,8 @@
           const image = article.image || `https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80`;
           const date = article.date || '';
 
+          const badgeText = article.link && article.link.includes('substack.com') ? 'SUBSTACK' : 'MEDIUM';
+
           return `
             <a class="article-row" href="${article.link}" target="_blank" rel="noreferrer noopener">
               <div class="article-thumb">
@@ -1632,7 +1634,7 @@
               </div>
               <div>
                 <div class="article-meta">
-                  <span class="medium-badge">MEDIUM</span>
+                  <span class="medium-badge">${badgeText}</span>
                   <span class="article-category">${article.category}</span>
                   ${date ? `<span class="article-date" style="font-size: 0.75rem; color: var(--muted); font-weight: 500;">• ${date}</span>` : ''}
                 </div>
