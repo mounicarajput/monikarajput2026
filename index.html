@@ -734,6 +734,32 @@
       background: linear-gradient(135deg, #ff6600 0%, #ff9966 100%);
     }
 
+    .project-visual.pentestshell {
+      overflow: hidden;
+      padding: 0;
+      background: #070a0f;
+    }
+
+    .project-visual.pentestshell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-visual.wispy {
+      overflow: hidden;
+      padding: 0;
+      background: #0f172a;
+    }
+
+    .project-visual.wispy img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .project-content {
       display: flex;
       flex-direction: column;
@@ -771,6 +797,11 @@
     .project-badge.beta {
       background: #dbeafe;
       color: #1e40af;
+    }
+
+    .project-badge.live {
+      background: #dcfce7;
+      color: #166534;
     }
 
     .project-value-prop {
@@ -1443,42 +1474,34 @@
             </div>
           </a>
 
-          <!-- OpenDocs MCP -->
-          <a class="project-row" href="waitlist-opendocs.html">
-            <div class="project-visual opendocs">
-              <div
-                style="font-size: 0.8rem; font-weight: 800; color: white; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.1em;">
-                Docs</div>
+          <!-- Pentestshell -->
+          <a class="project-row" href="https://pentestshell.com/" target="_blank" rel="noopener noreferrer">
+            <div class="project-visual pentestshell">
+              <img src="images/pentestshell-project.png" alt="Pentestshell — AI-augmented penetration testing" loading="lazy" />
             </div>
             <div class="project-content">
               <div class="project-row-header">
-                <h4 class="project-name">OpenDocs MCP</h4>
-                <span class="project-badge building">Building</span>
+                <h4 class="project-name">Pentestshell</h4>
+                <span class="project-badge live">Live</span>
               </div>
-              <p class="project-value-prop">AI-powered documentation assistant for open-source repositories and
-                developer teams.</p>
-              <p class="project-subtext">A GitHub-native documentation engine that enables AI agents to search,
-                understand, and summarize complex codebases intelligently.</p>
+              <p class="project-value-prop">AI-augmented, senior-led penetration testing — AI flags what's possible, senior operators prove what's real.</p>
+              <p class="project-subtext">Every finding is reproduced by hand with zero scanner dumps or unverified AI noise. Penetration testing built for modern engineering teams.</p>
               <div class="project-row-action">View Project →</div>
             </div>
           </a>
 
-          <!-- YC API Monitor -->
-          <a class="project-row" href="waitlist-yc-monitor.html">
-            <div class="project-visual yc-monitor">
-              <div
-                style="font-size: 0.8rem; font-weight: 800; color: white; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.1em;">
-                YC</div>
+          <!-- Wispy -->
+          <a class="project-row" href="https://wispy.lovable.app/" target="_blank" rel="noopener noreferrer">
+            <div class="project-visual wispy">
+              <img src="images/wispy-project.png" alt="Wispy — Content Creator Studio" loading="lazy" />
             </div>
             <div class="project-content">
               <div class="project-row-header">
-                <h4 class="project-name">YC API Monitor</h4>
-                <span class="project-badge beta">Beta</span>
+                <h4 class="project-name">Wispy</h4>
+                <span class="project-badge building">Building</span>
               </div>
-              <p class="project-value-prop">Weekly intelligence feed for YC startups, developer tools, APIs, and new
-                launches.</p>
-              <p class="project-subtext">Sharp, founder-grade monitoring of the YC ecosystem to discover emerging dev
-                tools and product momentum before they go mainstream.</p>
+              <p class="project-value-prop">All-in-one AI creator studio to plan, schedule, and manage content across all social channels.</p>
+              <p class="project-subtext">Streamline your content pipeline from idea generation to multi-platform publishing with a warm, intuitive workflow.</p>
               <div class="project-row-action">View Project →</div>
             </div>
           </a>
