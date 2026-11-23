@@ -1,0 +1,212 @@
+[
+  {
+    "date": "01/11/2026",
+    "event": "Vibe Lounge: After Hours GDG Gurugram",
+    "location": "Gurugram, India",
+    "description": "Why voice could become the next major interface for AI, the technology making it possible, and what it takes to build voice first AI experiences.",
+    "url": "https://gdg.community.dev/events/details/google-gdg-gurugram-presents-vibe-lounge-after-hours/",
+    "title": "Beyond the Screen: Why Voice Is the Next AI Interface"
+  },
+  {
+    "date": "01/11/2026",
+    "event": "LearnKube Day",
+    "location": "Salt Lake City, USA",
+    "description": "",
+    "url": "https://learnkube.com/learnkube-day-salt-lake-city-2026",
+    "title": "Teaching My AI Agent to Survive the Real World on Kubernetes"
+  },
+  {
+    "date": "01/10/2026",
+    "event": "Trusted Data & AI, Utho Builders",
+    "location": "Noida, India",
+    "description": "From traditional testing to evaluating agents, RAG and LLM apps.",
+    "url": "https://lnkd.in/p/g7E9MucM"
+  },
+  {
+    "date": "01/08/2026",
+    "event": "Kube x Agentic AI",
+    "location": "Noida, India",
+    "description": "",
+    "url": "https://ocgroups.dev/cncf/group/cncg-noida/event/vxqbsfy",
+    "title": "How AI Agents Are Built"
+  },
+  {
+    "date": "06/08/2025",
+    "event": "KubeCon + CloudNativeCon India 2025",
+    "location": "Hyderabad, India",
+    "description": "Keynote speaker at KubeCon + CloudNativeCon India 2025, hosted by The Linux Foundation, with fellow CNCF Ambassadors on community building, open source advocacy and developer education.",
+    "url": "https://events.linuxfoundation.org/archive/2025/kubecon-cloudnativecon-india/",
+    "title": "Keynote panel: Champions of Cloud Native, Stories and Insights from CNCF Ambassadors",
+    "link": "https://youtu.be/5OFlN8CxQ-E",
+    "featured": true
+  },
+  {
+    "date": "01/01/2025",
+    "event": "WOOmpact",
+    "location": "Delhi, India",
+    "description": "",
+    "url": "https://community.cncf.io/events/details/cncf-cloud-native-gurugram-presents-woompact/",
+    "title": "How women are shaping the tech world"
+  },
+  {
+    "date": "01/12/2024",
+    "event": "Azure Developer Community Day 2024 Leipzig",
+    "location": "Leipzig, Germany",
+    "description": "",
+    "url": "https://azuredev.org"
+  },
+  {
+    "date": "01/11/2024",
+    "event": "CloudX 2024",
+    "location": "Santa Clara, USA",
+    "description": "",
+    "url": "https://www.developerweek.com/cloudx/"
+  },
+  {
+    "date": "01/10/2024",
+    "event": "Project Showcase 2024: Bennet University",
+    "location": "Noida, India",
+    "description": "",
+    "url": "https://www.linkedin.com/posts/mounicarajput_monikarajput-innovation-startups-activity-7254473910962774016-6Djq?utm_source=share&amp;utm_medium=member_desktop"
+  },
+  {
+    "date": "01/10/2024",
+    "event": "2024 All Day DevOps (Online)",
+    "description": "",
+    "url": "https://www.alldaydevops.com"
+  },
+  {
+    "date": "01/09/2024",
+    "event": "AWS Community Day West Africa 2024",
+    "location": "Lagos, Nigeria",
+    "description": "",
+    "url": "https://awsusergroupwestafrica.com/",
+    "title": "Uniting AWS Infrastructure, Local Zones, and Generative AI"
+  },
+  {
+    "date": "01/09/2024",
+    "event": "DevOpsDays Kerala 2024",
+    "location": "Kochi, India",
+    "description": "How community teams can automate the repetitive work of running events so the human parts get more attention.",
+    "url": "https://devopsdayskerala.in/",
+    "title": "Scaling developer communities through automation",
+    "link": "https://youtu.be/ChlsZkcYiKE"
+  },
+  {
+    "date": "01/09/2024",
+    "event": "Devtron x React Delhi September Meetup",
+    "location": "Gurugram, India",
+    "description": "",
+    "url": "https://lu.ma/dofcbq7v"
+  },
+  {
+    "date": "01/06/2024",
+    "event": "Entrepreneurship Ep 1: Inside HouseRizz",
+    "location": "Delhi, India",
+    "description": "Redefining home design with AI and AR.",
+    "url": "https://www.linkedin.com/events/entrepreneurshipep1-insidehouse7209923664899710976/comments/"
+  },
+  {
+    "date": "01/06/2024",
+    "event": "AWS Cloud Club",
+    "location": "Noida, India",
+    "description": "",
+    "url": "https://www.meetup.com/aws-cloud-club-at-sharda-university/events/301423840/?utm_medium=referral&amp;utm_campaign=share-btn_savedevents_share_modal&amp;utm_source=link"
+  },
+  {
+    "date": "01/06/2024",
+    "event": "Azure Developer Community: Python Prowess",
+    "location": "Noida, India",
+    "description": "",
+    "url": "https://www.linkedin.com/company/mlsa-uiet/posts/?feedView=all"
+  },
+  {
+    "date": "01/06/2024",
+    "event": "CloudAI ProMeetup",
+    "location": "Gurugram, India",
+    "description": "",
+    "url": "https://konfhub.com/cloudaipromeetup"
+  },
+  {
+    "date": "01/05/2024",
+    "event": "Til Conf'24",
+    "description": "",
+    "url": "https://til-conf.netlify.app/"
+  },
+  {
+    "date": "01/04/2024",
+    "event": "Build Your Own GenAI App",
+    "description": "LLMs from a 30,000 feet view, types of LLMs, the tools needed to build a GenAI app, the flow of the app and the power of LangChain.",
+    "url": "https://wearecommunity.io/events/build-your-own-genai-app"
+  },
+  {
+    "date": "01/02/2024",
+    "event": "Kloud Konnect",
+    "location": "Gurugram, India",
+    "description": "",
+    "url": "https://community.cncf.io/events/details/cncf-cloud-native-gurugram-presents-kloud-konnect/"
+  },
+  {
+    "date": "01/02/2024",
+    "event": "JWOC: JGEC Winter of Code",
+    "location": "Bengaluru, India",
+    "description": "",
+    "url": "https://www.jwoc.tech/"
+  },
+  {
+    "date": "01/02/2024",
+    "event": "TensorFlow User Group Ghaziabad",
+    "location": "Noida, India",
+    "description": "",
+    "url": "https://www.commudle.com/communities/tensorflow-user-group-ghaziabad/events/tensorflow-fiesta-unleashing-the-power-of-ai"
+  },
+  {
+    "date": "01/02/2024",
+    "event": "TCP Computer Science KM College",
+    "location": "Delhi, India",
+    "description": "What Meltano is, why the community prefers it over other DataOps platforms, its integrations, and a live demo of an ELT pipeline.",
+    "title": "Craft Your ELT Pipeline with open-source!"
+  },
+  {
+    "date": "01/02/2024",
+    "event": "AIFC: AI facilitator community",
+    "location": "Delhi, India",
+    "description": "The journey of AI and GenAI, how educators can use it, the best AI tools for teachers, and building an app with generative AI.",
+    "url": "https://aifacilitator.community/signup",
+    "title": "Embracing AI in Modern Education"
+  },
+  {
+    "date": "01/01/2024",
+    "event": "90DaysOfDevOps 2024 Community Edition",
+    "description": "",
+    "url": "https://github.com/MichaelCade/90DaysOfDevOps"
+  },
+  {
+    "date": "01/12/2023",
+    "event": "Devfest Kathmandu 2023",
+    "location": "Kathmandu, Nepal",
+    "description": "",
+    "url": "https://gdg.community.dev/events/details/google-gdg-kathmandu-presents-devfest-kathmandu-2023/"
+  },
+  {
+    "date": "01/12/2023",
+    "event": "Cloud and Open-source Gala",
+    "location": "Gurugram, India",
+    "description": "",
+    "url": "https://community.cncf.io/events/details/cncf-cloud-native-gurugram-presents-cloud-and-open-source-gala/",
+    "title": "CNCF Landscape"
+  },
+  {
+    "date": "01/11/2023",
+    "event": "Concepto",
+    "location": "Noida, India",
+    "description": "",
+    "url": "https://www.linkedin.com/in/ecellimtg/",
+    "title": "Vital Role of Data in Startup Success"
+  },
+  {
+    "date": "01/08/2023",
+    "event": "Cloud & RDS",
+    "description": "Career and technology, what the cloud is, cloud services, which services a web app needs, RDS, why choose RDS over EC2 or on premises, and a hands on RDS setup."
+  }
+]

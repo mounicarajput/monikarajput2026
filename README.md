@@ -48,3 +48,12 @@ The server runs on port 3000 by default. You can change this by setting the `POR
 ```bash
 PORT=8080 npm start
 ```
+
+## Portfolio front end
+
+- Pages are small shells. Each loads one module from `js/` that renders content from `data/`.
+- `css/base.css` (tokens, header, footer), `css/parts.css` (sections and rows), `css/globe.css` (talks page).
+- `js/lib.js` helpers, `js/layout.js` header, footer and fade in, `js/rows.js` list renderers, `js/markers.js` and `js/globe.js` for the talks globe (loaded only on large screens).
+- Content: `data/profile.json` (stats, experience, skills, projects, story), `data/talks.json` (date as DD/MM/YYYY, location as "City, Country", optional `featured`), `data/podcasts.json`, `data/articles.json`. New cities for the globe need coordinates in `js/markers.js`.
+- Images: use the sized copies in `images/web/`. The originals in `images/` are several MB.
+- Preview without Node: `python -m http.server 3000`.
