@@ -1,0 +1,45 @@
+[
+  {
+    "date": "01/12/2024",
+    "event": "Jingle & Cloud Fest",
+    "location": "Gurugram, India",
+    "description": ""
+  },
+  {
+    "date": "01/12/2024",
+    "event": "KubeCon + CloudNativeCon India 2024",
+    "location": "Delhi, India",
+    "description": "",
+    "featured": true
+  },
+  {
+    "date": "01/10/2024",
+    "event": "Code & Cake: CNCF Gurugram Birthday Bash",
+    "description": ""
+  },
+  {
+    "date": "01/10/2024",
+    "event": "Sustainable Hacktober",
+    "location": "Gurugram, India",
+    "description": ""
+  },
+  {
+    "date": "01/08/2024",
+    "event": "TechTalk #5",
+    "location": "Gurugram, India",
+    "description": ""
+  },
+  {
+    "date": "01/08/2024",
+    "event": "KubeCon + CloudNativeCon + Open Source Summit + AI_dev China 2024",
+    "location": "Hong Kong",
+    "description": "",
+    "featured": true
+  },
+  {
+    "date": "01/07/2024",
+    "event": "Phippy & Friends tech meetup",
+    "location": "Gurugram, India",
+    "description": ""
+  }
+]

@@ -1,0 +1,337 @@
+[
+  {
+    "id": "B6BtSGpoITc",
+    "title": "Stop Paying 100x More for AI (Model Routing explained in 5 Minutes)",
+    "show": "Short videos",
+    "date": "2026-10-29",
+    "length": "6 min",
+    "description": "In this video, you'll learn model routing in simple English: how to send each request to the right AI model so you stop overpaying.",
+    "platform": "youtube",
+    "url": "https://youtu.be/B6BtSGpoITc"
+  },
+  {
+    "id": "e2LVawg7s9w",
+    "title": "How to Build a 400K Audience from Scratch (What Works vs. What Fails)",
+    "show": "The Monika Rajput Show",
+    "date": "2026-10-20",
+    "length": "36 min",
+    "description": "In this episode, Jadeja shares his journey from a travel content creator to a tech influencer and founder, revealing the strategies behind his rapid growth and success in content creation...",
+    "platform": "youtube",
+    "url": "https://youtu.be/e2LVawg7s9w"
+  },
+  {
+    "id": "1UsqzY7zsAQ",
+    "title": "How He Built a 2000+ Client Business (Nobody Teaches This) | Janak Patel, CEO of Mpiric Software",
+    "show": "The Monika Rajput Show",
+    "date": "2026-10-07",
+    "length": "49 min",
+    "description": "Build the solution first, and the revenue follows. That is the mindset Janak Patel uses to grow Mpiric Software, support 2,000+ clients, and keep his team focused on real value instead of...",
+    "platform": "youtube",
+    "url": "https://youtu.be/1UsqzY7zsAQ"
+  },
+  {
+    "id": "wRJEQ24NkXM",
+    "title": "What is RAG? Explained in 5 Minutes!",
+    "show": "Short videos",
+    "date": "2026-08-26",
+    "length": "6 min",
+    "description": "This episode explores Retrieval Augmented Generation (RAG), a technique that enhances AI accuracy by combining large language models with real-time data retrieval.",
+    "platform": "youtube",
+    "url": "https://youtu.be/wRJEQ24NkXM"
+  },
+  {
+    "id": "yBQvrtY9L64",
+    "title": "How She Built an AI Product in Just 48 Hours",
+    "show": "The Monika Rajput Show",
+    "date": "2026-08-19",
+    "length": "36 min",
+    "description": "She built a product in just 48 hours using AI and turned an idea into something real.",
+    "platform": "youtube",
+    "url": "https://youtu.be/yBQvrtY9L64"
+  },
+  {
+    "id": "jJY1ydK8Wpc",
+    "title": "What Entrepreneurs First Actually Looks For in Founders | Liam Bakker - Founder of Stematic",
+    "show": "The Monika Rajput Show",
+    "date": "2026-07-22",
+    "length": "27 min",
+    "description": "In this episode, Liam shares his journey from South Africa to London Business School, his experience with EF's startup program, and insights on building and scaling a tech company in the...",
+    "platform": "youtube",
+    "url": "https://youtu.be/jJY1ydK8Wpc"
+  },
+  {
+    "id": "gOO5Y7xD5O0",
+    "title": "Why Tech Has an Inclusion Problem, And How We're Fixing It",
+    "show": "The Monika Rajput Show",
+    "date": "2026-07-10",
+    "length": "15 min",
+    "description": "Is the tech industry actually inclusive or just performative?",
+    "platform": "youtube",
+    "url": "https://youtu.be/gOO5Y7xD5O0"
+  },
+  {
+    "id": "alW8mcSrD1Y",
+    "title": "The Man Who Keeps Rust Running for 4 Million Developers | Marco Ieni | Rust",
+    "show": "The Monika Rajput Show",
+    "date": "2026-06-20",
+    "length": "37 min",
+    "description": "He manages the infrastructure that keeps Rust alive for 4 million developers worldwide , CI, releases, bots, and everything in between.",
+    "platform": "youtube",
+    "url": "https://youtu.be/alW8mcSrD1Y"
+  },
+  {
+    "id": "40qLfz5kCgU",
+    "title": "The databases we can use in the AI era.",
+    "show": "Short videos",
+    "date": "2026-06-16",
+    "length": "47 sec",
+    "description": "It was great talking with Tobie Morgan Hitchcock, CEO of SurrealDB, about the databases we can use in the AI era.",
+    "platform": "youtube",
+    "url": "https://youtu.be/40qLfz5kCgU"
+  },
+  {
+    "id": "cpQcR7BGuJA",
+    "title": "Why Your Database Isn't Ready for AI - SurrealDB Founder Explains | Tobie, CEO of SurrealDB",
+    "show": "The Monika Rajput Show",
+    "date": "2026-06-14",
+    "length": "26 min",
+    "description": "This interview with Tobie explores the evolution of databases in the context of AI, focusing on the development of SurrealDB, a new database engine designed for the AI era.",
+    "platform": "youtube",
+    "url": "https://youtu.be/cpQcR7BGuJA"
+  },
+  {
+    "id": "7IoGJ12sQd4",
+    "title": "What is AEO and GEO?",
+    "show": "Short videos",
+    "date": "2026-04-26",
+    "length": "5 min",
+    "description": "",
+    "platform": "youtube",
+    "url": "https://youtu.be/7IoGJ12sQd4"
+  },
+  {
+    "id": "8s5ptGQycN8",
+    "title": "How AI is Changing Search and Visibility for Brands | AEO/GEO | Aman Mundra",
+    "show": "The Monika Rajput Show",
+    "date": "2026-04-24",
+    "length": "22 min",
+    "description": "This episode explores how AI is transforming search and visibility for brands, featuring Aman Mundra, founder of Welzin.ai.",
+    "platform": "youtube",
+    "url": "https://youtu.be/8s5ptGQycN8"
+  },
+  {
+    "id": "LcRzLjTdRZY",
+    "title": "Why AI Will Fail Without Standards | Larry on Agentic AI & Open Source",
+    "show": "The Monika Rajput Show",
+    "date": "2026-04-17",
+    "length": "22 min",
+    "description": "Larry shares behind-the-scenes insights from over a decade of involvement with open-source initiatives, including the early days of Kubernetes and OpenStack.",
+    "platform": "youtube",
+    "url": "https://youtu.be/LcRzLjTdRZY"
+  },
+  {
+    "id": "hYMTTAD_CvY",
+    "title": "What is merge forward community",
+    "show": "Short videos",
+    "date": "2026-04-13",
+    "length": "47 sec",
+    "description": "",
+    "platform": "youtube",
+    "url": "https://youtu.be/hYMTTAD_CvY"
+  },
+  {
+    "id": "eYYDr4eN8ts",
+    "title": "How Merge Forward is Shaping the Future of Cloud-Native Communities | Diana Todea",
+    "show": "Short videos",
+    "date": "2026-04-13",
+    "length": "4 min",
+    "description": "In this episode, I sit down with Diana to talk about Merge Forward, a CNCF initiative focused on increasing representation and fostering inclusion in the cloud-native ecosystem.",
+    "platform": "youtube",
+    "url": "https://youtu.be/eYYDr4eN8ts"
+  },
+  {
+    "id": "L0J5sIbpKfU",
+    "title": "From Product Manager to CEO: Building PerfectScale with AI & K8 | Amir Banet (CEO of PerfectScale)",
+    "show": "The Monika Rajput Show",
+    "date": "2026-04-12",
+    "length": "18 min",
+    "description": "In this insightful interview, Amir ( CEO of PerfectScale by Do it) shares his journey from product management to CEO, discusses the founding and growth of PerfectScale, and explores the...",
+    "platform": "youtube",
+    "url": "https://youtu.be/L0J5sIbpKfU"
+  },
+  {
+    "id": "xA7cizwfwNg",
+    "title": "How to build one-person consultancy Business",
+    "show": "Short videos",
+    "date": "2026-04-04",
+    "length": "4 min",
+    "description": "I had a conversation with Steve Wade, the founder of PlatformFix, at KubeCon EU.",
+    "platform": "youtube",
+    "url": "https://youtu.be/xA7cizwfwNg"
+  },
+  {
+    "id": "Pxb2gF2B9Mk",
+    "title": "How to build one-person consultancy Business | Steve Wade",
+    "show": "The Monika Rajput Show",
+    "date": "2026-04-04",
+    "length": "15 min",
+    "description": "In this insightful interview, Steve Wade shares his journey of building a successful one-person consulting business, the challenges faced, and how AI is transforming consulting.",
+    "platform": "youtube",
+    "url": "https://youtu.be/Pxb2gF2B9Mk"
+  },
+  {
+    "id": "oq9oWstBFW4",
+    "title": "How to Build a Startup Without Overthinking | Founder Advice | Yurii Tovarnytskyi | EdTech | YC",
+    "show": "The Monika Rajput Show",
+    "date": "2026-03-17",
+    "length": "39 min",
+    "description": "In this episode of the TMS Podcast, host Monika Rajput engages with Yurii Tovarnytskyi, a visionary in the educational technology space.",
+    "platform": "youtube",
+    "url": "https://youtu.be/oq9oWstBFW4"
+  },
+  {
+    "id": "LgMMYuqcEJ8",
+    "title": "How to get full Funded Scholarship to attend Tech conferences | Kubecon",
+    "show": "Short videos",
+    "date": "2026-01-23",
+    "length": "3 min",
+    "description": "Kubecon Europe Scholarship Link :",
+    "platform": "youtube",
+    "url": "https://youtu.be/LgMMYuqcEJ8"
+  },
+  {
+    "id": "GPlDlu0UZS4",
+    "title": "How To Build B2C Brand In INDIA : The Numbers, Mistakes & Lessons That Matter",
+    "show": "The Monika Rajput Show",
+    "date": "2026-01-17",
+    "length": "41 min",
+    "description": "In this episode of the TMS podcast, host Monika Rajput engages with Himanshu, the founder of JVAPA Foods, a B2C brand specializing in rice-based products.",
+    "platform": "youtube",
+    "url": "https://youtu.be/GPlDlu0UZS4"
+  },
+  {
+    "id": "ZXHknRqKIKs",
+    "title": "5 Steps to Start Your First Business",
+    "show": "Short videos",
+    "date": "2026-01-12",
+    "length": "3 min",
+    "description": "Discover the five essential processes every business must master, from value creation to finance, using a simple lemonade stand analogy.",
+    "platform": "youtube",
+    "url": "https://youtu.be/ZXHknRqKIKs"
+  },
+  {
+    "id": "Efp3tq0_kPU",
+    "title": "Learn The Best Way To Launch Your Product",
+    "show": "The Monika Rajput Show",
+    "date": "2026-01-09",
+    "length": "55 min",
+    "description": "In this episode of the TMS Podcast, Monika Rajput interviews Marcos Placona, a seasoned professional in Developer Relations.",
+    "platform": "youtube",
+    "url": "https://youtu.be/Efp3tq0_kPU"
+  },
+  {
+    "id": "aU9QNmuSUjA",
+    "title": "What is a Platform Engineer?",
+    "show": "The Monika Rajput Show",
+    "date": "2025-12-18",
+    "length": "26 min",
+    "description": "Summary",
+    "platform": "youtube",
+    "url": "https://youtu.be/aU9QNmuSUjA"
+  },
+  {
+    "id": "zvlu8rL8UO8",
+    "title": "How I Went from Stage Fear to Speaking at Tech Conferences",
+    "show": "The Monika Rajput Show",
+    "date": "2025-08-10",
+    "length": "42 min",
+    "description": "In this engaging podcast episode, Monika Rajput interviews Diana Todea, a seasoned public speaker and tech professional, about her unique journey from a creative background in philosophy to...",
+    "platform": "youtube",
+    "url": "https://youtu.be/zvlu8rL8UO8"
+  },
+  {
+    "id": "YoFTNgTbQHA",
+    "title": "From Morocco to Google: Abdel's Inspiring Journey",
+    "show": "The Monika Rajput Show",
+    "date": "2025-07-31",
+    "length": "41 min",
+    "description": "In this episode of the TMS podcast, host Monika Rajput speaks with Abdel, a senior cloud developer advocate at Google.",
+    "platform": "youtube",
+    "url": "https://youtu.be/YoFTNgTbQHA"
+  },
+  {
+    "id": "W5mqgQrq9LI",
+    "title": "Why He Left Engineering for DevRel | Salary | PM vs Dev Advocate | Chainguard",
+    "show": "The Monika Rajput Show",
+    "date": "2025-07-15",
+    "length": "40 min",
+    "description": "In today’s episode, we’re joined by the insightful Adrian Mouat, a Developer Advocate at Chainguard and a seasoned engineer with over 20 years of experience in tech.",
+    "platform": "youtube",
+    "url": "https://youtu.be/W5mqgQrq9LI"
+  },
+  {
+    "id": "x_QzUpjDKQI",
+    "title": "Automation Isn't Optional Anymore , Kostis Explains Why",
+    "show": "The Monika Rajput Show",
+    "date": "2025-07-11",
+    "length": "45 min",
+    "description": "In today’s episode, we’re joined by the brilliant Kostis Kapelonis, a developer advocate with an unstoppable passion for automation.",
+    "platform": "youtube",
+    "url": "https://youtu.be/x_QzUpjDKQI"
+  },
+  {
+    "id": "_wo5jFlU6_Y",
+    "title": "How OpenTelemetry & Community Changed My Career",
+    "show": "The Monika Rajput Show",
+    "date": "2025-07-07",
+    "length": "52 min",
+    "description": "In today’s episode, we’re joined by the amazing Juliano Costa: Developer Advocate at Datadog, CNCF Ambassador, and organiser of Cloud Native Linz and KCD Austria.",
+    "platform": "youtube",
+    "url": "https://youtu.be/_wo5jFlU6_Y"
+  },
+  {
+    "id": "qcXyz9gYhco",
+    "title": "Startup Success: Launching HouseRizz & iOS App in less than 2 Months",
+    "show": "The Monika Rajput Show",
+    "date": "2024-06-26",
+    "length": "46 min",
+    "description": "In today's discussion with Krish Mittal, the founder of HouseRizz, we talked about the two-month journey of HouseRizz, from iterating the idea to launching an iOS app in less than two...",
+    "platform": "youtube",
+    "url": "https://youtu.be/qcXyz9gYhco"
+  },
+  {
+    "id": "mgJq5XatFeQ",
+    "title": "How She Got 4 Remote Jobs from a Tier-3 College in India",
+    "show": "SheMeansBusiness",
+    "description": "An honest conversation about navigating tech from a non-elite college, landing remote roles, and building a career in AI and data.",
+    "platform": "youtube",
+    "url": "https://youtu.be/mgJq5XatFeQ"
+  },
+  {
+    "id": "BP0ZnEHUDM8",
+    "title": "How She Got ₹22 Lakhs Remote Job in College",
+    "show": "The Sanskar Show",
+    "episode": "Ep. 109",
+    "description": "Breaking down the mindset, skills, and strategies behind landing a high-paying remote role while still in college.",
+    "platform": "youtube",
+    "url": "https://youtu.be/BP0ZnEHUDM8"
+  },
+  {
+    "id": "5OFlN8CxQ-E",
+    "title": "Stories and Insights from CNCF Ambassadors — Panel",
+    "show": "Champions of Cloud Native",
+    "episode": "KubeCon Keynote",
+    "description": "A keynote panel featuring CNCF Ambassadors sharing their journeys in cloud-native communities, open-source advocacy, and developer education.",
+    "platform": "youtube",
+    "url": "https://youtu.be/5OFlN8CxQ-E"
+  },
+  {
+    "id": "spotify-code-to-cloud",
+    "title": "SQL, SASS & Secure AI — Getting Real About Data",
+    "show": "Code to Cloud",
+    "episode": "by Kevin Evans",
+    "description": "Data engineering practices, AI security, SASS tooling, and what it really takes to build production-ready data pipelines.",
+    "platform": "spotify",
+    "url": "https://open.spotify.com/episode/2JQ4LDpbWYud8XWbdDM9V2"
+  }
+]

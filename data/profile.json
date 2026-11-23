@@ -1,0 +1,225 @@
+{
+  "stats": [
+    [
+      "60+",
+      "Talks delivered"
+    ],
+    [
+      "3,000+",
+      "Developers reached"
+    ],
+    [
+      "20+",
+      "Community events organised"
+    ],
+    [
+      "6+",
+      "Years in tech"
+    ]
+  ],
+  "offers": [
+    {
+      "title": "Keynotes and talks",
+      "text": "Sessions, workshops and panels on AI agents, data infrastructure and cloud native.",
+      "cta": "Invite me to speak",
+      "subject": "Speaking invitation"
+    },
+    {
+      "title": "AI and data engineering",
+      "text": "AI agents, Snowflake data platforms and BI migrations for data teams.",
+      "cta": "Talk about a role or project",
+      "subject": "Opportunity"
+    },
+    {
+      "title": "Community and content",
+      "text": "Developer community programs, technical writing and podcast production.",
+      "cta": "Get in touch",
+      "subject": "Community and content"
+    }
+  ],
+  "experience": [
+    {
+      "when": "Aug 2023 to present",
+      "role": "Data and AI Engineer",
+      "org": "Ahead",
+      "points": [
+        "Led internal LLM workshops and launched an internal open source program, enabling **50+ engineers** to build and contribute to AI powered open source projects.",
+        "Built a Snowflake Cortex Agent DataOps solution that monitored **50+ production pipelines and 1,000+ daily runs**, surfaced data quality issues with AI generated root cause insights, and sent automated Slack alerts.",
+        "Built a multi agent workflow that automated the migration of **500+ Qlik reports** to Power BI: it extracted metadata, translated business logic to SQL, generated semantic models, rebuilt dashboards and validated accuracy against the legacy platform.",
+        "Delivered data and AI solutions for **5 enterprise clients** across banking, airlines, life sciences and defense, including Snowflake Bronze, Silver and Gold platforms that gave analytics and ML teams AI ready data."
+      ]
+    },
+    {
+      "when": "Mar 2021 to Aug 2023",
+      "role": "Founding AI Engineer",
+      "org": "Ryan Miranda Partners",
+      "points": [
+        "Managed **4 engineers and 3 client stakeholders**, automating data workflows with Apache Airflow and MWAA.",
+        "Built sentiment analysis pipelines over **5,000+ documents** in production, and object detection models (YOLOv4, TensorFlow Lite) with **85% real time accuracy** at the edge.",
+        "Designed a web crawler API and a Chrome extension with Auth0, and wrote developer documentation for AI agent usage."
+      ]
+    }
+  ],
+  "skills": {
+    "AI and agents": "LLMs, RAG, AI agents, MCP servers, Claude API, OpenAI API, Snowflake Cortex, NLP, computer vision",
+    "Data and analytics": "Python, SQL, Pandas, Snowflake, Redshift, PostgreSQL, MySQL, Power BI, Excel",
+    "Cloud and DevOps": "AWS, Azure, Airflow, MWAA, Jenkins, Docker, Terraform, Flask",
+    "Developer relations": "Developer advocacy, public speaking, technical writing, GTM strategy, building AI agents",
+    "Content and community": "Community building, technical content strategy, developer community growth, podcast hosting, go to market"
+  },
+  "projects": [
+    {
+      "name": "BrandFlo",
+      "status": "Building",
+      "text": "For founders building their first physical brand in India. From idea to prototype to launch to weekly sales insights, built at SheBuild Season 03.",
+      "url": "https://brandflo.lovable.app",
+      "img": "images/web/brandflo.jpg"
+    },
+    {
+      "name": "Pentestshell",
+      "status": "Live",
+      "text": "AI augmented, senior led penetration testing. AI flags what is possible, senior operators prove what is real, and every finding is reproduced by hand.",
+      "url": "https://pentestshell.com/",
+      "img": "images/web/pentestshell.jpg"
+    },
+    {
+      "name": "Wispy",
+      "status": "Building",
+      "text": "An AI creator studio to plan, schedule and manage content across social channels, from idea to publishing in one workflow.",
+      "url": "https://wispy.lovable.app/",
+      "img": "images/web/wispy.jpg"
+    },
+    {
+      "name": "The Ten Rupee Homepage",
+      "status": "Experiment",
+      "text": "Pay 10 rupees and replace the homepage image with yours. See how long you hold it.",
+      "url": "ten-rupee-homepage.html"
+    }
+  ],
+  "roles": [
+    [
+      "CNCF Ambassador",
+      "Advocating for cloud native technology and helping developers find their way through the ecosystem."
+    ],
+    [
+      "Keynote speaker",
+      "KubeCon + CloudNativeCon India 2025, The Linux Foundation."
+    ],
+    [
+      "CNCG Gurugram lead",
+      "Organised 20+ community events for 3,000 developers across AI and cloud native."
+    ],
+    [
+      "Program committee",
+      "KubeCon North America, China and Japan."
+    ]
+  ],
+  "about": {
+    "intro": "Engineer, builder, storyteller and advocate working at the intersection of AI, data and developer communities. Six years in tech.",
+    "sections": [
+      {
+        "title": "The unexpected start",
+        "text": [
+          "I started in 2019 with a lot of uncertainty. Engineering was not the original plan, but once I began, I decided to move forward with full effort.",
+          "I learned by doing. Every line of code and every failed build was a lesson. Gradually, I built confidence through action rather than theory."
+        ],
+        "img": "images/web/gdg.jpg",
+        "w": 900,
+        "h": 600,
+        "alt": "Monika Rajput speaking to a full room"
+      },
+      {
+        "title": "Learning to build",
+        "text": [
+          "I spent years as a Data Scientist, diving into NLP and computer vision. But I realized that building a model was not enough. I wanted to ship products.",
+          "I learned the end to end journey, from consulting on strategy to writing the frontend code needed to get a tool into a user's hands. I became someone who learns whatever is needed to build."
+        ],
+        "img": "images/web/devopsdays.jpg",
+        "w": 900,
+        "h": 846,
+        "alt": "Monika Rajput presenting at DevOpsDays Kerala"
+      },
+      {
+        "title": "The reset",
+        "text": [
+          "In 2023, the recession hit and I lost my job. Suddenly I had no title and no professional identity. It was a difficult reset.",
+          "But that void became a canvas. I started sharing my journey publicly, turning the silence into a story. This moment taught me that my value is not tied to a company, but to my ability to create."
+        ],
+        "img": "images/web/shemeans.jpg",
+        "w": 1200,
+        "h": 650,
+        "alt": "Monika Rajput in an interview on SheMeansBusiness"
+      },
+      {
+        "title": "Community and public journey",
+        "text": [
+          "That transition led me to the stage. I have mentored and judged at 40+ hackathons and events, and learned the art of technical storytelling.",
+          "Most importantly, I have worked to inspire builders from tier 3 backgrounds to see that their path is possible."
+        ],
+        "roles": true,
+        "img": "images/web/keynote.jpg",
+        "w": 1200,
+        "h": 800,
+        "alt": "CNCF Ambassadors panel at KubeCon CloudNativeCon India 2025"
+      },
+      {
+        "title": "The Monika Rajput Show",
+        "text": [
+          "The Monika Rajput Show (TMS) was born out of pure curiosity. It is a space for deep conversations with the builders of cloud, data, AI and open source.",
+          "It is about learning in public and connecting the dots between people and progress. Through TMS, I have interviewed founders and engineers who are shaping the next decade of technology. Available on Spotify and YouTube."
+        ],
+        "link": [
+          "Watch on YouTube",
+          "https://www.youtube.com/@mounicarajput"
+        ],
+        "img": "images/web/podcast.jpg",
+        "w": 1200,
+        "h": 654,
+        "alt": "Monika Rajput interviewing a guest for The Monika Rajput Show"
+      },
+      {
+        "title": "What excites me now",
+        "text": [
+          "I want to thrive where technology meets utility. I am focused on building AI agents, advocating for developer first products, and helping companies grow through trust and technical depth.",
+          "I love working across product and design, representing a brand on a global stage, and building the storytelling that makes complex technology human."
+        ]
+      }
+    ],
+    "media": [
+      [
+        "KubeCon keynote",
+        "Insights on AI and data infrastructure",
+        "https://youtu.be/5OFlN8CxQ-E"
+      ],
+      [
+        "The Monika Rajput Show",
+        "Available on Spotify and YouTube",
+        "https://www.youtube.com/@mounicarajput"
+      ],
+      [
+        "DevOpsDays Kerala",
+        "Scaling developer communities through automation",
+        "https://youtu.be/ChlsZkcYiKE"
+      ],
+      [
+        "SheMeansBusiness",
+        "How she got 4 remote jobs from a tier 3 college in India",
+        "https://youtu.be/mgJq5XatFeQ"
+      ],
+      [
+        "The Sanskar Show",
+        "How she got a 22 lakh remote job in college",
+        "https://youtu.be/BP0ZnEHUDM8"
+      ],
+      [
+        "Code to Cloud with Kevin Evans",
+        "SQL, SASS and secure AI: Monika Rajput gets real about data",
+        "https://open.spotify.com/episode/2JQ4LDpbWYud8XWbdDM9V2"
+      ]
+    ],
+    "closing": [
+      "Let's build something together",
+      "If something in this story resonates with you, I would love to connect and build meaningful things together."
+    ]
+  }
+}

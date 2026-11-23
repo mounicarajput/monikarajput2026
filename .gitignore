@@ -1,5 +1,7 @@
 node_modules/
-data/
+# private email lists stay out of git; the site content in data/ is committed
+data/subscribers.json
+data/waitlist-*.json
 .env
 *.log
 .DS_Store

@@ -10,7 +10,7 @@ const path = require('path');
 const { getNewsletterTemplate, sendBulkEmails } = require('./email-utils');
 
 const SUBSCRIBERS_FILE = path.join(__dirname, 'data', 'subscribers.json');
-const ARTICLES_FILE = path.join(__dirname, 'articles.json');
+const ARTICLES_FILE = path.join(__dirname, 'data', 'articles.json');
 
 const run = async () => {
   try {
